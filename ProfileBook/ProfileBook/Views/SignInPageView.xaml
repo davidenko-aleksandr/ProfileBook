@@ -1,0 +1,41 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             x:Class="ProfileBook.Views.SignInPageView">
+    <ContentPage.Padding>
+        <OnPlatform x:TypeArguments="Thickness" iOS = "0, 20, 0, 0"/>
+    </ContentPage.Padding>
+        
+        <StackLayout Spacing ="150">
+
+            <Label Text=" Users SingIn" 
+                   TextColor="White" 
+                   VerticalTextAlignment="Center" 
+                   FontSize="20"
+                   BackgroundColor="Blue" 
+                   VerticalOptions="Start" 
+                   HeightRequest="50"/>
+            <StackLayout VerticalOptions="Center" HorizontalOptions="CenterAndExpand">
+                <Entry Placeholder="Login" 
+                       WidthRequest="400"/>
+                <Entry Placeholder="Password" 
+                       WidthRequest="400"
+                       IsPassword ="True" />
+            </StackLayout>
+            <StackLayout VerticalOptions="End" HorizontalOptions="Center">
+                <Button Text="SIGNIN"
+                        WidthRequest="400"
+                        HeightRequest="50"
+                        BackgroundColor="Green"/>
+                <Label Text="SIGNUP" 
+                       TextColor="Blue"
+                       HorizontalOptions="Center"/>
+            </StackLayout>
+
+        </StackLayout>
+        
+   
+</ContentPage> 

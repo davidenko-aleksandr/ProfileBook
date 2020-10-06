@@ -1,0 +1,14 @@
+E:\HeadWorksProject\ProfileBook\ProfileBook\ProfileBook\bin\Debug\netstandard2.0\ProfileBook.deps.json
+E:\HeadWorksProject\ProfileBook\ProfileBook\ProfileBook\bin\Debug\netstandard2.0\ProfileBook.dll
+E:\HeadWorksProject\ProfileBook\ProfileBook\ProfileBook\obj\Debug\netstandard2.0\ProfileBook.csprojAssemblyReference.cache
+E:\HeadWorksProject\ProfileBook\ProfileBook\ProfileBook\obj\Debug\netstandard2.0\App.xaml.g.cs
+E:\HeadWorksProject\ProfileBook\ProfileBook\ProfileBook\obj\Debug\netstandard2.0\ProfileBook.AssemblyInfoInputs.cache
+E:\HeadWorksProject\ProfileBook\ProfileBook\ProfileBook\obj\Debug\netstandard2.0\ProfileBook.AssemblyInfo.cs
+E:\HeadWorksProject\ProfileBook\ProfileBook\ProfileBook\bin\Debug\netstandard2.0\ref\ProfileBook.dll
+E:\HeadWorksProject\ProfileBook\ProfileBook\ProfileBook\bin\Debug\netstandard2.0\ProfileBook.pdb
+E:\HeadWorksProject\ProfileBook\ProfileBook\ProfileBook\obj\Debug\netstandard2.0\Views\SignInPageView.xaml.g.cs
+E:\HeadWorksProject\ProfileBook\ProfileBook\ProfileBook\obj\Debug\netstandard2.0\Views\SignUpPageView.xaml.g.cs
+E:\HeadWorksProject\ProfileBook\ProfileBook\ProfileBook\obj\Debug\netstandard2.0\XamlC.stamp
+E:\HeadWorksProject\ProfileBook\ProfileBook\ProfileBook\obj\Debug\netstandard2.0\ProfileBook.dll
+E:\HeadWorksProject\ProfileBook\ProfileBook\ProfileBook\obj\Debug\netstandard2.0\ref\ProfileBook.dll
+E:\HeadWorksProject\ProfileBook\ProfileBook\ProfileBook\obj\Debug\netstandard2.0\ProfileBook.pdb

@@ -1,18 +1,30 @@
-﻿using System;
+﻿using Prism;
+using Prism.Ioc;
+using Prism.Unity;
+using ProfileBook.ViewModels;
+using ProfileBook.Views;
+using System;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
 namespace ProfileBook
 {
-    public partial class App : Application
+    //Сhange the parent class to PrismApplication to apply "Prism"
+    public partial class App : PrismApplication
     {
-        public App()
+        //add the Prism initializer parameter to the constructor 
+        //and override the OnInitialized and RegisterTypes methods
+        public App(IPlatformInitializer initializer = null) : base(initializer) { }
+        protected override void OnInitialized()
         {
             InitializeComponent();
-
-            MainPage = new MainPage();
+            NavigationService.NavigateAsync(new System.Uri("http://www.ProfileBook/SignInPageView", System.UriKind.Absolute));
         }
-
+        protected override void RegisterTypes(IContainerRegistry containerRegistry)
+        {
+            containerRegistry.RegisterForNavigation<SignInPageView, SignInPageViewModel>();
+            containerRegistry.RegisterForNavigation<SignUpPageView, SignUpPageViewModel>();
+        }
         protected override void OnStart()
         {
             // Handle when your app starts
