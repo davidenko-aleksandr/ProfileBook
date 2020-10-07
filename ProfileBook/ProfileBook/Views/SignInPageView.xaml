@@ -27,22 +27,21 @@
             <StackLayout VerticalOptions="Center" HorizontalOptions="CenterAndExpand">
                 <Entry x:Name="loginEntry"
                        Placeholder="Login" 
-                       WidthRequest="400"
+                       WidthRequest="380"
                        Text="{Binding Login}"/>
                 <Entry x:Name="passwordEntry"
                        Placeholder="Password" 
-                       WidthRequest="400"
+                       WidthRequest="380"
                        IsPassword ="True" 
                        Text="{Binding Password}"/>
             </StackLayout>
             <StackLayout VerticalOptions="End" HorizontalOptions="Center">
             <Button Text="SIGNIN"
-                    WidthRequest="400"
+                    WidthRequest="380"
                     HeightRequest="50"
-                    BackgroundColor="{Binding ButtonColor}"
+                    BackgroundColor="Green"
                     Command="{Binding EnterCommand}"
-                    IsEnabled="False"
-                    >
+                    IsEnabled="False">
                 <Button.Triggers>
                     <MultiTrigger TargetType="Button">
                         <MultiTrigger.Conditions>
@@ -60,9 +59,20 @@
                 </Button.Triggers>
                 
             </Button>
-                <Label Text="SIGNUP" 
-                       TextColor="Blue"
-                       HorizontalOptions="Center"/>
+            <Label HorizontalOptions="Center"
+                 VerticalOptions="Center">
+                <Label.FormattedText>
+                    <FormattedString>
+                        <Span Text="SIGNUP"
+                            TextColor="Blue"
+                            TextDecorations="Underline">
+                            <Span.GestureRecognizers>
+                                <TapGestureRecognizer Command="{Binding ToSignUpPageCommand}"/>
+                            </Span.GestureRecognizers>
+                        </Span>
+                    </FormattedString>
+                </Label.FormattedText>
+            </Label>
             </StackLayout>
 
         </StackLayout>

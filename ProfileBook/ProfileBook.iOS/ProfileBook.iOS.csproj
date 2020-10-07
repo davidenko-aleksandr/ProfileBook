@@ -133,4 +133,7 @@
       <Name>ProfileBook</Name>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\comeback.png" />
+  </ItemGroup>
 </Project>
