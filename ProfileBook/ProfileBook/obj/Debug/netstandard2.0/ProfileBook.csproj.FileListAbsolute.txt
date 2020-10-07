@@ -8,7 +8,8 @@ E:\HeadWorksProject\ProfileBook\ProfileBook\ProfileBook\bin\Debug\netstandard2.0
 E:\HeadWorksProject\ProfileBook\ProfileBook\ProfileBook\bin\Debug\netstandard2.0\ProfileBook.pdb
 E:\HeadWorksProject\ProfileBook\ProfileBook\ProfileBook\obj\Debug\netstandard2.0\Views\SignInPageView.xaml.g.cs
 E:\HeadWorksProject\ProfileBook\ProfileBook\ProfileBook\obj\Debug\netstandard2.0\Views\SignUpPageView.xaml.g.cs
-E:\HeadWorksProject\ProfileBook\ProfileBook\ProfileBook\obj\Debug\netstandard2.0\XamlC.stamp
 E:\HeadWorksProject\ProfileBook\ProfileBook\ProfileBook\obj\Debug\netstandard2.0\ProfileBook.dll
 E:\HeadWorksProject\ProfileBook\ProfileBook\ProfileBook\obj\Debug\netstandard2.0\ref\ProfileBook.dll
 E:\HeadWorksProject\ProfileBook\ProfileBook\ProfileBook\obj\Debug\netstandard2.0\ProfileBook.pdb
+E:\HeadWorksProject\ProfileBook\ProfileBook\ProfileBook\obj\Debug\netstandard2.0\XamlC.stamp
+E:\HeadWorksProject\ProfileBook\ProfileBook\ProfileBook\obj\Debug\netstandard2.0\Views\MainListView.xaml.g.cs

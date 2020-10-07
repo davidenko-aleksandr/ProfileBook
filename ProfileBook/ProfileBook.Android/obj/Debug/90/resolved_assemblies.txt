@@ -7,8 +7,15 @@ E:\HeadWorksProject\ProfileBook\ProfileBook\ProfileBook.Android\obj\Debug\90\and
 E:\HeadWorksProject\ProfileBook\ProfileBook\ProfileBook.Android\obj\Debug\90\android\assets\Prism.Forms.dll
 E:\HeadWorksProject\ProfileBook\ProfileBook\ProfileBook.Android\obj\Debug\90\android\assets\Prism.Unity.Forms.dll
 E:\HeadWorksProject\ProfileBook\ProfileBook\ProfileBook.Android\obj\Debug\90\android\assets\ProfileBook.dll
+E:\HeadWorksProject\ProfileBook\ProfileBook\ProfileBook.Android\obj\Debug\90\android\assets\SQLite-net.dll
+E:\HeadWorksProject\ProfileBook\ProfileBook\ProfileBook.Android\obj\Debug\90\android\assets\SQLitePCLRaw.batteries_v2.dll
+E:\HeadWorksProject\ProfileBook\ProfileBook\ProfileBook.Android\obj\Debug\90\android\assets\SQLitePCLRaw.core.dll
+E:\HeadWorksProject\ProfileBook\ProfileBook\ProfileBook.Android\obj\Debug\90\android\assets\SQLitePCLRaw.lib.e_sqlite3.android.dll
+E:\HeadWorksProject\ProfileBook\ProfileBook\ProfileBook.Android\obj\Debug\90\android\assets\SQLitePCLRaw.provider.e_sqlite3.dll
+E:\HeadWorksProject\ProfileBook\ProfileBook\ProfileBook.Android\obj\Debug\90\android\assets\System.Buffers.dll
 E:\HeadWorksProject\ProfileBook\ProfileBook\ProfileBook.Android\obj\Debug\90\android\assets\System.Core.dll
 E:\HeadWorksProject\ProfileBook\ProfileBook\ProfileBook.Android\obj\Debug\90\android\assets\System.dll
+E:\HeadWorksProject\ProfileBook\ProfileBook\ProfileBook.Android\obj\Debug\90\android\assets\System.Memory.dll
 E:\HeadWorksProject\ProfileBook\ProfileBook\ProfileBook.Android\obj\Debug\90\android\assets\System.Numerics.dll
 E:\HeadWorksProject\ProfileBook\ProfileBook\ProfileBook.Android\obj\Debug\90\android\assets\System.Numerics.Vectors.dll
 E:\HeadWorksProject\ProfileBook\ProfileBook\ProfileBook.Android\obj\Debug\90\android\assets\System.Runtime.CompilerServices.Unsafe.dll

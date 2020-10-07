@@ -15,7 +15,7 @@ namespace ProfileBook.Views
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class SignInPageView : ContentPage
     {
-        [Obsolete]
+        
         public SignInPageView()
         {
             InitializeComponent();
