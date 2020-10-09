@@ -1,6 +1,8 @@
 ﻿using Prism.Mvvm;
 using Prism.Navigation;
 using ProfileBook.Models;
+using System;
+using System.Threading.Tasks;
 using System.Windows.Input;
 using Xamarin.Forms;
 
@@ -19,17 +21,23 @@ namespace ProfileBook.ViewModels
         {
             _navigationService = navigationService;
         }
-        public ICommand EnterCommand => _enterCommand ?? (_enterCommand = new Command(OpenMainListViewPageAsync));
-        public ICommand ToSignUpPageCommand => _toSignUpPageCommand ?? (_toSignUpPageCommand = new Command(OpenSignUpPageAsync));
-
-
-        async void OpenMainListViewPageAsync(object obj)
-        {
-            await _navigationService.NavigateAsync(new System.Uri("http://www.ProfileBook/MainListView", System.UriKind.Absolute));
-        }
-        async void OpenSignUpPageAsync(object obj)
+        public ICommand EnterCommand => _enterCommand ?? (_enterCommand = new Command(
+                        async () => await OpenMainListViewPageAsync(), 
+                        () => false)    //add property ICommand.CanExecute to keep the button deactivated
+                        );
+        public ICommand ToSignUpPageCommand => _toSignUpPageCommand ?? (_toSignUpPageCommand = new Command(
+                        async () => await OpenSignUpPageAsync())
+                        );
+            
+        
+        async Task OpenSignUpPageAsync()
         {
             await _navigationService.NavigateAsync(new System.Uri("http://www.ProfileBook/SignUpPageView", System.UriKind.Absolute));
+        }
+
+        async Task OpenMainListViewPageAsync()
+        {
+            await _navigationService.NavigateAsync(new System.Uri("http://www.ProfileBook/MainListView", System.UriKind.Absolute));
         }
         public string Login
         {
@@ -41,7 +49,7 @@ namespace ProfileBook.ViewModels
             get { return _password; }
             set { SetProperty(ref _password, value); }
         }
-
+        //This method allows navigation from this page
         public bool CanNavigate(INavigationParameters parameters)
         {
             return true;

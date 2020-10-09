@@ -1,7 +1,6 @@
 ﻿using Prism;
 using Prism.Ioc;
 using Prism.Unity;
-using ProfileBook.SQLRepository;
 using ProfileBook.ViewModels;
 using ProfileBook.Views;
 using System;
@@ -28,21 +27,7 @@ namespace ProfileBook
             containerRegistry.RegisterForNavigation<SignUpPageView, SignUpPageViewModel>();
             containerRegistry.RegisterForNavigation<MainListView, MainListViewModel>();
         }
-        public const string DATABASE_NAME = "friends.db";
-        public static UserRepository dataBase;
-        public static UserRepository DataBase
-        {
-            get
-            {
-                if (dataBase == null)
-                {
-                    dataBase = new UserRepository(
-                        Path.Combine(
-                            Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), DATABASE_NAME));
-                }
-                return dataBase;
-            }
-        }
+
         protected override void OnStart()
         {
             // Handle when your app starts

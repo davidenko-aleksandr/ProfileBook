@@ -28,19 +28,19 @@
                 <Entry x:Name="loginEntry"
                        Placeholder="Login" 
                        WidthRequest="380"
-                       Text="{Binding Login}"/>
+                       Text="{Binding Login, Mode=TwoWay}"/>
                 <Entry x:Name="passwordEntry"
                        Placeholder="Password" 
                        WidthRequest="380"
                        IsPassword ="True" 
-                       Text="{Binding Password}"/>
+                       Text="{Binding Password, Mode=TwoWay}"/>
             </StackLayout>
             <StackLayout VerticalOptions="End" HorizontalOptions="Center">
             <Button Text="SIGNIN"
                     WidthRequest="380"
                     HeightRequest="50"
                     BackgroundColor="Green"
-                    Command="{Binding EnterCommand}"
+                    Command="{Binding EnterCommand, Mode=TwoWay}"
                     IsEnabled="False">
                 <Button.Triggers>
                     <MultiTrigger TargetType="Button">
