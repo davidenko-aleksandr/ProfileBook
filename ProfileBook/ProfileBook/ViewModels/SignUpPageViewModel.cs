@@ -3,7 +3,6 @@ using Prism.Navigation;
 using Prism.Services;
 using ProfileBook.Models;
 using ProfileBook.Services;
-using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Input;
 using Xamarin.Forms;
@@ -36,9 +35,11 @@ namespace ProfileBook.ViewModels
             _navigationService = navigationService;
         }
 
-        public ICommand ToSignInCommand => _toSignInCommand ?? (_toSignInCommand = new Command(ComeBackToSignViewPage));
+        public ICommand ToSignInCommand => _toSignInCommand ?? (_toSignInCommand = new Command(
+            ComeBackToSignViewPage)
+            );
         public ICommand SignUpCommand => _signUpCommand ?? (_signUpCommand = new Command(
-            async () => await ToSignUp(),
+            async () => await SignUpComplete(),
             () => false)    //add property ICommand.CanExecute to keep the button deactivated
             );
 
@@ -46,23 +47,23 @@ namespace ProfileBook.ViewModels
         {
             await _navigationService.NavigateAsync(new System.Uri("http://www.ProfileBook/SignInPageView", System.UriKind.Absolute));
         }
-        async Task ToSignUp()
-        {
-            var parametr = new NavigationParameters
+        
+        async Task SignUpComplete()
+        {                
+            if (ChekLoginPasswod() == false)     //If the data is correct, then we return to the previous page
             {
-                { "log", _login },
-                { "pas", _password }
-            };
-            //If the data is correct, then we return to the previous page
-            if (ChekLoginPasswod() == false)
-            {
-                SaveToDataBase();
+                SaveToDataBase();           //Registering a user
+                var parametr = new NavigationParameters     //We send the username and password to the SignIn Page
+                {
+                    { "log", _login },      
+                    { "pas", _password }
+                };
                 await _navigationService.NavigateAsync(new System.Uri("http://www.ProfileBook/SignInPageView", System.UriKind.Absolute), parametr);
                 
             }
             
         }
-        //essage display in case of incorrect data of registration fields
+        
         private bool ChekLoginPasswod()
         {
             bool result = false;
@@ -94,9 +95,9 @@ namespace ProfileBook.ViewModels
                     result = true;
                 }
             }
-            if (result == false)    //If all the data is entered correctly, we check the login for uniqueness in the database
+            if (result == false)    //If all the data is entered correctly 
             {
-                if (_checkLoginValid.IsCheckLoginDB(_login))
+                if (_checkLoginValid.IsCheckLoginDB(_login))    //we check the login for uniqueness in the database
                 {
                     _dialogService.DisplayAlertAsync("Ups",
                         "This login is already registered", "ok");
@@ -105,14 +106,6 @@ namespace ProfileBook.ViewModels
             }
             return result;
         }
-
-        //private bool IsCheckLoginDB(string login)
-        //{
-        //    var lg = App.Database.GetItems().FirstOrDefault(user => user.Login == login);
-        //    if (lg != null)
-        //        return true;
-        //    else return false;
-        //}
         private void SaveToDataBase()
         {
             User user = new User

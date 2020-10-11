@@ -14,18 +14,18 @@ namespace ProfileBook.Services
             bool isSmallLatter = Regex.IsMatch(pas, "[a-z]{1}");
             bool isNumber = Regex.IsMatch(pas, @"\d\w*");
             bool result;
-            if (isCapitalLetter == true)
+            if (isCapitalLetter == true)    //if the data contains a capital letter
                 result = false;
             else result = true;
-            if (result == false)
+            if (result == false)    //If a capital letter is found
             {
-                if (isSmallLatter)
+                if (isSmallLatter)      //check if there is a small letter
                     result = false;
                 else result = true;
             }
-            if (result == false)
+            if (result == false)    //If a small letter is found
             {
-                if (isNumber)
+                if (isNumber)      //check if there is a number
                     result = false;
                 else result = true;
             }

@@ -2,13 +2,12 @@
 using Prism.Ioc;
 using Prism.Unity;
 using ProfileBook.Services;
+using ProfileBook.Services.AuthenticationServices;
 using ProfileBook.SQlite;
 using ProfileBook.ViewModels;
 using ProfileBook.Views;
 using System;
 using System.IO;
-using Xamarin.Forms;
-using Xamarin.Forms.Xaml;
 
 namespace ProfileBook
 {
@@ -25,14 +24,17 @@ namespace ProfileBook
         }
         protected override void RegisterTypes(IContainerRegistry containerRegistry)
         {
-            containerRegistry.RegisterForNavigation<SignInPageView, SignInPageViewModel>();
+            containerRegistry.RegisterForNavigation<SignInPageView, SignInPageViewModel>();     //registration of pages and view models
             containerRegistry.RegisterForNavigation<SignUpPageView, SignUpPageViewModel>();
             containerRegistry.RegisterForNavigation<MainListView, MainListViewModel>();
 
-            containerRegistry.Register<ICheckPasswordValid, CheckPasswordValid>();
+            containerRegistry.Register<ICheckPasswordValid, CheckPasswordValid>();      //registration of services with interfaces
             containerRegistry.Register<ICheckLoginValid, CheckLoginValid>();
+            containerRegistry.Register<IUserAuthentication, UserAuthentication>();
         }
-
+        /// <summary>
+        /// Making a static property for working with the database
+        /// </summary>
         public const string DATABASE_NAME = "user.db";
         public static UserRepository database;
         public static UserRepository Database

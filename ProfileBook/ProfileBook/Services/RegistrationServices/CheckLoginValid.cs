@@ -1,5 +1,4 @@
-﻿using System;
-using System.Linq;
+﻿using System.Linq;
 using System.Text.RegularExpressions;
 
 namespace ProfileBook.Services
@@ -19,7 +18,7 @@ namespace ProfileBook.Services
             }
             else return false;
         }
-
+        //heck the login for uniqueness
         public bool IsCheckLoginDB(string login)
         {
             var lg = App.Database.GetItems().FirstOrDefault(user => user.Login == login); //if there is already a user in the database with 
@@ -27,5 +26,6 @@ namespace ProfileBook.Services
                 return true;
             else return false;
         }
+
     }
 }
