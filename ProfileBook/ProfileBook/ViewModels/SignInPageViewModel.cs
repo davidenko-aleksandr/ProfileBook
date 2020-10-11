@@ -8,7 +8,7 @@ using Xamarin.Forms;
 
 namespace ProfileBook.ViewModels
 {
-    public class SignInPageViewModel : BindableBase, IConfirmNavigation
+    public class SignInPageViewModel : BindableBase, IConfirmNavigation, INavigatedAware
     {
 
         public User User { get; set; }
@@ -38,6 +38,7 @@ namespace ProfileBook.ViewModels
         async Task OpenMainListViewPageAsync()
         {
             await _navigationService.NavigateAsync(new System.Uri("http://www.ProfileBook/MainListView", System.UriKind.Absolute));
+            
         }
         public string Login
         {
@@ -53,6 +54,19 @@ namespace ProfileBook.ViewModels
         public bool CanNavigate(INavigationParameters parameters)
         {
             return true;
+        }
+
+        public void OnNavigatedFrom(INavigationParameters parameters)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void OnNavigatedTo(INavigationParameters parameters)
+        {
+            var getLog = parameters["log"];
+            var getPas = parameters["pas"];
+            Login = (string)getLog;
+            Password = (string)getPas;
         }
     }
 }

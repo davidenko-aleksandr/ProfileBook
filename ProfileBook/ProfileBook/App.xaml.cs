@@ -1,6 +1,8 @@
 ﻿using Prism;
 using Prism.Ioc;
 using Prism.Unity;
+using ProfileBook.Services;
+using ProfileBook.SQlite;
 using ProfileBook.ViewModels;
 using ProfileBook.Views;
 using System;
@@ -26,8 +28,26 @@ namespace ProfileBook
             containerRegistry.RegisterForNavigation<SignInPageView, SignInPageViewModel>();
             containerRegistry.RegisterForNavigation<SignUpPageView, SignUpPageViewModel>();
             containerRegistry.RegisterForNavigation<MainListView, MainListViewModel>();
+
+            containerRegistry.Register<ICheckPasswordValid, CheckPasswordValid>();
+            containerRegistry.Register<ICheckLoginValid, CheckLoginValid>();
         }
 
+        public const string DATABASE_NAME = "user.db";
+        public static UserRepository database;
+        public static UserRepository Database
+        {
+            get
+            {
+                if (database == null)
+                {
+                    database = new UserRepository(
+                        Path.Combine(
+                            Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), DATABASE_NAME));
+                }
+                return database;
+            }
+        }
         protected override void OnStart()
         {
             // Handle when your app starts

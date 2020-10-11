@@ -1,7 +1,9 @@
 ﻿using Prism.Mvvm;
 using Prism.Navigation;
+using Prism.Services;
 using ProfileBook.Models;
-using System.Text.RegularExpressions;
+using ProfileBook.Services;
+using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Input;
 using Xamarin.Forms;
@@ -15,31 +17,48 @@ namespace ProfileBook.ViewModels
         private string _password = string.Empty;
         private string _conPassw = string.Empty;
         private readonly INavigationService _navigationService;
+        private readonly IPageDialogService _dialogService;
+        private readonly ICheckPasswordValid _checkPasswordValid;
+        private readonly ICheckLoginValid _checkLoginValid;
         private ICommand _toSignInCommand;
         private ICommand _signUpCommand;
 
+        // THE CONSTRUCTOR
+        public SignUpPageViewModel(INavigationService navigationService, 
+            IPageDialogService dialogService, 
+            ICheckPasswordValid checkPasswordValid, 
+            ICheckLoginValid checkLoginValid
+            )
+        {
+            _checkPasswordValid = checkPasswordValid;
+            _dialogService = dialogService;
+            _checkLoginValid = checkLoginValid;
+            _navigationService = navigationService;
+        }
 
         public ICommand ToSignInCommand => _toSignInCommand ?? (_toSignInCommand = new Command(ComeBackToSignViewPage));
         public ICommand SignUpCommand => _signUpCommand ?? (_signUpCommand = new Command(
-            async () => await ToSignUp(), 
+            async () => await ToSignUp(),
             () => false)    //add property ICommand.CanExecute to keep the button deactivated
             );
-  
 
-        public SignUpPageViewModel(INavigationService navigationService)
-        {
-            _navigationService = navigationService;
-        }
         async void ComeBackToSignViewPage(object obj)
         {
             await _navigationService.NavigateAsync(new System.Uri("http://www.ProfileBook/SignInPageView", System.UriKind.Absolute));
         }
         async Task ToSignUp()
         {
+            var parametr = new NavigationParameters
+            {
+                { "log", _login },
+                { "pas", _password }
+            };
             //If the data is correct, then we return to the previous page
             if (ChekLoginPasswod() == false)
             {
-                await _navigationService.NavigateAsync(new System.Uri("http://www.ProfileBook/SignInPageView", System.UriKind.Absolute));
+                SaveToDataBase();
+                await _navigationService.NavigateAsync(new System.Uri("http://www.ProfileBook/SignInPageView", System.UriKind.Absolute), parametr);
+                
             }
             
         }
@@ -47,73 +66,63 @@ namespace ProfileBook.ViewModels
         private bool ChekLoginPasswod()
         {
             bool result = false;
-            if (IsLoginValid())
+            if (_checkLoginValid.IsCheckLogin(_login))      //Checking the login for correctness
             {
-                _ = Application.Current.MainPage.DisplayAlert("Incorrect login",
+                _dialogService.DisplayAlertAsync("Incorrect login",
                     "Login must not start with a number, " +
                     "login length must be no less than 4 characters " +
                     "and no more than 16 characters", "ok");
                 Login = "";         //Сlean login entry
                 result = true;
             }
-            if (IsPasswordValid())
+            if (_checkPasswordValid.IsPasswordValid(_password))     //Checking the password for correctness
             {
-                _ = Application.Current.MainPage.DisplayAlert("Incorrect password",
+                _dialogService.DisplayAlertAsync("Incorrect password",
                     "Password must contain an uppercase letter", "ok");
                 Password = "";      //Сlean password entry
                 ConPassw = "";      //Сlean confirm password entry
                 result = true;
             }
-            if (result == false)
+            if (result == false)    //If the login and password are entered correctly, then we check the password confirmation
             {
-                if (_password != _conPassw) //Chek password confirm
+                if (_password != _conPassw)     //Chek password confirm
                 {
-                    _ = Application.Current.MainPage.DisplayAlert("Error",
+                    _dialogService.DisplayAlertAsync("Error",
                     "Password not confirmed", "ok");
                     Password = "";
                     ConPassw = "";
                     result = true;
                 }
             }
+            if (result == false)    //If all the data is entered correctly, we check the login for uniqueness in the database
+            {
+                if (_checkLoginValid.IsCheckLoginDB(_login))
+                {
+                    _dialogService.DisplayAlertAsync("Ups",
+                        "This login is already registered", "ok");
+                    result = true;
+                }
+            }
             return result;
         }
 
-        //Checking the login for correctness
-        private bool IsLoginValid()
+        //private bool IsCheckLoginDB(string login)
+        //{
+        //    var lg = App.Database.GetItems().FirstOrDefault(user => user.Login == login);
+        //    if (lg != null)
+        //        return true;
+        //    else return false;
+        //}
+        private void SaveToDataBase()
         {
-            string pattern = @"^\d\w*";
-            if (_login.Length < 4 || 
-                _login.Length > 16 ||
-                Regex.IsMatch(_login, pattern, RegexOptions.IgnoreCase))
+            User user = new User
             {
-                return true;
-            }
-            else return false;
+                Login = _login,
+                Password = _password
+            };
+            _ = App.Database.SaveItem(user);
         }
-        //Checking the password for correctness
-        private bool IsPasswordValid()
-        {
-            bool isCapitalLetter = Regex.IsMatch(_password, "[A-Z]{1}");
-            bool isSmallLatter = Regex.IsMatch(_password, "[a-z]{1}");
-            bool isNumber = Regex.IsMatch(_password, @"\d\w*");
-            bool result;
-            if (isCapitalLetter == true)
-                result = false;
-            else result = true;
-            if (result == false)
-            {
-                if (isSmallLatter) 
-                    result = false;
-                else result = true;
-            }
-            if (result == false)
-            {
-                if (isNumber) 
-                    result = false;
-                else result = true;
-            }
-            return result; 
-        }
+
         public string Login
         {
             get { return _login; }
