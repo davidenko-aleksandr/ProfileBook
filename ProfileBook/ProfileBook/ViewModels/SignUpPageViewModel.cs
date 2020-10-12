@@ -69,7 +69,7 @@ namespace ProfileBook.ViewModels
             bool result = false;
             if (_checkLoginValid.IsCheckLogin(_login))      //Checking the login for correctness
             {
-                _dialogService.DisplayAlertAsync("Incorrect login",
+                _ = _dialogService.DisplayAlertAsync("Incorrect login",
                     "Login must not start with a number, " +
                     "login length must be no less than 4 characters " +
                     "and no more than 16 characters", "ok");
@@ -78,8 +78,10 @@ namespace ProfileBook.ViewModels
             }
             if (_checkPasswordValid.IsPasswordValid(_password))     //Checking the password for correctness
             {
-                _dialogService.DisplayAlertAsync("Incorrect password",
-                    "Password must contain an uppercase letter", "ok");
+                _ = _dialogService.DisplayAlertAsync("Incorrect password",
+                    "The password must contain from 8 to 16 characters, " +
+                    "among which there must be a capital letter, " +
+                    "a small letter, and also a number", "ok");
                 Password = "";      //Сlean password entry
                 ConPassw = "";      //Сlean confirm password entry
                 result = true;
@@ -88,7 +90,7 @@ namespace ProfileBook.ViewModels
             {
                 if (_password != _conPassw)     //Chek password confirm
                 {
-                    _dialogService.DisplayAlertAsync("Error",
+                    _ = _dialogService.DisplayAlertAsync("Error",
                     "Password not confirmed", "ok");
                     Password = "";
                     ConPassw = "";
@@ -99,7 +101,7 @@ namespace ProfileBook.ViewModels
             {
                 if (_checkLoginValid.IsCheckLoginDB(_login))    //we check the login for uniqueness in the database
                 {
-                    _dialogService.DisplayAlertAsync("Ups",
+                    _ = _dialogService.DisplayAlertAsync("Ups",
                         "This login is already registered", "ok");
                     result = true;
                 }

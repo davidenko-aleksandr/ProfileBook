@@ -4883,9 +4883,15 @@ public final class R {
     public static final int toolbar=0x7f0b0046;
   }
   public static final class mipmap {
-    public static final int icon=0x7f0c0000;
-    public static final int icon_round=0x7f0c0001;
-    public static final int launcher_foreground=0x7f0c0002;
+    public static final int ic_add=0x7f0c0000;
+    public static final int ic_camera_alt=0x7f0c0001;
+    public static final int ic_collections=0x7f0c0002;
+    public static final int ic_exit_to_app=0x7f0c0003;
+    public static final int ic_save=0x7f0c0004;
+    public static final int ic_settings=0x7f0c0005;
+    public static final int icon=0x7f0c0006;
+    public static final int icon_round=0x7f0c0007;
+    public static final int launcher_foreground=0x7f0c0008;
   }
   public static final class string {
     public static final int abc_action_bar_home_description=0x7f0d0000;

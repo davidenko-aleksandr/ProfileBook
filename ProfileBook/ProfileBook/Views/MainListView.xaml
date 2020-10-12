@@ -4,12 +4,36 @@
              xmlns:d="http://xamarin.com/schemas/2014/forms/design"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              mc:Ignorable="d"
-             x:Class="ProfileBook.Views.MainListView">
-    <ContentPage.Content>
-        <StackLayout>
-            <Label Text="Welcome to Xamarin.Forms!"
-                VerticalOptions="CenterAndExpand" 
-                HorizontalOptions="CenterAndExpand" />
-        </StackLayout>
-    </ContentPage.Content>
+             x:Class="ProfileBook.Views.MainListView"
+             Title="Main List">
+    
+    <ContentPage.ToolbarItems>
+        <ToolbarItem IconImageSource="ic_exit_to_app.png"
+                     Order="Primary"
+                     Priority="0"
+                     />
+        <ToolbarItem IconImageSource="ic_settings.png"
+                     Order="Primary"
+                     Priority="1"
+                     />
+    </ContentPage.ToolbarItems>
+    <StackLayout>
+        <ListView>
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <ViewCell>
+                        <StackLayout Orientation="Horizontal">
+                            <Image/>
+                            <StackLayout>
+                                <Label/>
+                                <Label/>
+                                <Label/>
+                            </StackLayout>
+                        </StackLayout>
+                    </ViewCell>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+    </StackLayout>
 </ContentPage>
+    

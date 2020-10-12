@@ -44,7 +44,7 @@ namespace ProfileBook.ViewModels
             _userAuthentication.GetUsersFromDB(_login, _password);  //Сheck if there is such a user in the database
             if (_userAuthentication.IsPasswordConfirm())    //Check if the password is correct and open MainList Page
             {
-                await _navigationService.NavigateAsync(new System.Uri("http://www.ProfileBook/MainListView", System.UriKind.Absolute));
+                await _navigationService.NavigateAsync(new System.Uri("http://www.ProfileBook/NavigationPage/MainListView", System.UriKind.Absolute));
             }
             else
             {

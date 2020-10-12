@@ -8,6 +8,7 @@ using ProfileBook.ViewModels;
 using ProfileBook.Views;
 using System;
 using System.IO;
+using Xamarin.Forms;
 
 namespace ProfileBook
 {
@@ -24,6 +25,7 @@ namespace ProfileBook
         }
         protected override void RegisterTypes(IContainerRegistry containerRegistry)
         {
+            containerRegistry.RegisterForNavigation<NavigationPage>();
             containerRegistry.RegisterForNavigation<SignInPageView, SignInPageViewModel>();     //registration of pages and view models
             containerRegistry.RegisterForNavigation<SignUpPageView, SignUpPageViewModel>();
             containerRegistry.RegisterForNavigation<MainListView, MainListViewModel>();
