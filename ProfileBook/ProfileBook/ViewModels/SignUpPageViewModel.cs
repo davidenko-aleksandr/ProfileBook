@@ -115,7 +115,7 @@ namespace ProfileBook.ViewModels
                 Login = _login,
                 Password = _password
             };
-            _ = App.Database.SaveItem(user);
+            _ = App.DatabaseUser.SaveItem(user);
         }
 
         public string Login

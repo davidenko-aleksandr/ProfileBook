@@ -21,7 +21,7 @@ namespace ProfileBook.Services
         //heck the login for uniqueness
         public bool IsCheckLoginDB(string login)
         {
-            var lg = App.Database.GetItems().FirstOrDefault(user => user.Login == login); //if there is already a user in the database with 
+            var lg = App.DatabaseUser.GetItems().FirstOrDefault(user => user.Login == login); //if there is already a user in the database with 
             if (lg != null)                                                               //this login, then it is not unique
                 return true;
             else return false;

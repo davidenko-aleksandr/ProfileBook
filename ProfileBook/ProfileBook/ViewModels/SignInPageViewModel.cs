@@ -3,6 +3,7 @@ using Prism.Navigation;
 using Prism.Services;
 using ProfileBook.Models;
 using ProfileBook.Services.AuthenticationServices;
+using ProfileBook.Services.AuthorizationServices;
 using System;
 using System.Threading.Tasks;
 using System.Windows.Input;
@@ -20,11 +21,16 @@ namespace ProfileBook.ViewModels
         private readonly INavigationService _navigationService; 
         private readonly IUserAuthentication _userAuthentication;
         private readonly IPageDialogService _dialogService;
-        public SignInPageViewModel(INavigationService navigationService, IUserAuthentication userAuthentication, IPageDialogService dialogService)
+        private readonly IAuthorizationService _authorization;
+        public SignInPageViewModel(INavigationService navigationService,
+                                    IUserAuthentication userAuthentication,
+                                    IPageDialogService dialogService,
+                                    IAuthorizationService authorization)
         {
             _navigationService = navigationService;
             _userAuthentication = userAuthentication;
             _dialogService = dialogService;
+            _authorization = authorization;
         }
         public ICommand EnterCommand => _enterCommand ?? (_enterCommand = new Command(
                         async () => await OpenMainListViewPageAsync(), 
@@ -44,6 +50,8 @@ namespace ProfileBook.ViewModels
             _userAuthentication.GetUsersFromDB(_login, _password);  //Сheck if there is such a user in the database
             if (_userAuthentication.IsPasswordConfirm())    //Check if the password is correct and open MainList Page
             {
+                _authorization.AddUodateUserId(_userAuthentication.GetUserId());
+                _authorization.ToWriteLoginId();
                 await _navigationService.NavigateAsync(new System.Uri("http://www.ProfileBook/NavigationPage/MainListView", System.UriKind.Absolute));
             }
             else

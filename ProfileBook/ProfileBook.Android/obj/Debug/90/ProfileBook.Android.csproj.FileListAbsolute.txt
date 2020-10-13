@@ -491,3 +491,12 @@ E:\HeadWorksProject\ProfileBook\ProfileBook\ProfileBook.Android\obj\Debug\90\res
 E:\HeadWorksProject\ProfileBook\ProfileBook\ProfileBook.Android\obj\Debug\90\res\mipmap-xxxhdpi\ic_exit_to_app.png
 E:\HeadWorksProject\ProfileBook\ProfileBook\ProfileBook.Android\obj\Debug\90\res\mipmap-xxxhdpi\ic_save.png
 E:\HeadWorksProject\ProfileBook\ProfileBook\ProfileBook.Android\obj\Debug\90\res\mipmap-xxxhdpi\ic_settings.png
+E:\HeadWorksProject\ProfileBook\ProfileBook\ProfileBook.Android\obj\Debug\90\android\assets\Plugin.Settings.Abstractions.dll
+E:\HeadWorksProject\ProfileBook\ProfileBook\ProfileBook.Android\obj\Debug\90\android\assets\Plugin.Settings.Abstractions.dll.mdb
+E:\HeadWorksProject\ProfileBook\ProfileBook\ProfileBook.Android\obj\Debug\90\android\assets\Plugin.Settings.dll
+E:\HeadWorksProject\ProfileBook\ProfileBook\ProfileBook.Android\obj\Debug\90\android\assets\Plugin.Settings.dll.mdb
+E:\HeadWorksProject\ProfileBook\ProfileBook\ProfileBook.Android\obj\Debug\90\res\drawable\ic_exit_to_app.png
+E:\HeadWorksProject\ProfileBook\ProfileBook\ProfileBook.Android\obj\Debug\90\res\drawable\ic_settings.png
+E:\HeadWorksProject\ProfileBook\ProfileBook\ProfileBook.Android\obj\Debug\90\res\drawable\ic_add.png
+E:\HeadWorksProject\ProfileBook\ProfileBook\ProfileBook.Android\obj\Debug\90\res\drawable\pic_profile.png
+E:\HeadWorksProject\ProfileBook\ProfileBook\ProfileBook.Android\obj\Debug\90\res\drawable\ic_save.png

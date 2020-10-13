@@ -1,8 +1,11 @@
-﻿using Prism;
+﻿using Plugin.Settings;
+using Plugin.Settings.Abstractions;
+using Prism;
 using Prism.Ioc;
 using Prism.Unity;
 using ProfileBook.Services;
 using ProfileBook.Services.AuthenticationServices;
+using ProfileBook.Services.AuthorizationServices;
 using ProfileBook.SQlite;
 using ProfileBook.ViewModels;
 using ProfileBook.Views;
@@ -12,44 +15,86 @@ using Xamarin.Forms;
 
 namespace ProfileBook
 {
-    //Сhange the parent class to PrismApplication to apply "Prism"
+
     public partial class App : PrismApplication
     {
-        //add the Prism initializer parameter to the constructor 
-        //and override the OnInitialized and RegisterTypes methods
-        public App(IPlatformInitializer initializer = null) : base(initializer) { }
+        
+        public App(IPlatformInitializer initializer = null) : base(initializer)
+        {
+        }
+
+
+
+        protected override void RegisterTypes(IContainerRegistry containerRegistry)
+        {
+            //registration of pages and view models
+            containerRegistry.RegisterForNavigation<NavigationPage>();
+            containerRegistry.RegisterForNavigation<SignInPageView, SignInPageViewModel>();
+            containerRegistry.RegisterForNavigation<SignUpPageView, SignUpPageViewModel>();
+            containerRegistry.RegisterForNavigation<MainListView, MainListViewModel>();
+            containerRegistry.RegisterForNavigation<AddEditProfileView, AddEditProfileViewModel>();
+
+            //registration of services with interfaces
+            containerRegistry.RegisterInstance<ICheckPasswordValid>(Container.Resolve<CheckPasswordValid>());
+            containerRegistry.RegisterInstance<ICheckLoginValid>(Container.Resolve<CheckLoginValid>());
+            containerRegistry.RegisterInstance<IUserAuthentication>(Container.Resolve<UserAuthentication>());
+            containerRegistry.RegisterInstance<IAuthorizationService>(Container.Resolve<AuthorizationService>());
+
+        }
+        private static ISettings AppSettings => CrossSettings.Current;
+        public static int IdLogTest { get; set; }
+        public static int UserLogin
+        {
+            get => AppSettings.GetValueOrDefault(nameof(UserLogin), IdLogTest);
+            set => AppSettings.AddOrUpdateValue(nameof(UserLogin), value);
+        }
         protected override void OnInitialized()
         {
             InitializeComponent();
-            NavigationService.NavigateAsync(new System.Uri("http://www.ProfileBook/SignInPageView", System.UriKind.Absolute));
+            
+            if (UserLogin < 0)
+            {
+                NavigationService.NavigateAsync(new System.Uri("http://www.ProfileBook/SignInPageView", System.UriKind.Absolute));
+            }
+            else
+            {
+                NavigationService.NavigateAsync(new System.Uri("http://www.ProfileBook/NavigationPage/MainListView", System.UriKind.Absolute));
+            }
+            
         }
-        protected override void RegisterTypes(IContainerRegistry containerRegistry)
-        {
-            containerRegistry.RegisterForNavigation<NavigationPage>();
-            containerRegistry.RegisterForNavigation<SignInPageView, SignInPageViewModel>();     //registration of pages and view models
-            containerRegistry.RegisterForNavigation<SignUpPageView, SignUpPageViewModel>();
-            containerRegistry.RegisterForNavigation<MainListView, MainListViewModel>();
 
-            containerRegistry.Register<ICheckPasswordValid, CheckPasswordValid>();      //registration of services with interfaces
-            containerRegistry.Register<ICheckLoginValid, CheckLoginValid>();
-            containerRegistry.Register<IUserAuthentication, UserAuthentication>();
-        }
         /// <summary>
         /// Making a static property for working with the database
         /// </summary>
-        public const string DATABASE_NAME = "user.db";
-        public static UserRepository database;
-        public static UserRepository Database
+        public const string DATABASE_USER = "user.db";
+        public const string DATABASE_PROFILE = "profile.db";
+        public static ProfileRepository databaseProfile;
+        public static UserRepository databaseUser;
+
+        public static UserRepository DatabaseUser
         {
             get
             {
-                if (database == null)
+                if (databaseUser == null)
                 {
-                    database = new UserRepository(
+                    databaseUser = new UserRepository(
                         Path.Combine(
-                            Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), DATABASE_NAME));
+                            Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), DATABASE_USER));
                 }
-                return database;
+                return databaseUser;
+            }
+        }
+        public static ProfileRepository DatabaseProfile
+        {
+            get
+            {
+                if (databaseProfile == null)
+                {
+                    databaseProfile = new ProfileRepository(
+                        Path.Combine(
+                            Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), DATABASE_PROFILE));
+                }
+                return databaseProfile;
             }
         }
         protected override void OnStart()

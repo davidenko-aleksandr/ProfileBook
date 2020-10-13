@@ -15,12 +15,16 @@ namespace ProfileBook.Services.AuthenticationServices
         public User _userPassw;
         public void GetUsersFromDB(string login, string password)
         {
-            User log = App.Database.GetItems().FirstOrDefault(user => user.Login == login);     //get user data by login
-            User pas = App.Database.GetItems().FirstOrDefault(user => user.Password == password);    //get user data by password
+            User log = App.DatabaseUser.GetItems().FirstOrDefault(user => user.Login == login);     //get user data by login
+            User pas = App.DatabaseUser.GetItems().FirstOrDefault(user => user.Password == password);    //get user data by password
             _userLogin = log;
             _userPassw = pas;
         }
-
+        public int GetUserId()
+        {
+            int id = _userLogin.Id;
+            return id;
+        }
         public bool IsPasswordConfirm()
         {
             bool result = false;

@@ -11,29 +11,44 @@
         <ToolbarItem IconImageSource="ic_exit_to_app.png"
                      Order="Primary"
                      Priority="0"
+                     Command ="{Binding ExitCommand}"
                      />
         <ToolbarItem IconImageSource="ic_settings.png"
                      Order="Primary"
                      Priority="1"
                      />
     </ContentPage.ToolbarItems>
-    <StackLayout>
-        <ListView>
+    <StackLayout Margin="20">
+        <ListView ItemsSource="{Binding ProfileCollection, Mode=TwoWay}"
+                  >
             <ListView.ItemTemplate>
                 <DataTemplate>
                     <ViewCell>
                         <StackLayout Orientation="Horizontal">
-                            <Image/>
+                            <Image Source="{Binding ProfileImage}"/>
                             <StackLayout>
-                                <Label/>
-                                <Label/>
-                                <Label/>
+                                <Label Text="{Binding Name}"/>
+                                <Label Text="{Binding NickName}"/>
+                                <Label Text="{Binding DateTime}"/>
                             </StackLayout>
                         </StackLayout>
                     </ViewCell>
                 </DataTemplate>
             </ListView.ItemTemplate>
         </ListView>
+        <Button Text="+" FontSize="60"
+                TextColor="White"
+                BorderColor="Blue"
+                BorderWidth="2"      
+                CornerRadius="100"
+                WidthRequest="100"
+                HeightRequest="100"
+                HorizontalOptions="End"
+                VerticalOptions="End"
+                Command="{Binding AddProfileCommand}"
+                >
+            
+        </Button>
     </StackLayout>
 </ContentPage>
     

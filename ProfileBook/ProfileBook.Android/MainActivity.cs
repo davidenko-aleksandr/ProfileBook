@@ -35,6 +35,7 @@ namespace ProfileBook.Droid
         //to pass it to the LoadApplication method
         public class AndroidInitializer : IPlatformInitializer
         {
+            
             public void RegisterTypes(IContainerRegistry containerRegistry)
             {
 
