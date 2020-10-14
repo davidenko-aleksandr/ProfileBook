@@ -3,6 +3,9 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="ProfileBook.Views.AddEditProfileView"
              Title="Add Profile">
+    <ContentPage.Padding>
+        <OnPlatform x:TypeArguments="Thickness" iOS = "0, 20, 0, 0"/>
+    </ContentPage.Padding>
     <ContentPage.ToolbarItems>
         <ToolbarItem IconImageSource="ic_save.png"
                      Order="Primary"
@@ -10,5 +13,33 @@
                      Command ="{Binding SaveProfileCommand}"
                      />
     </ContentPage.ToolbarItems>
+    <StackLayout VerticalOptions="End"
+                 HorizontalOptions="Center"
+                 Spacing ="30"
+                 Padding="30, 20, 30, 30"
+                 Margin="0, 0, 0, 20"
+                 >
+        <ImageButton Source="{Binding ProfileImage, Mode=TwoWay}"
+                     HeightRequest="220"
+                     VerticalOptions="Start"
+                     HorizontalOptions="Center" 
+                     BackgroundColor="White"                     
+                     />
+
+        <Entry Text="{Binding NickName}"
+                Placeholder="NickName"
+                WidthRequest="380"
+                HeightRequest="50"/>
+        <Entry Text="{Binding Name}"
+                Placeholder="Name"
+                WidthRequest="380"
+                HeightRequest="50"/>
+
+        <Editor Text="{Binding Description}"
+            Placeholder="Description"
+            WidthRequest="380"
+            HeightRequest="300"
+            BackgroundColor="Aqua"/>
+    </StackLayout>
 
 </ContentPage>
