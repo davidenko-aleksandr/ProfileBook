@@ -16,7 +16,8 @@ namespace ProfileBook.ViewModels
 {
     public class MainListViewModel : BindableBase, IConfirmNavigation, INotifyPropertyChanged
     {
-        private Profile _profile;
+        private Profile _profile; 
+        private string _lableText = string.Empty;
         private readonly INavigationService _navigationService;
         private ICommand _exitCommand;
         private ICommand _addProfileCommand;
@@ -33,8 +34,10 @@ namespace ProfileBook.ViewModels
 
         public void InitTable()
         {
-            ProfileCollection = new ObservableCollection<Profile>(App.DatabaseProfile.GetItems().Where(p => p.User_Id==App.UserLogin));
             
+            ProfileCollection = new ObservableCollection<Profile>(App.DatabaseProfile.GetItems().Where(p => p.User_Id==App.UserLogin));
+            LableText = ProfileCollection.Count == 0 ? "No profiles added" : "";
+
         }
         public ICommand ExitCommand => _exitCommand ?? (_exitCommand = new Command(
                         async () => await ExitFromProfileAsync())
@@ -71,7 +74,11 @@ namespace ProfileBook.ViewModels
             _authorization.ToWriteLoginId();
             await _navigationService.NavigateAsync(new System.Uri("http://www.ProfileBook/SignInPageView", System.UriKind.Absolute));
         }
-
+        public string LableText
+        { 
+            get { return _lableText; }
+            set { SetProperty(ref _lableText, value); }
+        }
         public bool CanNavigate(INavigationParameters parameters)
         {
             return true;

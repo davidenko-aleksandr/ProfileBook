@@ -24,9 +24,10 @@
         <Grid.RowDefinitions>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
-    
-            
-            <ListView  Grid.Row="0"
+
+
+
+        <ListView  Grid.Row="0"
                 x:Name="profileList"
                 ItemsSource="{Binding ProfileCollection, Mode=TwoWay}"
                       HasUnevenRows="True"
@@ -65,7 +66,13 @@
                     </DataTemplate>
                 </ListView.ItemTemplate>
             </ListView>
-
+        <Label  Grid.Row="0"
+               
+               Text="{Binding LableText, Mode=TwoWay}"
+                VerticalOptions="Center"
+                HorizontalOptions="Center"
+               />
+        
         <Button Text="+" FontSize="35"  Grid.Row="0"
                 TextColor="White"
                 BorderColor="Blue"

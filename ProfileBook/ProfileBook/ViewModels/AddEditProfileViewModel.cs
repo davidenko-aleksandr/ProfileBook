@@ -1,8 +1,12 @@
-﻿using Prism.Mvvm;
+﻿using Acr.UserDialogs;
+using Plugin.Media;
+using Plugin.Media.Abstractions;
+using Prism.Mvvm;
 using Prism.Navigation;
 using ProfileBook.Models;
 using System;
 using System.Collections.Generic;
+using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
@@ -21,6 +25,7 @@ namespace ProfileBook.ViewModels
         private DateTime _dateTime = DateTime.Now;
         private readonly INavigationService _navigationService;
         private ICommand _saveProfileCommand;
+        private ICommand _actionSheetCommand;
 
 
         public AddEditProfileViewModel(INavigationService navigationService)
@@ -31,13 +36,52 @@ namespace ProfileBook.ViewModels
         public ICommand SaveProfileCommand => _saveProfileCommand ?? (_saveProfileCommand = new Command(
                         async () => await SaveProfileAsync())
                         );
+        public ICommand ActionSheetCommand => _actionSheetCommand ?? (_actionSheetCommand = new Command(OpenActionSheet));
 
+        private void OpenActionSheet()
+        {
+            var dialogAlert = UserDialogs.Instance.ActionSheet(new ActionSheetConfig()
+                            .SetTitle("Adding a photo")
+                            .Add("Use camera", ToMakePhoto, "camera.png")
+                            .Add("Download from gallery", GetPhotoFromGallery, "gallery.png")
+                        );
+        }
+
+        async void GetPhotoFromGallery() 
+        {
+            if (CrossMedia.Current.IsPickPhotoSupported)
+            {
+                MediaFile photo = await CrossMedia.Current.PickPhotoAsync();
+                ProfileImage = photo.Path;
+            }
+
+        }
+        async void ToMakePhoto()
+        {
+            if (CrossMedia.Current.IsCameraAvailable && CrossMedia.Current.IsTakePhotoSupported)
+            {
+                MediaFile file = await CrossMedia.Current.TakePhotoAsync(new StoreCameraMediaOptions
+                {
+                    SaveToAlbum = true,
+                    Directory = "drawable",
+                    Name = $"{DateTime.Now.ToString("dd.MM.yyyy_hh.mm.ss")}.jpg"
+                });
+
+                if (file == null)
+                    return;
+                ProfileImage = file.Path;
+                
+            }
+        }
         async Task SaveProfileAsync()
         {
             if(String.IsNullOrEmpty(_nickName) || String.IsNullOrEmpty(_name))
             {
-                NickName = "Fuck you";
-                Name = "Write something";
+                UserDialogs.Instance.Alert("Fields \"Name\" and \"Nickname\" must be filled", "Exception", "ok");
+            }
+            if(DescriptionLength())
+            {
+                _ = UserDialogs.Instance.Alert("The \"Description\" field is too large, it must be no more than 120 characters", "Error", "Ok");
             }
             else
             {
@@ -47,6 +91,12 @@ namespace ProfileBook.ViewModels
             }
            
         }
+        public void ShowActionSheet() => _ = UserDialogs.Instance.ActionSheet(new ActionSheetConfig()
+                            .SetTitle("Choose Type")
+                            .Add("Default", null, "camera.png")
+                            .Add("E-Mail", null, "gallery.png")
+                        );
+  
 
         private void SaveProfileToDB()
         {
@@ -60,6 +110,15 @@ namespace ProfileBook.ViewModels
                 DateTime = DateTime
             };
             App.DatabaseProfile.SaveItem(_profile);
+        }
+        private bool DescriptionLength()
+        {
+            if (Description.Length > 120)
+            {
+                
+                return true;
+            }
+            else return false;
         }
         public int User_Id
         {

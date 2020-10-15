@@ -9,21 +9,37 @@
     ".NETStandard,Version=v2.0/": {
       "ProfileBook/1.0.0": {
         "dependencies": {
+          "Acr.UserDialogs": "7.0.0",
           "NETStandard.Library": "2.0.3",
+          "Plugin.UserDialogs": "1.0.0",
           "Prism.Unity.Forms": "7.2.0.1422",
+          "Xam.Plugin.Media": "5.0.1",
           "Xam.Plugins.Settings": "3.1.1",
-          "Xamarin.Essentials": "1.2.0",
-          "Xamarin.Forms": "4.2.0.709249",
+          "Xamarin.Essentials": "1.5.3.2",
+          "Xamarin.Forms": "4.8.0.1534",
           "sqlite-net-pcl": "1.7.335"
         },
         "runtime": {
           "ProfileBook.dll": {}
         }
       },
+      "Acr.UserDialogs/7.0.0": {
+        "runtime": {
+          "lib/netstandard2.0/Acr.UserDialogs.dll": {
+            "assemblyVersion": "0.0.0.0",
+            "fileVersion": "0.0.0.0"
+          }
+        }
+      },
       "Microsoft.NETCore.Platforms/1.1.0": {},
       "NETStandard.Library/2.0.3": {
         "dependencies": {
           "Microsoft.NETCore.Platforms": "1.1.0"
+        }
+      },
+      "Plugin.UserDialogs/1.0.0": {
+        "dependencies": {
+          "Acr.UserDialogs": "7.0.0"
         }
       },
       "Prism.Core/7.2.0.1422": {
@@ -37,7 +53,7 @@
       "Prism.Forms/7.2.0.1422": {
         "dependencies": {
           "Prism.Core": "7.2.0.1422",
-          "Xamarin.Forms": "4.2.0.709249"
+          "Xamarin.Forms": "4.8.0.1534"
         },
         "runtime": {
           "lib/netstandard2.0/Prism.Forms.dll": {
@@ -176,6 +192,17 @@
           }
         }
       },
+      "Xam.Plugin.Media/5.0.1": {
+        "dependencies": {
+          "Xamarin.Essentials": "1.5.3.2"
+        },
+        "runtime": {
+          "lib/netstandard2.0/Plugin.Media.dll": {
+            "assemblyVersion": "1.0.0.0",
+            "fileVersion": "1.0.0.0"
+          }
+        }
+      },
       "Xam.Plugins.Settings/3.1.1": {
         "dependencies": {
           "NETStandard.Library": "2.0.3"
@@ -191,7 +218,7 @@
           }
         }
       },
-      "Xamarin.Essentials/1.2.0": {
+      "Xamarin.Essentials/1.5.3.2": {
         "dependencies": {
           "System.Numerics.Vectors": "4.5.0"
         },
@@ -202,19 +229,19 @@
           }
         }
       },
-      "Xamarin.Forms/4.2.0.709249": {
+      "Xamarin.Forms/4.8.0.1534": {
         "runtime": {
           "lib/netstandard2.0/Xamarin.Forms.Core.dll": {
             "assemblyVersion": "2.0.0.0",
-            "fileVersion": "4.2.0.75"
+            "fileVersion": "4.8.0.384"
           },
           "lib/netstandard2.0/Xamarin.Forms.Platform.dll": {
             "assemblyVersion": "2.0.0.0",
-            "fileVersion": "4.2.0.75"
+            "fileVersion": "4.8.0.384"
           },
           "lib/netstandard2.0/Xamarin.Forms.Xaml.dll": {
             "assemblyVersion": "2.0.0.0",
-            "fileVersion": "4.2.0.75"
+            "fileVersion": "4.8.0.384"
           }
         }
       }
@@ -225,6 +252,13 @@
       "type": "project",
       "serviceable": false,
       "sha512": ""
+    },
+    "Acr.UserDialogs/7.0.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-Nd/4LQz6ha/KmM/wcnP1/OizWPnrNc+ilHLmFzF6IR5epfKJ9Qqc2L0L4tLkF7X76/Lo4czhpcgU6RJu4PbG+Q==",
+      "path": "acr.userdialogs/7.0.0",
+      "hashPath": "acr.userdialogs.7.0.0.nupkg.sha512"
     },
     "Microsoft.NETCore.Platforms/1.1.0": {
       "type": "package",
@@ -239,6 +273,13 @@
       "sha512": "sha512-st47PosZSHrjECdjeIzZQbzivYBJFv6P2nv4cj2ypdI204DO+vZ7l5raGMiX4eXMJ53RfOIg+/s4DHVZ54Nu2A==",
       "path": "netstandard.library/2.0.3",
       "hashPath": "netstandard.library.2.0.3.nupkg.sha512"
+    },
+    "Plugin.UserDialogs/1.0.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-NbpdynjP4jWyyiS/IhUHAraW3XUyk+RyCD79P9rp6wgUR1MHRsGSBfLild+O2gB2hH3CIkRGY0rHTV2AstEP+w==",
+      "path": "plugin.userdialogs/1.0.0",
+      "hashPath": "plugin.userdialogs.1.0.0.nupkg.sha512"
     },
     "Prism.Core/7.2.0.1422": {
       "type": "package",
@@ -345,6 +386,13 @@
       "path": "unity.container/5.11.1",
       "hashPath": "unity.container.5.11.1.nupkg.sha512"
     },
+    "Xam.Plugin.Media/5.0.1": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-UUR31EEnhDVa4IXgVfQIAL3u9v6YAyppsb5UlO9MNJ4quGGkfcWX++JexjB1nMGqvCzsjAT2t32drKDIXoW4SQ==",
+      "path": "xam.plugin.media/5.0.1",
+      "hashPath": "xam.plugin.media.5.0.1.nupkg.sha512"
+    },
     "Xam.Plugins.Settings/3.1.1": {
       "type": "package",
       "serviceable": true,
@@ -352,19 +400,19 @@
       "path": "xam.plugins.settings/3.1.1",
       "hashPath": "xam.plugins.settings.3.1.1.nupkg.sha512"
     },
-    "Xamarin.Essentials/1.2.0": {
+    "Xamarin.Essentials/1.5.3.2": {
       "type": "package",
       "serviceable": true,
-      "sha512": "sha512-o3i5uAchUpAvAlJX0onYFFiDo6jpKl9vgvrdDtXEuEfum0UDrSx8oGGBUjlFyUoRpvWVumXwo0VS3AbzuwEofg==",
-      "path": "xamarin.essentials/1.2.0",
-      "hashPath": "xamarin.essentials.1.2.0.nupkg.sha512"
+      "sha512": "sha512-BSLgDJUOPFRwTpQaftM+s4qb/MsTjrqXulEYDOcK6KF3i0Orf75zo3RwRfqnQ8WfpoEFxW/v0jgcPWCvOMgHxg==",
+      "path": "xamarin.essentials/1.5.3.2",
+      "hashPath": "xamarin.essentials.1.5.3.2.nupkg.sha512"
     },
-    "Xamarin.Forms/4.2.0.709249": {
+    "Xamarin.Forms/4.8.0.1534": {
       "type": "package",
       "serviceable": true,
-      "sha512": "sha512-3DWqPSn9kSKJW5mwjmICV/+4IpPQrequEN1VXUhsF0i9KKnfj49jFk9VbJnT9o2aesJAk00NED67XPbSmbxKjw==",
-      "path": "xamarin.forms/4.2.0.709249",
-      "hashPath": "xamarin.forms.4.2.0.709249.nupkg.sha512"
+      "sha512": "sha512-h5S4nWRBYUNgbs2FtxkSLISh2FUBdLGZ0yVR0KP8utNMTOiRUhWcLzuJf3w4NYtboWFFUx/dyqZpi+aCcIMvSg==",
+      "path": "xamarin.forms/4.8.0.1534",
+      "hashPath": "xamarin.forms.4.8.0.1534.nupkg.sha512"
     }
   }
 }

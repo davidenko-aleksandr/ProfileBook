@@ -23,7 +23,8 @@
                      HeightRequest="220"
                      VerticalOptions="Start"
                      HorizontalOptions="Center" 
-                     BackgroundColor="White"                     
+                     BackgroundColor="White" 
+                     Command="{Binding ActionSheetCommand}"
                      />
 
         <Entry Text="{Binding NickName}"
