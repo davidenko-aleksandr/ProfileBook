@@ -29,6 +29,7 @@ corners;E:\HeadWorksProject\ProfileBook\ProfileBook\ProfileBook.Android\obj\Debu
 declare-styleable;E:\HeadWorksProject\ProfileBook\ProfileBook\ProfileBook.Android\obj\Debug\90\lp\1\jl\res\values\attrs.xml
 declare-styleable;E:\HeadWorksProject\ProfileBook\ProfileBook\ProfileBook.Android\obj\Debug\90\lp\45\jl\res\values\attrs.xml
 external-cache-path;E:\HeadWorksProject\ProfileBook\ProfileBook\ProfileBook.Android\obj\Debug\90\lp\44\jl\res\xml\xamarin_essentials_fileprovider_file_paths.xml
+external-files-path;obj\Debug\90\res\xml\file_paths.xml
 external-path;E:\HeadWorksProject\ProfileBook\ProfileBook\ProfileBook.Android\obj\Debug\90\lp\44\jl\res\xml\xamarin_essentials_fileprovider_file_paths.xml
 foreground;obj\Debug\90\res\mipmap-anydpi-v26\icon.xml
 foreground;obj\Debug\90\res\mipmap-anydpi-v26\icon_round.xml
@@ -43,6 +44,7 @@ LinearLayout;E:\HeadWorksProject\ProfileBook\ProfileBook\ProfileBook.Android\obj
 LinearLayout;E:\HeadWorksProject\ProfileBook\ProfileBook\ProfileBook.Android\obj\Debug\90\lp\1\jl\res\layout\loadingprogress.xml
 LinearLayout;E:\HeadWorksProject\ProfileBook\ProfileBook\ProfileBook.Android\obj\Debug\90\lp\45\jl\res\layout\bottomtablayout.xml
 paths;E:\HeadWorksProject\ProfileBook\ProfileBook\ProfileBook.Android\obj\Debug\90\lp\44\jl\res\xml\xamarin_essentials_fileprovider_file_paths.xml
+paths;obj\Debug\90\res\xml\file_paths.xml
 ProgressBar;E:\HeadWorksProject\ProfileBook\ProfileBook\ProfileBook.Android\obj\Debug\90\lp\1\jl\res\layout\loading.xml
 resources;E:\HeadWorksProject\ProfileBook\ProfileBook\ProfileBook.Android\obj\Debug\90\lp\1\jl\res\values\attrs.xml
 resources;E:\HeadWorksProject\ProfileBook\ProfileBook\ProfileBook.Android\obj\Debug\90\lp\1\jl\res\values\strings.xml

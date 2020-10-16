@@ -5,19 +5,17 @@ using Prism.Mvvm;
 using Prism.Navigation;
 using ProfileBook.Models;
 using System;
-using System.Collections.Generic;
-using System.Security.Cryptography;
-using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
 using Xamarin.Forms;
 
 namespace ProfileBook.ViewModels
 {
-    public class AddEditProfileViewModel : BindableBase, IConfirmNavigation
+    public class AddEditProfileViewModel : BindableBase, IConfirmNavigation,  INavigatedAware
     {
         Profile _profile;
         private int _user_id = App.UserLogin;
+        private int _profile_id;
         private string _profileImage = "pic_profile.png";
         private string _nickName = string.Empty;
         private string _name = string.Empty;
@@ -53,6 +51,9 @@ namespace ProfileBook.ViewModels
             {
                 MediaFile photo = await CrossMedia.Current.PickPhotoAsync();
                 ProfileImage = photo.Path;
+                if (ProfileImage == null)
+                    ProfileImage = "pic_profile.png";
+                
             }
 
         }
@@ -64,26 +65,34 @@ namespace ProfileBook.ViewModels
                 {
                     SaveToAlbum = true,
                     Directory = "drawable",
-                    Name = $"{DateTime.Now.ToString("dd.MM.yyyy_hh.mm.ss")}.jpg"
+                    Name = $"{DateTime.Now:dd.MM.yyyy_hh.mm.ss}.jpg"
                 });
 
                 if (file == null)
                     return;
                 ProfileImage = file.Path;
-                
+                if (ProfileImage == null)
+                    ProfileImage = "pic_profile.png";
+
             }
         }
         async Task SaveProfileAsync()
         {
+            bool result = false;
             if(String.IsNullOrEmpty(_nickName) || String.IsNullOrEmpty(_name))
             {
-                UserDialogs.Instance.Alert("Fields \"Name\" and \"Nickname\" must be filled", "Exception", "ok");
+                UserDialogs.Instance.Alert("Fields \"Name\" and \"Nickname\" must be filled", "Error", "ok");
+                result = true;
             }
-            if(DescriptionLength())
+            if(result == false)
             {
-                _ = UserDialogs.Instance.Alert("The \"Description\" field is too large, it must be no more than 120 characters", "Error", "Ok");
-            }
-            else
+                if (Description.Length > 120)
+                {
+                    UserDialogs.Instance.Alert("The \"Description\" field is too large, it must be no more than 120 characters", "Error", "Ok");
+                    result = true;
+                }
+            }            
+            if(result == false)
             {
                 SaveProfileToDB();
 
@@ -91,70 +100,78 @@ namespace ProfileBook.ViewModels
             }
            
         }
-        public void ShowActionSheet() => _ = UserDialogs.Instance.ActionSheet(new ActionSheetConfig()
-                            .SetTitle("Choose Type")
-                            .Add("Default", null, "camera.png")
-                            .Add("E-Mail", null, "gallery.png")
-                        );
-  
-
         private void SaveProfileToDB()
         {
             _profile = new Profile
             {
                 User_Id = User_Id,
+                Id = Profile_id,
                 ProfileImage = ProfileImage,
                 NickName = NickName,
                 Name = Name,
                 Description = Description,
-                DateTime = DateTime
+                DateTimePr = DateTimePr
             };
             App.DatabaseProfile.SaveItem(_profile);
         }
-        private bool DescriptionLength()
+        //Get data from MainListPage
+        public void OnNavigatedTo(INavigationParameters parameters)
         {
-            if (Description.Length > 120)
-            {
-                
-                return true;
-            }
-            else return false;
+
+            NickName = (string)parameters["nickName"];
+            if (NickName == null) NickName = "";
+            Name = (string)parameters["name"];
+            if (Name == null) Name = "";
+            Description = (string)parameters["description"];
+            if (Description == null) Description = "";
+            DateTimePr = (DateTime)parameters["dateTime"];
+            Profile_id = (int)parameters["profileId"];
+            ProfileImage = (string)parameters["profileImage"];
+            if (ProfileImage == null) ProfileImage = "pic_profile.png";
         }
         public int User_Id
         {
-            get { return _user_id; }
-            set 
+            get => _user_id;
+            set
             {
                 SetProperty(ref _user_id, value);
             }
         }
+        public int Profile_id
+        {
+            get => _profile_id;
+            set
+            {
+                SetProperty(ref _profile_id, value);
+            }
+        }
         public string ProfileImage
         {
-            get { return _profileImage; }
-            set 
+            get => _profileImage;
+            set
             {
-                
+
                 SetProperty(ref _profileImage, value);
             }
         }
         public string NickName
         {
-            get { return _nickName; }
+            get => _nickName;
             set { SetProperty(ref _nickName, value); }
         }
         public string Name
         {
-            get { return _name; }
+            get => _name;
             set { SetProperty(ref _name, value); }
         }
         public string Description
         {
-            get { return _description; }
+            get => _description;
             set { SetProperty(ref _description, value); }
         }
-        public DateTime DateTime
+        public DateTime DateTimePr
         {
-            get { return _dateTime; }
+            get => _dateTime;
             set { SetProperty(ref _dateTime, value); }
         }
 
@@ -162,5 +179,13 @@ namespace ProfileBook.ViewModels
         {
             return true;
         }
+
+        public void OnNavigatedFrom(INavigationParameters parameters)
+        {
+            throw new NotImplementedException();
+        }
+
+
+
     }
 }

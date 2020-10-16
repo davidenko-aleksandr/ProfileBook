@@ -454,7 +454,6 @@ E:\HeadWorksProject\ProfileBook\ProfileBook\ProfileBook.Android\obj\Debug\90\app
 E:\HeadWorksProject\ProfileBook\ProfileBook\ProfileBook.Android\obj\Debug\90\app_shared_libraries\x86\libxamarin-app.so
 E:\HeadWorksProject\ProfileBook\ProfileBook\ProfileBook.Android\obj\Debug\90\app_shared_libraries\x86_64\libxamarin-app.so
 E:\HeadWorksProject\ProfileBook\ProfileBook\ProfileBook.Android\obj\Debug\90\stamp\_CleanIntermediateIfNeeded.stamp
-E:\HeadWorksProject\ProfileBook\ProfileBook\ProfileBook.Android\obj\Debug\90\res\drawable\comeback.png
 E:\HeadWorksProject\ProfileBook\ProfileBook\ProfileBook.Android\obj\Debug\90\res\mipmap-hdpi\ic_add.png
 E:\HeadWorksProject\ProfileBook\ProfileBook\ProfileBook.Android\obj\Debug\90\res\mipmap-hdpi\ic_camera_alt.png
 E:\HeadWorksProject\ProfileBook\ProfileBook\ProfileBook.Android\obj\Debug\90\res\mipmap-hdpi\ic_collections.png
@@ -562,3 +561,4 @@ E:\HeadWorksProject\ProfileBook\ProfileBook\ProfileBook.Android\obj\Debug\90\and
 E:\HeadWorksProject\ProfileBook\ProfileBook\ProfileBook.Android\obj\Debug\90\android\assets\Plugin.Media.dll
 E:\HeadWorksProject\ProfileBook\ProfileBook\ProfileBook.Android\obj\Debug\90\android\assets\Plugin.Media.pdb
 E:\HeadWorksProject\ProfileBook\ProfileBook\ProfileBook.Android\obj\Debug\90\android\src\crc646957603ea1820544\MediaPickerActivity.java
+E:\HeadWorksProject\ProfileBook\ProfileBook\ProfileBook.Android\obj\Debug\90\res\xml\file_paths.xml

@@ -5,28 +5,17 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              mc:Ignorable="d"
              x:Class="ProfileBook.Views.SignUpPageView"
-             xmlns:local="clr-namespace:ProfileBook.Converters">
-    <ContentPage.Padding>
-        <OnPlatform x:TypeArguments="Thickness" iOS = "0, 20, 0, 0"/>
-    </ContentPage.Padding>
+             xmlns:local="clr-namespace:ProfileBook.Converters"
+             Title="Users SingUp">
+
     <ContentPage.Resources>
         <ResourceDictionary>
             <local:MultiTriggerConverter x:Key="buttonIsEnable"/>
         </ResourceDictionary>
     </ContentPage.Resources>
-    <StackLayout Spacing ="150">
-        <StackLayout Orientation="Horizontal"
-                     BackgroundColor="Blue"
-                     HeightRequest="50">
-            <ImageButton Source="comeback.png"
-                         VerticalOptions="Center"
-                         Command="{Binding ToSignInCommand}"/>
-            <Label Text="  Users SingUp" 
-                   TextColor="White" 
-                   VerticalTextAlignment="Center" 
-                   FontSize="20"/>
-        </StackLayout>
-        <StackLayout VerticalOptions="Center" HorizontalOptions="CenterAndExpand">
+    <Grid Margin="25, 130, 25, 100">
+
+        <StackLayout HorizontalOptions="CenterAndExpand">
             <Entry x:Name="loginEntry"
                        Placeholder="Login" 
                        WidthRequest="380"
@@ -70,5 +59,5 @@
                 </MultiTrigger>
             </Button.Triggers>
         </Button>
-    </StackLayout>
+    </Grid>
 </ContentPage>

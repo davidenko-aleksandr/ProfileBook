@@ -19,15 +19,13 @@ namespace ProfileBook.ViewModels
         private readonly IPageDialogService _dialogService;
         private readonly ICheckPasswordValid _checkPasswordValid;
         private readonly ICheckLoginValid _checkLoginValid;
-        private ICommand _toSignInCommand;
         private ICommand _signUpCommand;
 
-        // THE CONSTRUCTOR
+        // The constructor
         public SignUpPageViewModel(INavigationService navigationService, 
-            IPageDialogService dialogService, 
-            ICheckPasswordValid checkPasswordValid, 
-            ICheckLoginValid checkLoginValid
-            )
+                                    IPageDialogService dialogService, 
+                                    ICheckPasswordValid checkPasswordValid, 
+                                    ICheckLoginValid checkLoginValid)
         {
             _checkPasswordValid = checkPasswordValid;
             _dialogService = dialogService;
@@ -35,19 +33,11 @@ namespace ProfileBook.ViewModels
             _navigationService = navigationService;
         }
 
-        public ICommand ToSignInCommand => _toSignInCommand ?? (_toSignInCommand = new Command(
-            ComeBackToSignViewPage)
-            );
         public ICommand SignUpCommand => _signUpCommand ?? (_signUpCommand = new Command(
             async () => await SignUpComplete(),
             () => false)    //add property ICommand.CanExecute to keep the button deactivated
             );
-
-        async void ComeBackToSignViewPage(object obj)
-        {
-            await _navigationService.NavigateAsync(new System.Uri("http://www.ProfileBook/SignInPageView", System.UriKind.Absolute));
-        }
-        
+                
         async Task SignUpComplete()
         {                
             if (ChekLoginPasswod() == false)     //If the data is correct, then we return to the previous page
@@ -101,7 +91,7 @@ namespace ProfileBook.ViewModels
             {
                 if (_checkLoginValid.IsCheckLoginDB(_login))    //we check the login for uniqueness in the database
                 {
-                    _ = _dialogService.DisplayAlertAsync("Ups",
+                    _ = _dialogService.DisplayAlertAsync("Error",
                         "This login is already registered", "ok");
                     result = true;
                 }

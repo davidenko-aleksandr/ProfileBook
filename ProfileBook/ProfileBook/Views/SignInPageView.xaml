@@ -5,26 +5,19 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:local="clr-namespace:ProfileBook.Converters"
              mc:Ignorable="d"
-             x:Class="ProfileBook.Views.SignInPageView">
-    <ContentPage.Padding>
-        <OnPlatform x:TypeArguments="Thickness" iOS = "0, 20, 0, 0"/>
-    </ContentPage.Padding>
+             x:Class="ProfileBook.Views.SignInPageView"
+             Title="Users SingIn">
+    
     <ContentPage.Resources>
         <ResourceDictionary>
             <local:MultiTriggerConverter x:Key="buttonIsEnable"/>
         </ResourceDictionary>
     </ContentPage.Resources>
-        
-        <StackLayout Spacing ="150">
 
-            <Label Text=" Users SingIn" 
-                   TextColor="White" 
-                   VerticalTextAlignment="Center" 
-                   FontSize="20"
-                   BackgroundColor="Blue" 
-                   VerticalOptions="Start" 
-                   HeightRequest="50"/>
-            <StackLayout VerticalOptions="Center" HorizontalOptions="CenterAndExpand">
+    <Grid Margin="25, 150, 25, 75">
+
+
+        <StackLayout  HorizontalOptions="CenterAndExpand">
                 <Entry x:Name="loginEntry"
                        Placeholder="Login" 
                        WidthRequest="380"
@@ -75,7 +68,7 @@
             </Label>
             </StackLayout>
 
-        </StackLayout>
+        </Grid>
         
    
 </ContentPage> 

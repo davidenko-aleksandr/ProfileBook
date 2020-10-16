@@ -15,6 +15,6 @@ namespace ProfileBook.Models
         public string NickName { get; set; }
         public string Name { get; set; }
         public string Description { get; set; }
-        public DateTime DateTime { get; set; }
+        public DateTime DateTimePr { get; set; }
     }
 }

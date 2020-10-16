@@ -19,11 +19,7 @@ namespace ProfileBook
     public partial class App : PrismApplication
     {
         
-        public App(IPlatformInitializer initializer = null) : base(initializer)
-        {
-        }
-
-
+        public App(IPlatformInitializer initializer = null) : base(initializer) { }
 
         protected override void RegisterTypes(IContainerRegistry containerRegistry)
         {
@@ -43,7 +39,7 @@ namespace ProfileBook
         }
         private static ISettings AppSettings => CrossSettings.Current;
         public static int IdLogTest { get; set; }
-        public static int UserLogin
+        public static int UserLogin // Saving data to understand whether the user is authorized or not
         {
             get => AppSettings.GetValueOrDefault(nameof(UserLogin), IdLogTest);
             set => AppSettings.AddOrUpdateValue(nameof(UserLogin), value);
@@ -52,9 +48,9 @@ namespace ProfileBook
         {
             InitializeComponent();
             
-            if (UserLogin < 0)
+            if (UserLogin <= 0)
             {
-                NavigationService.NavigateAsync(new System.Uri("http://www.ProfileBook/SignInPageView", System.UriKind.Absolute));
+                NavigationService.NavigateAsync(new System.Uri("http://www.ProfileBook/NavigationPage/SignInPageView", System.UriKind.Absolute));
             }
             else
             {

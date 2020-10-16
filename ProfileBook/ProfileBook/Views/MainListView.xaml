@@ -16,6 +16,7 @@
         <ToolbarItem IconImageSource="ic_settings.png"
                      Order="Primary"
                      Priority="1"
+                     Command="{Binding EditProfileCommand}"
                      />
     </ContentPage.ToolbarItems>
 
@@ -38,7 +39,7 @@
                         <ViewCell>
                             <ViewCell.ContextActions>
                                 <MenuItem Text="EDIT"
-                                          Command="{Binding EditProfileCommand}" CommandParameter="{Binding .}"
+                                          Command="{Binding BindingContext.EditProfileCommand, Source={x:Reference profileList}}" CommandParameter="{Binding .}"
                                           />
                             <MenuItem Text="DELETE" 
                                       Command="{Binding BindingContext.DeleteProfileCommand, Source={x:Reference profileList}}" CommandParameter="{Binding .}"
@@ -58,7 +59,7 @@
                                     <StackLayout>
                                         <Label Text="{Binding Name, Mode=TwoWay}"/>
                                         <Label Text="{Binding NickName, Mode=TwoWay}"/>
-                                        <Label Text="{Binding DateTime, Mode=TwoWay}"/>
+                                        <Label Text="{Binding DateTimePr, Mode=TwoWay}"/>
                                     </StackLayout>
                                 </StackLayout>
                             </ViewCell.View>

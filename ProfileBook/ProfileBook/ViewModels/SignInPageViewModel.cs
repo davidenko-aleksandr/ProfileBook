@@ -22,6 +22,8 @@ namespace ProfileBook.ViewModels
         private readonly IUserAuthentication _userAuthentication;
         private readonly IPageDialogService _dialogService;
         private readonly IAuthorizationService _authorization;
+
+        //The constructor 
         public SignInPageViewModel(INavigationService navigationService,
                                     IUserAuthentication userAuthentication,
                                     IPageDialogService dialogService,
@@ -42,7 +44,7 @@ namespace ProfileBook.ViewModels
 
         async Task OpenSignUpPageAsync() //Open the user registration page
         {
-            await _navigationService.NavigateAsync(new System.Uri("http://www.ProfileBook/SignUpPageView", System.UriKind.Absolute));
+            await _navigationService.NavigateAsync(new Uri("SignUpPageView", UriKind.Relative));
         }
 
         async Task OpenMainListViewPageAsync()
