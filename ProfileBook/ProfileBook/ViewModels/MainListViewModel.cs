@@ -22,6 +22,7 @@ namespace ProfileBook.ViewModels
         private ICommand _addProfileCommand;
         private ICommand _deleteProfileCommand;
         private ICommand _editProfileCommand;
+        private ICommand _openSettingPageCommand;
         private readonly IAuthorizationService _authorization;
         public ObservableCollection<Profile> ProfileCollection { get; set; }
 
@@ -49,7 +50,10 @@ namespace ProfileBook.ViewModels
         public ICommand EditProfileCommand => _editProfileCommand ?? (_editProfileCommand = new Command(
                         async (Object obj) => await EditProfile(obj))
                         );
-
+        public ICommand OpenSettingPageCommand => _openSettingPageCommand ?? (_openSettingPageCommand = new Command(
+                        async () => await OpenSettingPage())
+                        );
+              
         async Task EditProfile(object obj)
         {
             _profile = obj as Profile;
@@ -73,14 +77,15 @@ namespace ProfileBook.ViewModels
                 Message = "Do you confirm deletion?",
                 OkText = "Delete",
                 CancelText = "Cancel"
-            });
+            }
+            );
             if (_profile != null && result == true)
             {
                 profileId = _profile.Id;
                 App.DatabaseProfile.DeleteItem(profileId);
                 ProfileCollection = new ObservableCollection<Profile>(App.DatabaseProfile.GetItems().Where(p => p.User_Id == App.UserLogin));
             }
-            await _navigationService.NavigateAsync(new System.Uri("http://www.ProfileBook/NavigationPage/MainListView", System.UriKind.Absolute));
+            await _navigationService.NavigateAsync(new Uri("http://www.ProfileBook/NavigationPage/MainListView", UriKind.Absolute));
         }
 
         async Task AddProfileAsync()
@@ -90,11 +95,16 @@ namespace ProfileBook.ViewModels
 
         async Task ExitFromProfileAsync()
         {
-            _authorization.AddUodateUserId(-1);
+            _authorization.AddUodateUserId(0);
             _authorization.ToWriteLoginId();
-            await _navigationService.NavigateAsync(new System.Uri("http://www.ProfileBook/NavigationPage/SignInPageView", System.UriKind.Absolute));
+            await _navigationService.NavigateAsync(new Uri("http://www.ProfileBook/NavigationPage/SignInPageView", UriKind.Absolute));
         }
-        public string LableText
+        async Task OpenSettingPage()
+        {
+            await _navigationService.NavigateAsync(new Uri("SettingsPageView", UriKind.Relative));
+        }
+
+        public string LableText //This label is displayed when there is no profile list
         { 
             get { return _lableText; }
             set { SetProperty(ref _lableText, value); }

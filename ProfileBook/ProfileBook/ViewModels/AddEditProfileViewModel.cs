@@ -55,8 +55,8 @@ namespace ProfileBook.ViewModels
                     ProfileImage = "pic_profile.png";
                 
             }
-
         }
+        //Get a new photo from camera 
         async void ToMakePhoto()
         {
             if (CrossMedia.Current.IsCameraAvailable && CrossMedia.Current.IsTakePhotoSupported)
@@ -129,30 +129,25 @@ namespace ProfileBook.ViewModels
             ProfileImage = (string)parameters["profileImage"];
             if (ProfileImage == null) ProfileImage = "pic_profile.png";
         }
+
+        public void OnNavigatedFrom(INavigationParameters parameters)
+        {
+            throw new NotImplementedException();
+        }
         public int User_Id
         {
             get => _user_id;
-            set
-            {
-                SetProperty(ref _user_id, value);
-            }
+            set { SetProperty(ref _user_id, value); }
         }
         public int Profile_id
         {
             get => _profile_id;
-            set
-            {
-                SetProperty(ref _profile_id, value);
-            }
+            set { SetProperty(ref _profile_id, value); }
         }
         public string ProfileImage
         {
             get => _profileImage;
-            set
-            {
-
-                SetProperty(ref _profileImage, value);
-            }
+            set { SetProperty(ref _profileImage, value); }
         }
         public string NickName
         {
@@ -180,10 +175,7 @@ namespace ProfileBook.ViewModels
             return true;
         }
 
-        public void OnNavigatedFrom(INavigationParameters parameters)
-        {
-            throw new NotImplementedException();
-        }
+
 
 
 
