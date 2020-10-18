@@ -1,8 +1,9 @@
 ﻿using Plugin.Settings;
 using Plugin.Settings.Abstractions;
 using Prism;
+using Prism.DryIoc;
 using Prism.Ioc;
-using Prism.Unity;
+using Prism.Plugin.Popups;
 using ProfileBook.Services;
 using ProfileBook.Services.AuthenticationServices;
 using ProfileBook.Services.AuthorizationServices;
@@ -23,13 +24,19 @@ namespace ProfileBook
 
         protected override void RegisterTypes(IContainerRegistry containerRegistry)
         {
+            
             //registration of pages and view models
             containerRegistry.RegisterForNavigation<NavigationPage>();
+            containerRegistry.RegisterPopupNavigationService();
+
             containerRegistry.RegisterForNavigation<SignInPageView, SignInPageViewModel>();
             containerRegistry.RegisterForNavigation<SignUpPageView, SignUpPageViewModel>();
             containerRegistry.RegisterForNavigation<MainListView, MainListViewModel>();
             containerRegistry.RegisterForNavigation<AddEditProfileView, AddEditProfileViewModel>();
             containerRegistry.RegisterForNavigation<SettingsPageView, SettingsPageViewModel>();
+            containerRegistry.RegisterForNavigation<ModalProfilePageView, ModalProfilePageViewModel>();
+
+            containerRegistry.RegisterPopupNavigationService();
 
 
             //registration of services with interfaces

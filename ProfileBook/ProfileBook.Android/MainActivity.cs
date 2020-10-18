@@ -18,8 +18,11 @@ namespace ProfileBook.Droid
             TabLayoutResource = Resource.Layout.Tabbar;
             ToolbarResource = Resource.Layout.Toolbar;
 
-                UserDialogs.Init(this);
-           
+            UserDialogs.Init(this);
+
+            global::Rg.Plugins.Popup.Popup.Init(this, savedInstanceState);
+            global::Xamarin.Forms.Forms.Init(this, savedInstanceState);
+
             base.OnCreate(savedInstanceState);
 
             Xamarin.Essentials.Platform.Init(this, savedInstanceState);

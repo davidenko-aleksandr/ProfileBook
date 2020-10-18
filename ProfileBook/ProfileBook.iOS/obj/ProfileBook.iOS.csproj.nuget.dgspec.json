@@ -50,9 +50,17 @@
               "target": "Package",
               "version": "[1.0.0, )"
             },
-            "Prism.Unity.Forms": {
+            "Prism.DryIoc.Forms": {
               "target": "Package",
               "version": "[7.2.0.1422, )"
+            },
+            "Prism.Plugin.Popups": {
+              "target": "Package",
+              "version": "[7.2.0.1046, )"
+            },
+            "Rg.Plugins.Popup": {
+              "target": "Package",
+              "version": "[2.0.0.2, )"
             },
             "Xam.Plugin.Media": {
               "target": "Package",
@@ -137,9 +145,17 @@
               "target": "Package",
               "version": "[1.0.0, )"
             },
-            "Prism.Unity.Forms": {
+            "Prism.DryIoc.Forms": {
               "target": "Package",
               "version": "[7.2.0.1422, )"
+            },
+            "Prism.Plugin.Popups": {
+              "target": "Package",
+              "version": "[7.2.0.1046, )"
+            },
+            "Rg.Plugins.Popup": {
+              "target": "Package",
+              "version": "[2.0.0.2, )"
             },
             "Xam.Plugin.Media": {
               "target": "Package",
