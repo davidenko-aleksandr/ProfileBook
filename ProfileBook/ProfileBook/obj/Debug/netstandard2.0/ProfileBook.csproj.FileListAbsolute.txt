@@ -13,6 +13,7 @@ E:\HeadWorksProject\ProfileBook\ProfileBook\ProfileBook\obj\Debug\netstandard2.0
 E:\HeadWorksProject\ProfileBook\ProfileBook\ProfileBook\obj\Debug\netstandard2.0\ProfileBook.pdb
 E:\HeadWorksProject\ProfileBook\ProfileBook\ProfileBook\obj\Debug\netstandard2.0\Views\AddEditProfileView.xaml.g.cs
 E:\HeadWorksProject\ProfileBook\ProfileBook\ProfileBook\obj\Debug\netstandard2.0\Views\MainListPageView.xaml.g.cs
+E:\HeadWorksProject\ProfileBook\ProfileBook\ProfileBook\obj\Debug\netstandard2.0\Views\SettingsPageView.xaml.g.cs
+E:\HeadWorksProject\ProfileBook\ProfileBook\ProfileBook\obj\Debug\netstandard2.0\Views\ModalProfilePageView.xaml.g.cs
 E:\HeadWorksProject\ProfileBook\ProfileBook\ProfileBook\obj\Debug\netstandard2.0\ProfileBook.csproj.CoreCompileInputs.cache
 E:\HeadWorksProject\ProfileBook\ProfileBook\ProfileBook\obj\Debug\netstandard2.0\XamlC.stamp
-E:\HeadWorksProject\ProfileBook\ProfileBook\ProfileBook\obj\Debug\netstandard2.0\Views\SettingsPageView.xaml.g.cs

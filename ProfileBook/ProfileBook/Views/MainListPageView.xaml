@@ -3,7 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:d="http://xamarin.com/schemas/2014/forms/design"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
-             xmlns:viewmodels="clr-namespace:ProfileBook.ViewModels"
+             xmlns:viewmodels="clr-namespace:ProfileBook.ViewModels" xmlns:local="clr-namespace:ProfileBook.Services.BindingServices"
              mc:Ignorable="d"
              x:Class="ProfileBook.Views.MainListView"
              Title="Main List">
@@ -26,53 +26,51 @@
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
 
-
-
-        <ListView  Grid.Row="0"
-                x:Name="profileList"
-                ItemsSource="{Binding ProfileCollection, Mode=TwoWay}"
-                      HasUnevenRows="True"
-                      VerticalOptions="FillAndExpand"
-                      >
-                <ListView.ItemTemplate>
+        <local:BetterListView  Grid.Row="0"
+                               ItemClickCommand ="{Binding ItemOpenCommand}"
+                               x:Name="profileList"
+                               ItemsSource="{Binding ProfileCollection, Mode=TwoWay}"
+                               HasUnevenRows="True"
+                               VerticalOptions="FillAndExpand"
+                               >    
+            <ListView.ItemTemplate>
                     <DataTemplate>
                         <ViewCell>
                             <ViewCell.ContextActions>
                                 <MenuItem Text="EDIT"
-                                          Command="{Binding BindingContext.EditProfileCommand, Source={x:Reference profileList}}" CommandParameter="{Binding .}"
+                                          Command="{Binding BindingContext.EditProfileCommand, 
+                                          Source={x:Reference profileList}}" CommandParameter="{Binding .}"
                                           />
                             <MenuItem Text="DELETE" 
-                                      Command="{Binding BindingContext.DeleteProfileCommand, Source={x:Reference profileList}}" CommandParameter="{Binding .}"
-                                          
-                                          />
+                                      Command="{Binding BindingContext.DeleteProfileCommand, 
+                                      Source={x:Reference profileList}}" CommandParameter="{Binding .}"                                          
+                                      />
                             </ViewCell.ContextActions>
-                            <ViewCell.View>
-                                <StackLayout Orientation="Horizontal" 
-                                                     Margin="20"
+                        <ViewCell.View>                            
+                            <StackLayout Orientation="Horizontal"  Margin="20"
                                              >
-                                    <Image Source="{Binding ProfileImage, Mode=TwoWay}"
+                                <Image Source="{Binding ProfileImage, Mode=TwoWay}"
                                             HeightRequest="100"
                                             WidthRequest="100"
                                             VerticalOptions="Center"
                                             HorizontalOptions="Start"
                                             />
-                                    <StackLayout>
-                                        <Label Text="{Binding Name, Mode=TwoWay}"/>
-                                        <Label Text="{Binding NickName, Mode=TwoWay}"/>
-                                        <Label Text="{Binding DateTimePr, Mode=TwoWay}"/>
-                                    </StackLayout>
+                                <StackLayout>
+                                    <Label Text="{Binding Name, Mode=TwoWay}"/>
+                                    <Label Text="{Binding NickName, Mode=TwoWay}"/>
+                                    <Label Text="{Binding DateTimePr, Mode=TwoWay}"/>
                                 </StackLayout>
-                            </ViewCell.View>
-                        </ViewCell>
+                            </StackLayout>
+                        </ViewCell.View>
+                    </ViewCell>
                     </DataTemplate>
                 </ListView.ItemTemplate>
-            </ListView>
+            </local:BetterListView>
         <Label  Grid.Row="0"
-               
-               Text="{Binding LableText, Mode=TwoWay}"
+                Text="{Binding LableText, Mode=TwoWay}"
                 VerticalOptions="Center"
                 HorizontalOptions="Center"
-               />
+                />
         
         <Button Text="+" FontSize="35"  Grid.Row="0"
                 TextColor="White"

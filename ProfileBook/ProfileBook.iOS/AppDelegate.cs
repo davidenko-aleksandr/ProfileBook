@@ -24,6 +24,8 @@ namespace ProfileBook.iOS
         //
         public override bool FinishedLaunching(UIApplication app, NSDictionary options)
         {
+            global::Rg.Plugins.Popup.Popup.Init();
+         
             global::Xamarin.Forms.Forms.Init();
             LoadApplication(new App(new iOSInitializer()));
 

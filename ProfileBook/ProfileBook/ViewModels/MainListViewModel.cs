@@ -23,6 +23,7 @@ namespace ProfileBook.ViewModels
         private ICommand _deleteProfileCommand;
         private ICommand _editProfileCommand;
         private ICommand _openSettingPageCommand;
+        private ICommand _itemOpenCommand;
         private readonly IAuthorizationService _authorization;
         public ObservableCollection<Profile> ProfileCollection { get; set; }
 
@@ -53,7 +54,25 @@ namespace ProfileBook.ViewModels
         public ICommand OpenSettingPageCommand => _openSettingPageCommand ?? (_openSettingPageCommand = new Command(
                         async () => await OpenSettingPage())
                         );
-              
+        public ICommand ItemOpenCommand => _itemOpenCommand ?? (_itemOpenCommand = new Command(
+                        async (Object obj) => await OpenItem(obj))
+                        );
+
+        async Task OpenItem(object obj)
+        {
+            _profile = obj as Profile;
+            var parametr = new NavigationParameters
+            {
+                {"profileImage", _profile.ProfileImage },
+                {"nickName", _profile.NickName },
+                {"name", _profile.Name },
+                {"dateTime", _profile.DateTimePr },
+            };
+            await _navigationService.NavigateAsync(new Uri("ModalProfilePageView", UriKind.Relative), parametr);
+            
+
+        }
+
         async Task EditProfile(object obj)
         {
             _profile = obj as Profile;
@@ -66,7 +85,9 @@ namespace ProfileBook.ViewModels
                 {"dateTime", _profile.DateTimePr },
                 {"profileId", _profile.Id }
             };
+
             await _navigationService.NavigateAsync(new Uri("AddEditProfileView", UriKind.Relative), parametr);
+            
         }
         async Task DeleteProfile(object obj)
         {
