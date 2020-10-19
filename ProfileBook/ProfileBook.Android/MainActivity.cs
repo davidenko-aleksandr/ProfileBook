@@ -6,6 +6,7 @@ using Android.OS;
 using Prism;
 using Prism.Ioc;
 using Acr.UserDialogs;
+using Rg.Plugins.Popup.Services;
 
 namespace ProfileBook.Droid
 {
@@ -43,6 +44,17 @@ namespace ProfileBook.Droid
             public void RegisterTypes(IContainerRegistry containerRegistry)
             {
 
+            }
+        }
+           public async override void OnBackPressed()
+        {
+            if (Rg.Plugins.Popup.Popup.SendBackPressed(base.OnBackPressed))
+            {
+                await PopupNavigation.Instance.PopAsync();
+            }
+            else
+            {
+                // Do something if there are not any pages in the `PopupStack`
             }
         }
 

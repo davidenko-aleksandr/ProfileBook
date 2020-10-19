@@ -6,10 +6,8 @@ using System.Text;
 namespace ProfileBook.Models
 {
     [Table("Users")]
-    public class User
+    public class User : BaseModel
     {
-        [PrimaryKey, AutoIncrement, Column("_id")]
-        public int Id { get; set; }
         public string Login { get; set; }
         public string Password { get; set; }
 

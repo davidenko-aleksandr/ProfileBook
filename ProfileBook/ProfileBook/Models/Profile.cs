@@ -1,15 +1,11 @@
 ﻿using SQLite;
 using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace ProfileBook.Models
 {
     [Table("Profiles")]
-    public class Profile
+    public class Profile : BaseModel
     {
-        [PrimaryKey, AutoIncrement, Column("_id")]
-        public int Id { get; set; }
         public int User_Id { get; set; }
         public string ProfileImage { get; set; }
         public string NickName { get; set; }

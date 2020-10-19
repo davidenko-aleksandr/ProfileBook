@@ -13,7 +13,6 @@ namespace ProfileBook.Services.AuthorizationServices
     {
        
         private static int logId;
-       // public UserAuthentication UserAuthentication { get; set; }
         public int AddUodateUserId(int id)
         {
             logId = id;

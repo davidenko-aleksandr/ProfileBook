@@ -1,10 +1,18 @@
-﻿using System.Linq;
+﻿using ProfileBook.Models;
+using ProfileBook.Services.RepositoryService;
+using System.Linq;
 using System.Text.RegularExpressions;
 
 namespace ProfileBook.Services
 {
     class CheckLoginValid : ICheckLoginValid
     {
+        private readonly IRepository<User> _repository;
+        public CheckLoginValid(IRepository<User> repository)
+        {
+            _repository = repository;
+        }
+
         //Checking the login for correctness
         public bool IsCheckLogin(string login)
         {
@@ -21,7 +29,7 @@ namespace ProfileBook.Services
         //heck the login for uniqueness
         public bool IsCheckLoginDB(string login)
         {
-            var lg = App.DatabaseUser.GetItems().FirstOrDefault(user => user.Login == login); //if there is already a user in the database with 
+            var lg = _repository.GetAllItems().FirstOrDefault(user => user.Login == login); //if there is already a user in the database with 
             if (lg != null)                                                               //this login, then it is not unique
                 return true;
             else return false;

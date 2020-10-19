@@ -3,6 +3,7 @@ using Prism.Navigation;
 using Prism.Services;
 using ProfileBook.Models;
 using ProfileBook.Services;
+using ProfileBook.Services.RepositoryService;
 using System.Threading.Tasks;
 using System.Windows.Input;
 using Xamarin.Forms;
@@ -20,17 +21,20 @@ namespace ProfileBook.ViewModels
         private readonly ICheckPasswordValid _checkPasswordValid;
         private readonly ICheckLoginValid _checkLoginValid;
         private ICommand _signUpCommand;
+        private readonly IRepository<User> _repository;
 
         // The constructor
         public SignUpPageViewModel(INavigationService navigationService, 
                                     IPageDialogService dialogService, 
                                     ICheckPasswordValid checkPasswordValid, 
-                                    ICheckLoginValid checkLoginValid)
+                                    ICheckLoginValid checkLoginValid,
+                                    IRepository<User> repository)
         {
             _checkPasswordValid = checkPasswordValid;
             _dialogService = dialogService;
             _checkLoginValid = checkLoginValid;
             _navigationService = navigationService;
+            _repository = repository;
         }
 
         public ICommand SignUpCommand => _signUpCommand ?? (_signUpCommand = new Command(
@@ -48,10 +52,8 @@ namespace ProfileBook.ViewModels
                     { "log", _login },      
                     { "pas", _password }
                 };
-                await _navigationService.NavigateAsync(new System.Uri("http://www.ProfileBook/SignInPageView", System.UriKind.Absolute), parametr);
-                
-            }
-            
+                await _navigationService.NavigateAsync(new System.Uri("http://www.ProfileBook/NavigationPage/SignInPageView", System.UriKind.Absolute), parametr);                
+            }            
         }
         
         private bool ChekLoginPasswod()
@@ -105,7 +107,7 @@ namespace ProfileBook.ViewModels
                 Login = _login,
                 Password = _password
             };
-            _ = App.DatabaseUser.SaveItem(user);
+            _repository.InsertItem(user);
         }
 
         public string Login

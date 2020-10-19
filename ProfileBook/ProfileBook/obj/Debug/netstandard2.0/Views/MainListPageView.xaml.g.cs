@@ -8,20 +8,20 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-[assembly: global::Xamarin.Forms.Xaml.XamlResourceIdAttribute("ProfileBook.Views.MainListPageView.xaml", "Views/MainListPageView.xaml", typeof(global::ProfileBook.Views.MainListView))]
+[assembly: global::Xamarin.Forms.Xaml.XamlResourceIdAttribute("ProfileBook.Views.MainListPageView.xaml", "Views/MainListPageView.xaml", typeof(global::ProfileBook.Views.MainListPageView))]
 
 namespace ProfileBook.Views {
     
     
     [global::Xamarin.Forms.Xaml.XamlFilePathAttribute("Views\\MainListPageView.xaml")]
-    public partial class MainListView : global::Xamarin.Forms.ContentPage {
+    public partial class MainListPageView : global::Xamarin.Forms.ContentPage {
         
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Xamarin.Forms.Build.Tasks.XamlG", "2.0.0.0")]
         private global::ProfileBook.Services.BindingServices.BetterListView profileList;
         
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Xamarin.Forms.Build.Tasks.XamlG", "2.0.0.0")]
         private void InitializeComponent() {
-            global::Xamarin.Forms.Xaml.Extensions.LoadFromXaml(this, typeof(MainListView));
+            global::Xamarin.Forms.Xaml.Extensions.LoadFromXaml(this, typeof(MainListPageView));
             profileList = global::Xamarin.Forms.NameScopeExtensions.FindByName<global::ProfileBook.Services.BindingServices.BetterListView>(this, "profileList");
         }
     }

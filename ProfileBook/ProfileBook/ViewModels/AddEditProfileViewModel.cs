@@ -4,6 +4,7 @@ using Plugin.Media.Abstractions;
 using Prism.Mvvm;
 using Prism.Navigation;
 using ProfileBook.Models;
+using ProfileBook.Services.RepositoryService;
 using System;
 using System.Threading.Tasks;
 using System.Windows.Input;
@@ -24,11 +25,15 @@ namespace ProfileBook.ViewModels
         private readonly INavigationService _navigationService;
         private ICommand _saveProfileCommand;
         private ICommand _actionSheetCommand;
+        private readonly IRepository<Profile> _repository;
+        private bool _isSaveOrUpdate;
 
 
-        public AddEditProfileViewModel(INavigationService navigationService)
+        public AddEditProfileViewModel(INavigationService navigationService,
+                                        IRepository<Profile> repository)
         {
             _navigationService = navigationService;
+            _repository = repository;
         }
 
         public ICommand SaveProfileCommand => _saveProfileCommand ?? (_saveProfileCommand = new Command(
@@ -52,8 +57,7 @@ namespace ProfileBook.ViewModels
                 MediaFile photo = await CrossMedia.Current.PickPhotoAsync();
                 ProfileImage = photo.Path;
                 if (ProfileImage == null)
-                    ProfileImage = "pic_profile.png";
-                
+                    ProfileImage = "pic_profile.png";                
             }
         }
         //Get a new photo from camera 
@@ -73,7 +77,6 @@ namespace ProfileBook.ViewModels
                 ProfileImage = file.Path;
                 if (ProfileImage == null)
                     ProfileImage = "pic_profile.png";
-
             }
         }
         async Task SaveProfileAsync()
@@ -95,10 +98,8 @@ namespace ProfileBook.ViewModels
             if(result == false)
             {
                 SaveProfileToDB();
-
-                await _navigationService.NavigateAsync(new System.Uri("http://www.ProfileBook/NavigationPage/MainListView", System.UriKind.Absolute));
-            }
-           
+                await _navigationService.NavigateAsync(new Uri("http://WWW.ProfileBook/NavigationPage/MainListPageView", UriKind.Absolute));
+            }           
         }
         private void SaveProfileToDB()
         {
@@ -112,28 +113,31 @@ namespace ProfileBook.ViewModels
                 Description = Description,
                 DateTimePr = DateTimePr
             };
-            App.DatabaseProfile.SaveItem(_profile);
+            if (_isSaveOrUpdate) 
+            {
+                _repository.UpdateItem(_profile); //profile update
+                _isSaveOrUpdate = false;
+            }
+            else _repository.InsertItem(_profile); //profile save
         }
         //Get data from MainListPage
         public void OnNavigatedTo(INavigationParameters parameters)
         {
-
-            NickName = (string)parameters["nickName"];
-            if (NickName == null) NickName = "";
-            Name = (string)parameters["name"];
-            if (Name == null) Name = "";
-            Description = (string)parameters["description"];
-            if (Description == null) Description = "";
-            DateTimePr = (DateTime)parameters["dateTime"];
-            Profile_id = (int)parameters["profileId"];
-            ProfileImage = (string)parameters["profileImage"];
+            Profile profile = (Profile)parameters["profile"];
+            NickName = profile.NickName;
+            if (NickName == null) NickName = "";            
+            DateTimePr = profile.DateTimePr;
+            if (DateTimePr == null) DateTimePr = DateTime.Now;
+            ProfileImage = profile.ProfileImage;
             if (ProfileImage == null) ProfileImage = "pic_profile.png";
+            Description = profile.Description;
+            if (Description == null) Description = "";
+            Profile_id = profile.Id;
+            Name = profile.Name;
+            if (Name == null)  Name = "";
+            else _isSaveOrUpdate = true; //if Name != null - then we get a profile from the collection and it will need to be updated
         }
-
-        public void OnNavigatedFrom(INavigationParameters parameters)
-        {
-            throw new NotImplementedException();
-        }
+        public void OnNavigatedFrom(INavigationParameters parameters) { }
         public int User_Id
         {
             get => _user_id;
@@ -169,15 +173,9 @@ namespace ProfileBook.ViewModels
             get => _dateTime;
             set { SetProperty(ref _dateTime, value); }
         }
-
         public bool CanNavigate(INavigationParameters parameters)
         {
             return true;
         }
-
-
-
-
-
     }
 }

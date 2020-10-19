@@ -44,7 +44,7 @@ namespace ProfileBook.ViewModels
 
         async Task OpenSignUpPageAsync() //Open the user registration page
         {
-            await _navigationService.NavigateAsync(new Uri("SignUpPageView", UriKind.Relative));
+            _ = await _navigationService.NavigateAsync("SignUpPageView");
         }
 
         async Task OpenMainListViewPageAsync()
@@ -54,7 +54,7 @@ namespace ProfileBook.ViewModels
             {
                 _authorization.AddUodateUserId(_userAuthentication.GetUserId());
                 _authorization.ToWriteLoginId();
-                await _navigationService.NavigateAsync(new System.Uri("http://www.ProfileBook/NavigationPage/MainListView", System.UriKind.Absolute));
+                await _navigationService.NavigateAsync(new Uri("http://WWW.ProfileBook/NavigationPage/MainListPageView", UriKind.Absolute));
             }
             else
             {
@@ -80,11 +80,7 @@ namespace ProfileBook.ViewModels
             return true;
         }
 
-        public void OnNavigatedFrom(INavigationParameters parameters)
-        {
-            throw new NotImplementedException();
-        }
-
+        public void OnNavigatedFrom(INavigationParameters parameters) { }
         public void OnNavigatedTo(INavigationParameters parameters) //Accept parameters from other pages
         {
             var getLog = parameters["log"];

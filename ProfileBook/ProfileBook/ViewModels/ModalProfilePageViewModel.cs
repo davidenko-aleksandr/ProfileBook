@@ -1,36 +1,27 @@
 ﻿using Prism.Mvvm;
 using Prism.Navigation;
+using ProfileBook.Models;
 using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace ProfileBook.ViewModels
 {
     public class ModalProfilePageViewModel : BindableBase, IConfirmNavigation, INavigatedAware
     {
-        private string _profileImage = "";
-        private string _nickName = string.Empty;
-        private string _name = string.Empty;
-        private DateTime _dateTime = DateTime.Now;
-        public bool CanNavigate(INavigationParameters parameters)
-        {
-            return true;
-        }
-        public ModalProfilePageViewModel() { }
-        public void OnNavigatedFrom(INavigationParameters parameters)
-        {
-            throw new NotImplementedException();
-        }
-
+        private string _profileImage;
+        private string _nickName;
+        private string _name;
+        private DateTime _dateTime;
+                
         public void OnNavigatedTo(INavigationParameters parameters)
         {
-            NickName = (string)parameters["nickName"];
+            Profile profile = (Profile)parameters["profile"];
+            NickName = profile.NickName;
             if (NickName == null) NickName = "";
-            Name = (string)parameters["name"];
+            Name = profile.Name;
             if (Name == null) Name = "";
-            DateTimePr = (DateTime)parameters["dateTime"];
+            DateTimePr = profile.DateTimePr;
             if (DateTimePr == null) DateTimePr = DateTime.Now;
-            ProfileImage = (string)parameters["profileImage"];
+            ProfileImage = profile.ProfileImage;
             if (ProfileImage == null) ProfileImage = "pic_profile.png";
         }
         public string ProfileImage
@@ -52,6 +43,11 @@ namespace ProfileBook.ViewModels
         {
             get => _dateTime;
             set { SetProperty(ref _dateTime, value); }
+        }
+        public void OnNavigatedFrom(INavigationParameters parameters) { }
+        public bool CanNavigate(INavigationParameters parameters)
+        {
+            return true;
         }
     }
 }

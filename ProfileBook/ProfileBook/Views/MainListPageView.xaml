@@ -3,9 +3,10 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:d="http://xamarin.com/schemas/2014/forms/design"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
-             xmlns:viewmodels="clr-namespace:ProfileBook.ViewModels" xmlns:local="clr-namespace:ProfileBook.Services.BindingServices"
+             xmlns:viewmodels="clr-namespace:ProfileBook.ViewModels" 
+             xmlns:local="clr-namespace:ProfileBook.Services.BindingServices"
              mc:Ignorable="d"
-             x:Class="ProfileBook.Views.MainListView"
+             x:Class="ProfileBook.Views.MainListPageView"
              Title="Main List">
     <ContentPage.ToolbarItems>
         <ToolbarItem IconImageSource="ic_exit_to_app.png"
@@ -32,12 +33,12 @@
                                ItemsSource="{Binding ProfileCollection, Mode=TwoWay}"
                                HasUnevenRows="True"
                                VerticalOptions="FillAndExpand"
-                               >    
+                               >
             <ListView.ItemTemplate>
-                    <DataTemplate>
-                        <ViewCell>
-                            <ViewCell.ContextActions>
-                                <MenuItem Text="EDIT"
+                <DataTemplate>
+                    <ViewCell>
+                        <ViewCell.ContextActions>
+                            <MenuItem Text="EDIT"
                                           Command="{Binding BindingContext.EditProfileCommand, 
                                           Source={x:Reference profileList}}" CommandParameter="{Binding .}"
                                           />
@@ -45,8 +46,8 @@
                                       Command="{Binding BindingContext.DeleteProfileCommand, 
                                       Source={x:Reference profileList}}" CommandParameter="{Binding .}"                                          
                                       />
-                            </ViewCell.ContextActions>
-                        <ViewCell.View>                            
+                        </ViewCell.ContextActions>
+                        <ViewCell.View>
                             <StackLayout Orientation="Horizontal"  Margin="20"
                                              >
                                 <Image Source="{Binding ProfileImage, Mode=TwoWay}"
@@ -63,15 +64,15 @@
                             </StackLayout>
                         </ViewCell.View>
                     </ViewCell>
-                    </DataTemplate>
-                </ListView.ItemTemplate>
-            </local:BetterListView>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </local:BetterListView>
         <Label  Grid.Row="0"
                 Text="{Binding LableText, Mode=TwoWay}"
                 VerticalOptions="Center"
                 HorizontalOptions="Center"
                 />
-        
+
         <Button Text="+" FontSize="35"  Grid.Row="0"
                 TextColor="White"
                 BorderColor="Blue"
@@ -87,4 +88,3 @@
         </Button>
     </Grid>
 </ContentPage>
-    

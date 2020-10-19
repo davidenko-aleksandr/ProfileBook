@@ -1,14 +1,13 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <popup:PopupPage xmlns="http://xamarin.com/schemas/2014/forms"
                  xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-                 xmlns:popup="clr-namespace:Rg.Plugins.Popup.Pages;assembly=Rg.Plugins.Popup"
+                 xmlns:popup="clr-namespace:Rg.Plugins.Popup.Pages;assembly=Rg.Plugins.Popup"                 
+                 x:Class="ProfileBook.Views.ModalProfilePageView"
                  CloseWhenBackgroundIsClicked="True"
-                 x:Class="ProfileBook.Views.ModalProfilePageView">
-    
-    <popup:PopupPage.Content>
-        
+                 >    
+    <popup:PopupPage.Content>        
         <Grid HorizontalOptions="FillAndExpand" VerticalOptions="Center">
-            <StackLayout Orientation="Horizontal"  Margin="20"
+            <StackLayout Orientation="Horizontal"  Margin="10"
                          BackgroundColor="Aqua">
                 <Image Source="{Binding ProfileImage, Mode=TwoWay}"
                        HeightRequest="150"
@@ -23,8 +22,7 @@
                            FontSize="20"/>
                     <Label Text="{Binding DateTimePr, Mode=TwoWay}"/>
                 </StackLayout>
-            </StackLayout>
-            
+            </StackLayout>            
         </Grid>
     </popup:PopupPage.Content>
 </popup:PopupPage>

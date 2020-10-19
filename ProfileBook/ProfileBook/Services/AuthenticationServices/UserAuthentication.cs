@@ -1,8 +1,6 @@
 ﻿using ProfileBook.Models;
-using System;
-using System.Collections.Generic;
+using ProfileBook.Services.RepositoryService;
 using System.Linq;
-using System.Text;
 
 namespace ProfileBook.Services.AuthenticationServices
 {
@@ -13,10 +11,15 @@ namespace ProfileBook.Services.AuthenticationServices
     {
         public User _userLogin;
         public User _userPassw;
+        private readonly IRepository<User> _repository;
+        public UserAuthentication(IRepository<User> repository)
+        {
+            _repository = repository;
+        }
         public void GetUsersFromDB(string login, string password)
         {
-            User log = App.DatabaseUser.GetItems().FirstOrDefault(user => user.Login == login);     //get user data by login
-            User pas = App.DatabaseUser.GetItems().FirstOrDefault(user => user.Password == password);    //get user data by password
+            User log = _repository.GetAllItems().FirstOrDefault(user => user.Login == login);     //get user data by login
+            User pas = _repository.GetAllItems().FirstOrDefault(user => user.Password == password);    //get user data by password
             _userLogin = log;
             _userPassw = pas;
         }
