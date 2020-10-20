@@ -8,6 +8,7 @@ using ProfileBook.Models;
 using ProfileBook.Services;
 using ProfileBook.Services.AuthenticationServices;
 using ProfileBook.Services.AuthorizationServices;
+using ProfileBook.Services.EnumServices;
 using ProfileBook.Services.RepositoryService;
 using ProfileBook.ViewModels;
 using ProfileBook.Views;
@@ -40,7 +41,8 @@ namespace ProfileBook
             containerRegistry.RegisterInstance<ICheckLoginValid>(Container.Resolve<CheckLoginValid>());
             containerRegistry.RegisterInstance<IUserAuthentication>(Container.Resolve<UserAuthentication>());
             containerRegistry.RegisterInstance<IAuthorizationService>(Container.Resolve<AuthorizationService>());
-             
+            containerRegistry.RegisterInstance<IProfileSort>(Container.Resolve<ProfileSort>());
+                        
         }
         private static ISettings AppSettings => CrossSettings.Current;
         public static int IdLogTest { get; set; }

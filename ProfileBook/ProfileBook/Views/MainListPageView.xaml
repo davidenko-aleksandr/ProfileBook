@@ -57,8 +57,8 @@
                                             HorizontalOptions="Start"
                                             />
                                 <StackLayout>
+                                    <Label Text="{Binding NickName, Mode=TwoWay}" FontSize="Body"/>
                                     <Label Text="{Binding Name, Mode=TwoWay}"/>
-                                    <Label Text="{Binding NickName, Mode=TwoWay}"/>
                                     <Label Text="{Binding DateTimePr, Mode=TwoWay}"/>
                                 </StackLayout>
                             </StackLayout>

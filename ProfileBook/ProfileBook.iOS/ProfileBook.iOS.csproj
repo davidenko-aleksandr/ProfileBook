@@ -256,4 +256,7 @@
   <ItemGroup>
     <BundleResource Include="Resources\change_sort.png" />
   </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\comeback.png" />
+  </ItemGroup>
 </Project>

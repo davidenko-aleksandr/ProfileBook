@@ -1,11 +1,8 @@
 ﻿using Acr.UserDialogs;
-using Plugin.Settings;
-using Plugin.Settings.Abstractions;
 using Prism.Mvvm;
 using Prism.Navigation;
+using ProfileBook.Services.EnumServices;
 using System;
-using System.Collections.Generic;
-using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
 using Xamarin.Forms;
@@ -16,31 +13,50 @@ namespace ProfileBook.ViewModels
     {
         private string _sortName = "By date";
         private ICommand _selrctSortCommand;
-        private  ISettings AppSettings => CrossSettings.Current;
-        public SettingsPageViewModel()
+        private ICommand _comaBackCommand;
+        private readonly IProfileSort _profileSort;
+        private readonly INavigationService _navigationService;
+
+        public SettingsPageViewModel(IProfileSort profileSort, INavigationService navigationService)
         {
-            SortName = SaveSelectSort;
+            _profileSort = profileSort;
+            SortName = _profileSort.SaveSelectSort;
+            _navigationService = navigationService;
         }
-        public  string SaveSelectSort // Saving data to understand whether the user is authorized or not
-        {
-            get => AppSettings.GetValueOrDefault(nameof(SaveSelectSort), _sortName); 
-            set => AppSettings.AddOrUpdateValue(nameof(SaveSelectSort), value);
-        }
+
         public ICommand SelectSortCommand => _selrctSortCommand ?? (_selrctSortCommand = new Command(SelectSort));
+        public ICommand ComaBackCommand => _comaBackCommand ?? (_comaBackCommand = new Command(
+                                            async () => await ComeBack())
+                                            );
+
+        async Task ComeBack()
+        {
+            await _navigationService.NavigateAsync(new Uri("http://WWW.ProfileBook/NavigationPage/MainListPageView", UriKind.Absolute));
+        }
 
         private void SelectSort()
         {
             var dialogAlert = UserDialogs.Instance.ActionSheet(new ActionSheetConfig()
                 .SetTitle("Select sorting")
-                .Add("By Date", null)
-                .Add("By Name", null)
-                .Add("By nick name", TextLable)
+                .Add("By Date", DateSort)
+                .Add("By Name", NameSort)
+                .Add("By nick name", NickNameSort)
                   );
         }
-        private void TextLable()
+        private void NickNameSort()
         {
-            SaveSelectSort = "By nick name";
-
+            SortName = "By nick name";
+            _profileSort.SaveSelectSort = "By nick name";
+        }
+        private void NameSort()
+        {
+            SortName = "By name";
+            _profileSort.SaveSelectSort = "By name";
+        }
+        private void DateSort()
+        {
+            SortName = "By date";
+            _profileSort.SaveSelectSort = "By date";
         }
         public string SortName
         {

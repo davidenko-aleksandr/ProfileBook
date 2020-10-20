@@ -3,8 +3,10 @@ using Prism.Mvvm;
 using Prism.Navigation;
 using ProfileBook.Models;
 using ProfileBook.Services.AuthorizationServices;
+using ProfileBook.Services.EnumServices;
 using ProfileBook.Services.RepositoryService;
 using System;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Linq;
@@ -27,22 +29,42 @@ namespace ProfileBook.ViewModels
         private ICommand _itemOpenCommand;
         private readonly IRepository<Profile> _repository;
         private readonly IAuthorizationService _authorization;
+        private readonly IProfileSort _profileSort;
         public ObservableCollection<Profile> ProfileCollection { get; set; }
 
         public MainListPageViewModel(INavigationService navigationService,
                                     IAuthorizationService authorization,
-                                    IRepository<Profile> repository)
+                                    IRepository<Profile> repository,
+                                    IProfileSort profileSort)
         {
             _navigationService = navigationService;
             _authorization = authorization;
             _repository = repository;
+            _profileSort = profileSort;
             InitTable();
         }
 
         public void InitTable()
         {            
-            ProfileCollection = new ObservableCollection<Profile>(_repository.GetAllItems().Where(p => p.User_Id==App.UserLogin));
+            var collection = new List<Profile>(_repository.GetAllItems().Where(p => p.User_Id == App.UserLogin));
+            if(_profileSort.SaveSelectSort == null || _profileSort.SaveSelectSort == "By date")
+            {
+                var sortCollection = from p in collection orderby p.DateTimePr select p;
+                ProfileCollection = new ObservableCollection<Profile>(sortCollection);
+            }
+            if(_profileSort.SaveSelectSort == "By name")
+            {
+                var sortCollection = from p in collection orderby p.Name select p;
+                ProfileCollection = new ObservableCollection<Profile>(sortCollection);
+            }
+            if (_profileSort.SaveSelectSort == "By nick name")
+            {
+                var sortCollection = from p in collection orderby p.NickName select p;
+                ProfileCollection = new ObservableCollection<Profile>(sortCollection);
+            }
             LableText = ProfileCollection.Count == 0 ? "No profiles added" : "";
+
+            // ProfileCollection = new ObservableCollection<Profile>(_repository.GetAllItems().Where(p => p.User_Id==App.UserLogin));
         }
         public ICommand ExitCommand => _exitCommand ?? (_exitCommand = new Command(
                         async () => await ExitFromProfileAsync())
@@ -115,7 +137,7 @@ namespace ProfileBook.ViewModels
         }
         async Task OpenSettingPage()
         {
-            await _navigationService.NavigateAsync("SettingsPageView");
+            await _navigationService.NavigateAsync(new Uri("http://WWW.ProfileBook/SettingsPageView", UriKind.Absolute));
         }
         public string LableText //This label is displayed when there is no profile list
         { 

@@ -2,32 +2,45 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="ProfileBook.Views.SettingsPageView"
-             Title="Settings">
-    <ContentPage.Content>
-        <Grid Margin="20">
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="*" />
-                <ColumnDefinition Width="*" />
-                <ColumnDefinition Width="*" />
-            </Grid.ColumnDefinitions>
-
-            <Label Grid.Column="0"
-                   Text="Sorting profiles"
-                   VerticalOptions="Center"
-                   HorizontalOptions="Start"
-                   />
-            <Label Grid.Column="1"
-                   Text="{Binding SortName, Mode=TwoWay}"
-                   VerticalOptions="Center"
-                   HorizontalOptions="Center"                   
-                   />
-            <ImageButton Grid.Column="2"
-                         Source="change_sort.png"
-                         Command="{Binding SelectSortCommand}"
+             >
+    <StackLayout>
+        <StackLayout HeightRequest="55" BackgroundColor="Blue" Orientation="Horizontal" VerticalOptions="Start"
+                     >
+            <ImageButton Source="comeback.png" 
+                         BackgroundColor="Blue"
+                         Command="{Binding ComaBackCommand}"
                          VerticalOptions="Center"
-                         HorizontalOptions="End"
-                         BackgroundColor="White"
-                         />
-        </Grid>
-    </ContentPage.Content>
+                         HorizontalOptions="Start"/>
+            <Label Text="Settings" VerticalOptions="Center" HorizontalOptions="Center"
+                   TextColor="White" FontSize="Body"/>
+
+        </StackLayout>
+   
+            <Grid Margin="20">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
+                
+                </Grid.ColumnDefinitions>
+
+                <Label Grid.Column="0"
+                       Text="Sorting profiles"
+                       VerticalOptions="Center"
+                       HorizontalOptions="Start"
+                       />
+                <Label Grid.Column="1"
+                       Text="{Binding SortName, Mode=TwoWay}"
+                       VerticalOptions="Center"
+                       HorizontalOptions="Center"                   
+                       />
+                <ImageButton Grid.Column="2"
+                             Source="change_sort.png"
+                             Command="{Binding SelectSortCommand}"
+                             VerticalOptions="Center"
+                             HorizontalOptions="End"
+                             BackgroundColor="White"
+                             />
+            </Grid>
+    </StackLayout>
 </ContentPage>
