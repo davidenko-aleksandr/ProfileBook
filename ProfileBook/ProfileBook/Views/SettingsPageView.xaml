@@ -4,8 +4,30 @@
              x:Class="ProfileBook.Views.SettingsPageView"
              Title="Settings">
     <ContentPage.Content>
-        <StackLayout>
+        <Grid Margin="20">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
 
-        </StackLayout>
+            <Label Grid.Column="0"
+                   Text="Sorting profiles"
+                   VerticalOptions="Center"
+                   HorizontalOptions="Start"
+                   />
+            <Label Grid.Column="1"
+                   Text="{Binding SortName, Mode=TwoWay}"
+                   VerticalOptions="Center"
+                   HorizontalOptions="Center"                   
+                   />
+            <ImageButton Grid.Column="2"
+                         Source="change_sort.png"
+                         Command="{Binding SelectSortCommand}"
+                         VerticalOptions="Center"
+                         HorizontalOptions="End"
+                         BackgroundColor="White"
+                         />
+        </Grid>
     </ContentPage.Content>
 </ContentPage>
