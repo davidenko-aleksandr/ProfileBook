@@ -19,17 +19,17 @@
             <Entry x:Name="loginEntry"
                        Placeholder="Login" 
                        WidthRequest="380"
-                       Text="{Binding Login, Mode=TwoWay}"/>
+                       Text="{Binding Login}"/>
             <Entry x:Name="passwordEntry"
                        Placeholder="Password" 
                        WidthRequest="380"
                        IsPassword ="True" 
-                       Text="{Binding Password, Mode=TwoWay}"/>
+                       Text="{Binding Password}"/>
             <Entry x:Name="conPasswEntry"
                        Placeholder="Confirm Password" 
                        WidthRequest="380"
                        IsPassword ="True" 
-                       Text="{Binding ConPassw, Mode=TwoWay}"/>
+                       Text="{Binding ConPassw}"/>
         </StackLayout>
         <Button VerticalOptions="End" 
                 HorizontalOptions="CenterAndExpand"

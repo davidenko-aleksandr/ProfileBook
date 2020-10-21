@@ -22,8 +22,7 @@ namespace ProfileBook.ViewModels
         private readonly ICheckLoginValid _checkLoginValid;
         private ICommand _signUpCommand;
         private readonly IRepository<User> _repository;
-
-        // The constructor
+        
         public SignUpPageViewModel(INavigationService navigationService, 
                                     IPageDialogService dialogService, 
                                     ICheckPasswordValid checkPasswordValid, 
@@ -39,9 +38,8 @@ namespace ProfileBook.ViewModels
 
         public ICommand SignUpCommand => _signUpCommand ?? (_signUpCommand = new Command(
             async () => await SignUpComplete(),
-            () => false)    //add property ICommand.CanExecute to keep the button deactivated
-            );
-                
+            () => false));    //add property ICommand.CanExecute to keep the button deactivated
+
         async Task SignUpComplete()
         {                
             if (ChekLoginPasswod() == false)     //If the data is correct, then we return to the previous page
@@ -58,15 +56,17 @@ namespace ProfileBook.ViewModels
         
         private bool ChekLoginPasswod()
         {
-            bool result = false;
+            bool isErrorExist = false;
+
             if (_checkLoginValid.IsCheckLogin(_login))      //Checking the login for correctness
             {
                 _ = _dialogService.DisplayAlertAsync("Incorrect login",
                     "Login must not start with a number, " +
                     "login length must be no less than 4 characters " +
                     "and no more than 16 characters", "ok");
-                Login = "";         //Сlean login entry
-                result = true;
+
+                Login = string.Empty;          //Сlean login entry
+                isErrorExist = true;
             }
             if (_checkPasswordValid.IsPasswordValid(_password))     //Checking the password for correctness
             {
@@ -74,31 +74,37 @@ namespace ProfileBook.ViewModels
                     "The password must contain from 8 to 16 characters, " +
                     "among which there must be a capital letter, " +
                     "a small letter, and also a number", "ok");
-                Password = "";      //Сlean password entry
-                ConPassw = "";      //Сlean confirm password entry
-                result = true;
+
+                Password = string.Empty;      //Сlean password entry
+                ConPassw = string.Empty;      //Сlean confirm password entry
+
+                isErrorExist = true;
             }
-            if (result == false)    //If the login and password are entered correctly, then we check the password confirmation
+            if (isErrorExist == false)    //If the login and password are entered correctly, then we check the password confirmation
             {
                 if (_password != _conPassw)     //Chek password confirm
                 {
                     _ = _dialogService.DisplayAlertAsync("Error",
                     "Password not confirmed", "ok");
-                    Password = "";
-                    ConPassw = "";
-                    result = true;
+
+                    Password = string.Empty; 
+                    ConPassw = string.Empty; 
+
+                    isErrorExist = true;
                 }
             }
-            if (result == false)    //If all the data is entered correctly 
+            if (isErrorExist == false)    //If all the data is entered correctly 
             {
                 if (_checkLoginValid.IsCheckLoginDB(_login))    //we check the login for uniqueness in the database
                 {
                     _ = _dialogService.DisplayAlertAsync("Error",
                         "This login is already registered", "ok");
-                    result = true;
+
+                    isErrorExist = true;
                 }
             }
-            return result;
+
+            return isErrorExist;
         }
         private void SaveToDataBase()
         {

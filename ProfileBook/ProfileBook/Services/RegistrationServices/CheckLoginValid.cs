@@ -8,6 +8,7 @@ namespace ProfileBook.Services
     class CheckLoginValid : ICheckLoginValid
     {
         private readonly IRepository<User> _repository;
+
         public CheckLoginValid(IRepository<User> repository)
         {
             _repository = repository;
@@ -24,16 +25,18 @@ namespace ProfileBook.Services
             {
                 return true;
             }
-            else return false;
+            else
+            {
+                return false;
+            }
         }
+
         //heck the login for uniqueness
         public bool IsCheckLoginDB(string login)
         {
             var lg = _repository.GetAllItems().FirstOrDefault(user => user.Login == login); //if there is already a user in the database with 
-            if (lg != null)                                                               //this login, then it is not unique
-                return true;
-            else return false;
-        }
 
+            return lg != null;
+        }
     }
 }

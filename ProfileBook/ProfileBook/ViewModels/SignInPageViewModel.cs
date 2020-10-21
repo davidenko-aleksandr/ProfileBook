@@ -22,8 +22,7 @@ namespace ProfileBook.ViewModels
         private readonly IUserAuthentication _userAuthentication;
         private readonly IPageDialogService _dialogService;
         private readonly IAuthorizationService _authorization;
-
-        //The constructor 
+        
         public SignInPageViewModel(INavigationService navigationService,
                                     IUserAuthentication userAuthentication,
                                     IPageDialogService dialogService,
@@ -34,13 +33,13 @@ namespace ProfileBook.ViewModels
             _dialogService = dialogService;
             _authorization = authorization;
         }
+
         public ICommand EnterCommand => _enterCommand ?? (_enterCommand = new Command(
                         async () => await OpenMainListViewPageAsync(), 
-                        () => false)    //add property ICommand.CanExecute to keep the button deactivated
-                        );
+                        () => false));    //add property ICommand.CanExecute to keep the button deactivated
+
         public ICommand ToSignUpPageCommand => _toSignUpPageCommand ?? (_toSignUpPageCommand = new Command(
-                        async () => await OpenSignUpPageAsync())
-                        );
+                        async () => await OpenSignUpPageAsync()));
 
         async Task OpenSignUpPageAsync() //Open the user registration page
         {
@@ -50,6 +49,7 @@ namespace ProfileBook.ViewModels
         async Task OpenMainListViewPageAsync()
         {
             _userAuthentication.GetUsersFromDB(_login, _password);  //Сheck if there is such a user in the database
+
             if (_userAuthentication.IsPasswordConfirm())    //Check if the password is correct and open MainList Page
             {
                 _authorization.AddUodateUserId(_userAuthentication.GetUserId());
@@ -59,11 +59,19 @@ namespace ProfileBook.ViewModels
             else
             {
                 _ = _dialogService.DisplayAlertAsync("Error", "Invalid login or password", "Ok");   //if password is incorrect, show a message
-                Login = "";         //and clean login and password fields
-                Password = "";
-            }
-                
+                Login = string.Empty;         //and clean login and password fields
+                Password = string.Empty;
+            }                
         }
+
+        public void OnNavigatedTo(INavigationParameters parameters) //Accept parameters from other pages
+        {
+            var getLog = parameters["log"];
+            var getPas = parameters["pas"];
+            Login = (string)getLog;
+            Password = (string)getPas;
+        }
+
         public string Login
         {
             get { return _login; }
@@ -74,19 +82,13 @@ namespace ProfileBook.ViewModels
             get { return _password; }
             set { SetProperty(ref _password, value); }
         }
+
         //This method allows navigation from this page
         public bool CanNavigate(INavigationParameters parameters)
         {
             return true;
         }
 
-        public void OnNavigatedFrom(INavigationParameters parameters) { }
-        public void OnNavigatedTo(INavigationParameters parameters) //Accept parameters from other pages
-        {
-            var getLog = parameters["log"];
-            var getPas = parameters["pas"];
-            Login = (string)getLog;
-            Password = (string)getPas;
-        }
+        public void OnNavigatedFrom(INavigationParameters parameters) { }        
     }
 }

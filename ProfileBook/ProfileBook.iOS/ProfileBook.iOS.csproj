@@ -259,4 +259,7 @@
   <ItemGroup>
     <BundleResource Include="Resources\comeback.png" />
   </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\dark_theme.png" />
+  </ItemGroup>
 </Project>

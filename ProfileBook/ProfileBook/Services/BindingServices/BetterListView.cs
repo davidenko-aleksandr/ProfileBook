@@ -11,6 +11,7 @@ namespace ProfileBook.Services.BindingServices
         public static BindableProperty ItemClickCommandProperty = BindableProperty.Create(
                                                                     nameof(ItemClickCommand),
                                                                     typeof(ICommand), typeof(BetterListView), null);
+
         public ICommand ItemClickCommand
         {
             get
@@ -22,6 +23,7 @@ namespace ProfileBook.Services.BindingServices
                 this.SetValue(ItemClickCommandProperty, value);
             }
         }
+
         public BetterListView()
         {
             this.ItemTapped += OnItemTapped;

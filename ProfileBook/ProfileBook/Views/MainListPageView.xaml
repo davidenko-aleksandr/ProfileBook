@@ -8,6 +8,7 @@
              mc:Ignorable="d"
              x:Class="ProfileBook.Views.MainListPageView"
              Title="Main List">
+    
     <ContentPage.ToolbarItems>
         <ToolbarItem IconImageSource="ic_exit_to_app.png"
                      Order="Primary"
@@ -30,36 +31,38 @@
         <local:BetterListView  Grid.Row="0"
                                ItemClickCommand ="{Binding ItemOpenCommand}"
                                x:Name="profileList"
-                               ItemsSource="{Binding ProfileCollection, Mode=TwoWay}"
+                               ItemsSource="{Binding ProfileCollection}"
                                HasUnevenRows="True"
-                               VerticalOptions="FillAndExpand"
-                               >
+                               VerticalOptions="FillAndExpand">
+            
             <ListView.ItemTemplate>
                 <DataTemplate>
                     <ViewCell>
                         <ViewCell.ContextActions>
                             <MenuItem Text="EDIT"
-                                          Command="{Binding BindingContext.EditProfileCommand, 
-                                          Source={x:Reference profileList}}" CommandParameter="{Binding .}"
-                                          />
+                                      Command="{Binding BindingContext.EditProfileCommand, 
+                                      Source={x:Reference profileList}}" CommandParameter="{Binding .}"
+                            />
                             <MenuItem Text="DELETE" 
                                       Command="{Binding BindingContext.DeleteProfileCommand, 
                                       Source={x:Reference profileList}}" CommandParameter="{Binding .}"                                          
-                                      />
+                            />
                         </ViewCell.ContextActions>
+                        
                         <ViewCell.View>
-                            <StackLayout Orientation="Horizontal"  Margin="20"
-                                             >
-                                <Image Source="{Binding ProfileImage, Mode=TwoWay}"
+                            <StackLayout Orientation="Horizontal"  Margin="20">
+                                
+                                <Image Source="{Binding ProfileImage}"
                                             HeightRequest="100"
                                             WidthRequest="100"
                                             VerticalOptions="Center"
                                             HorizontalOptions="Start"
-                                            />
+                                />
                                 <StackLayout>
-                                    <Label Text="{Binding NickName, Mode=TwoWay}" FontSize="Body"/>
-                                    <Label Text="{Binding Name, Mode=TwoWay}"/>
-                                    <Label Text="{Binding DateTimePr, Mode=TwoWay}"/>
+                                    <Label Text="{Binding NickName}" FontSize="Body"/>
+                                    <Label Text="{Binding Name}"/>
+                                    <Label Text="{Binding DateTimePr}"
+                                    />
                                 </StackLayout>
                             </StackLayout>
                         </ViewCell.View>
@@ -67,11 +70,12 @@
                 </DataTemplate>
             </ListView.ItemTemplate>
         </local:BetterListView>
+        
         <Label  Grid.Row="0"
-                Text="{Binding LableText, Mode=TwoWay}"
+                Text="{Binding LableText}"
                 VerticalOptions="Center"
                 HorizontalOptions="Center"
-                />
+        />
 
         <Button Text="+" FontSize="35"  Grid.Row="0"
                 TextColor="White"
@@ -83,8 +87,6 @@
                 VerticalOptions="End"
                 HorizontalOptions="End"
                 Command="{Binding AddProfileCommand}"
-                >
-
-        </Button>
+        />
     </Grid>
 </ContentPage>

@@ -1,10 +1,5 @@
 ﻿using Plugin.Settings;
 using Plugin.Settings.Abstractions;
-using ProfileBook.Models;
-using System;
-using System.Collections;
-using System.Collections.Generic;
-using System.Text;
 
 namespace ProfileBook.Services.EnumServices
 {
@@ -12,6 +7,7 @@ namespace ProfileBook.Services.EnumServices
     {
         private readonly string _sortName = "By date";
 
+        //Save the name of the selected sort locally
         public string SaveSelectSort
         {
             get => AppSettings.GetValueOrDefault(nameof(SaveSelectSort), _sortName);

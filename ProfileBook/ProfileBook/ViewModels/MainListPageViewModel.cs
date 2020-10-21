@@ -44,9 +44,10 @@ namespace ProfileBook.ViewModels
             InitTable();
         }
 
-        public void InitTable()
+        public void InitTable() //Displaying the table data for the selected sort
         {            
             var collection = new List<Profile>(_repository.GetAllItems().Where(p => p.User_Id == App.UserLogin));
+
             if(_profileSort.SaveSelectSort == null || _profileSort.SaveSelectSort == "By date")
             {
                 var sortCollection = from p in collection orderby p.DateTimePr select p;
@@ -62,32 +63,32 @@ namespace ProfileBook.ViewModels
                 var sortCollection = from p in collection orderby p.NickName select p;
                 ProfileCollection = new ObservableCollection<Profile>(sortCollection);
             }
-            LableText = ProfileCollection.Count == 0 ? "No profiles added" : "";
 
-            // ProfileCollection = new ObservableCollection<Profile>(_repository.GetAllItems().Where(p => p.User_Id==App.UserLogin));
+            LableText = ProfileCollection.Count == 0 ? "No profiles added" : string.Empty;
         }
+
         public ICommand ExitCommand => _exitCommand ?? (_exitCommand = new Command(
-                        async () => await ExitFromProfileAsync())
-                        );
+                        async () => await ExitFromProfileAsync()));
+
         public ICommand AddProfileCommand => _addProfileCommand ?? (_addProfileCommand = new Command(
-                        async () => await AddProfileAsync()) 
-                        );
+                        async () => await AddProfileAsync()));
+
         public ICommand DeleteProfileCommand => _deleteProfileCommand ?? (_deleteProfileCommand = new Command(
-                        async (Object obj) => await DeleteProfile(obj))
-                        );
+                        async (Object obj) => await DeleteProfile(obj)));
+
         public ICommand EditProfileCommand => _editProfileCommand ?? (_editProfileCommand = new Command(
-                        async (Object obj) => await EditProfile(obj))
-                        );
+                        async (Object obj) => await EditProfile(obj)));
+
         public ICommand OpenSettingPageCommand => _openSettingPageCommand ?? (_openSettingPageCommand = new Command(
-                        async () => await OpenSettingPage())
-                        );
+                        async () => await OpenSettingPage()));
+
         public ICommand ItemOpenCommand => _itemOpenCommand ?? (_itemOpenCommand = new Command(
-                        async (Object obj) => await OpenItem(obj))
-                        );
+                        async (Object obj) => await OpenItem(obj)));
 
         async Task OpenItem(object obj)
         {
             _profile = obj as Profile;
+
             var parametr = new NavigationParameters
             {
                 {"profile", _profile }
@@ -98,29 +99,33 @@ namespace ProfileBook.ViewModels
         async Task EditProfile(object obj)
         {
             _profile = obj as Profile;
+
             var parametr = new NavigationParameters
             {
                 {"profile", _profile }
             };
             await _navigationService.NavigateAsync(new Uri("AddEditProfileView", UriKind.Relative), parametr);            
         }
+
         async Task DeleteProfile(object obj)
         {
             _profile = obj as Profile;
             int profileId;
+
             var result = await UserDialogs.Instance.ConfirmAsync(new ConfirmConfig
             {
                 Message = "Do you confirm deletion?",
                 OkText = "Delete",
                 CancelText = "Cancel"
-            }
-            );
+            });
+
             if (_profile != null && result == true)
             {
                 profileId = _profile.Id;
                 _repository.DeleteItem(profileId);
                 ProfileCollection = new ObservableCollection<Profile>(_repository.GetAllItems().Where(p => p.User_Id == App.UserLogin));
             }
+
             await _navigationService.NavigateAsync(new Uri("http://WWW.ProfileBook/NavigationPage/MainListPageView", UriKind.Absolute));
         }
 
@@ -135,15 +140,18 @@ namespace ProfileBook.ViewModels
             _authorization.ToWriteLoginId();
             await _navigationService.NavigateAsync(new Uri("http://WWW.ProfileBook/NavigationPage/SignInPageView", UriKind.Absolute));
         }
+
         async Task OpenSettingPage()
         {
             await _navigationService.NavigateAsync(new Uri("http://WWW.ProfileBook/SettingsPageView", UriKind.Absolute));
         }
+
         public string LableText //This label is displayed when there is no profile list
         { 
             get { return _lableText; }
             set { SetProperty(ref _lableText, value); }
         }
+
         public bool CanNavigate(INavigationParameters parameters)
         {
             return true;

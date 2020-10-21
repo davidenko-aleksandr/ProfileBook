@@ -20,45 +20,48 @@ namespace ProfileBook.ViewModels
         private bool _isdate;
         private bool _inickName;
         private bool _isname;
+
         public SettingsPageViewModel(IProfileSort profileSort, INavigationService navigationService)
         {
             _profileSort = profileSort;
             if (_profileSort.SaveSelectSort == "By nick name") IsNickName = true;
             if (_profileSort.SaveSelectSort == "By name") IsName = true;
             if (_profileSort.SaveSelectSort == "By date") IsDate = true;
-
-                _navigationService = navigationService;
+            _navigationService = navigationService;
         }
 
         public ICommand ComaBackCommand => _comaBackCommand ?? (_comaBackCommand = new Command(
-                                            async () => await ComeBack())
-                                            );
+                                            async () => await ComeBack()));
+
         public ICommand ByDateCommand => _bydateCommand ?? (_bydateCommand = new Command(DateSort));
+
         public ICommand ByNickNameCommand => _byNickNameCommand ?? (_byNickNameCommand = new Command(NickNameSort));
-        public ICommand ByNameCommand => _bynameCommand ?? (_bynameCommand = new Command(NameSort));
-        
+
+        public ICommand ByNameCommand => _bynameCommand ?? (_bynameCommand = new Command(NameSort));        
         
         async Task ComeBack()
         {
             await _navigationService.NavigateAsync(new Uri("http://WWW.ProfileBook/NavigationPage/MainListPageView", UriKind.Absolute));
         }
 
+        private void DateSort()
+        {
+            _profileSort.SaveSelectSort = "By date";
+            IsDate = true;
+        }
 
         private void NickNameSort()
         {
             _profileSort.SaveSelectSort = "By nick name";
             IsNickName = true;
         }
+
         private void NameSort()
         {
             _profileSort.SaveSelectSort = "By name";
             IsName = true;
         }
-        private void DateSort()
-        {
-            _profileSort.SaveSelectSort = "By date";
-            IsDate = true;
-        }
+
         public bool IsDate
         {
             get { return _isdate; }

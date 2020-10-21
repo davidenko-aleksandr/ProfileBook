@@ -28,7 +28,6 @@ namespace ProfileBook.ViewModels
         private readonly IRepository<Profile> _repository;
         private bool _isSaveOrUpdate;
 
-
         public AddEditProfileViewModel(INavigationService navigationService,
                                         IRepository<Profile> repository)
         {
@@ -37,8 +36,8 @@ namespace ProfileBook.ViewModels
         }
 
         public ICommand SaveProfileCommand => _saveProfileCommand ?? (_saveProfileCommand = new Command(
-                        async () => await SaveProfileAsync())
-                        );
+                        async () => await SaveProfileAsync()));
+
         public ICommand ActionSheetCommand => _actionSheetCommand ?? (_actionSheetCommand = new Command(OpenActionSheet));
 
         private void OpenActionSheet()
@@ -47,7 +46,7 @@ namespace ProfileBook.ViewModels
                             .SetTitle("Adding a photo")
                             .Add("Use camera", ToMakePhoto, "camera.png")
                             .Add("Download from gallery", GetPhotoFromGallery, "gallery.png")
-                        );
+                            );
         }
 
         async void GetPhotoFromGallery() 
@@ -57,9 +56,12 @@ namespace ProfileBook.ViewModels
                 MediaFile photo = await CrossMedia.Current.PickPhotoAsync();
                 ProfileImage = photo.Path;
                 if (ProfileImage == null)
-                    ProfileImage = "pic_profile.png";                
+                {
+                    ProfileImage = "pic_profile.png";
+                }
             }
         }
+
         //Get a new photo from camera 
         async void ToMakePhoto()
         {
@@ -72,35 +74,41 @@ namespace ProfileBook.ViewModels
                     Name = $"{DateTime.Now:dd.MM.yyyy_hh.mm.ss}.jpg"
                 });
 
-                if (file == null)
-                    return;
-                ProfileImage = file.Path;
+                if (file != null)
+                {
+                    ProfileImage = file.Path;
+                }
+
                 if (ProfileImage == null)
+                {
                     ProfileImage = "pic_profile.png";
+                }
             }
         }
         async Task SaveProfileAsync()
         {
-            bool result = false;
+            bool isErrorExist = false;
+
             if(String.IsNullOrEmpty(_nickName) || String.IsNullOrEmpty(_name))
             {
                 UserDialogs.Instance.Alert("Fields \"Name\" and \"Nickname\" must be filled", "Error", "ok");
-                result = true;
+                isErrorExist = true;
             }
-            if(result == false)
+            if(isErrorExist == false)
             {
                 if (Description.Length > 120)
                 {
                     UserDialogs.Instance.Alert("The \"Description\" field is too large, it must be no more than 120 characters", "Error", "Ok");
-                    result = true;
+                    isErrorExist = true;
                 }
             }            
-            if(result == false)
+            if(isErrorExist == false)
             {
                 SaveProfileToDB();
                 await _navigationService.NavigateAsync(new Uri("http://WWW.ProfileBook/NavigationPage/MainListPageView", UriKind.Absolute));
             }           
         }
+
         private void SaveProfileToDB()
         {
             _profile = new Profile
@@ -113,31 +121,60 @@ namespace ProfileBook.ViewModels
                 Description = Description,
                 DateTimePr = DateTimePr
             };
+
             if (_isSaveOrUpdate) 
             {
                 _repository.UpdateItem(_profile); //profile update
                 _isSaveOrUpdate = false;
             }
-            else _repository.InsertItem(_profile); //profile save
+            else
+            {
+                _repository.InsertItem(_profile); //profile save
+            }
         }
+
         //Get data from MainListPage
         public void OnNavigatedTo(INavigationParameters parameters)
         {
             Profile profile = (Profile)parameters["profile"];
-            NickName = profile.NickName;
-            if (NickName == null) NickName = "";            
-            DateTimePr = profile.DateTimePr;
-            if (DateTimePr == null) DateTimePr = DateTime.Now;
-            ProfileImage = profile.ProfileImage;
-            if (ProfileImage == null) ProfileImage = "pic_profile.png";
-            Description = profile.Description;
-            if (Description == null) Description = "";
+
             Profile_id = profile.Id;
+
+            NickName = profile.NickName;
+            if (NickName == null)
+            {
+                NickName = string.Empty;
+            }
+
+            DateTimePr = profile.DateTimePr;
+            if (DateTimePr == null)
+            {
+                DateTimePr = DateTime.Now;
+            }
+
+            ProfileImage = profile.ProfileImage;
+            if (ProfileImage == null)
+            {
+                ProfileImage = "pic_profile.png";
+            }
+
+            Description = profile.Description;
+            if (Description == null)
+            {
+                Description = string.Empty;
+            }
+            
             Name = profile.Name;
-            if (Name == null)  Name = "";
-            else _isSaveOrUpdate = true; //if Name != null - then we get a profile from the collection and it will need to be updated
+            if (Name == null)
+            {
+                Name = string.Empty;
+            }
+            else
+            {
+                _isSaveOrUpdate = true; //if Name != null - then we get a profile from the collection and it will need to be updated
+            }
         }
-        public void OnNavigatedFrom(INavigationParameters parameters) { }
+       
         public int User_Id
         {
             get => _user_id;
@@ -177,5 +214,7 @@ namespace ProfileBook.ViewModels
         {
             return true;
         }
+
+        public void OnNavigatedFrom(INavigationParameters parameters) { }
     }
 }

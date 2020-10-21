@@ -24,6 +24,7 @@ namespace ProfileBook.ViewModels
             ProfileImage = profile.ProfileImage;
             if (ProfileImage == null) ProfileImage = "pic_profile.png";
         }
+
         public string ProfileImage
         {
             get => _profileImage;
@@ -44,7 +45,9 @@ namespace ProfileBook.ViewModels
             get => _dateTime;
             set { SetProperty(ref _dateTime, value); }
         }
+
         public void OnNavigatedFrom(INavigationParameters parameters) { }
+
         public bool CanNavigate(INavigationParameters parameters)
         {
             return true;
