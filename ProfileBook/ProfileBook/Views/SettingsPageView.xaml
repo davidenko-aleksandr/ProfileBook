@@ -15,32 +15,23 @@
                    TextColor="White" FontSize="Body"/>
 
         </StackLayout>
-   
-            <Grid Margin="20">
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="*" />
-                    <ColumnDefinition Width="*" />
-                    <ColumnDefinition Width="*" />
-                
-                </Grid.ColumnDefinitions>
-
-                <Label Grid.Column="0"
-                       Text="Sorting profiles"
-                       VerticalOptions="Center"
-                       HorizontalOptions="Start"
-                       />
-                <Label Grid.Column="1"
-                       Text="{Binding SortName, Mode=TwoWay}"
-                       VerticalOptions="Center"
-                       HorizontalOptions="Center"                   
-                       />
-                <ImageButton Grid.Column="2"
-                             Source="change_sort.png"
-                             Command="{Binding SelectSortCommand}"
-                             VerticalOptions="Center"
-                             HorizontalOptions="End"
-                             BackgroundColor="White"
-                             />
-            </Grid>
+        <StackLayout Margin="20">
+            <Label Text="Display Profile Collection" FontSize="20"/>
+            <StackLayout Orientation="Horizontal">
+                <RadioButton GroupName="SortProfile" Command="{Binding ByDateCommand}"
+                             IsChecked="{Binding IsDate, Mode=TwoWay}"/>
+                <Label Text=" - by date" FontSize="17" VerticalOptions="Center"/>
+            </StackLayout>
+            <StackLayout Orientation="Horizontal">
+                <RadioButton GroupName="SortProfile" Command="{Binding ByNickNameCommand}"
+                             IsChecked="{Binding IsNickName, Mode=TwoWay}"/>
+                <Label Text=" - by Nick Name" FontSize="17" VerticalOptions="Center"/>
+            </StackLayout>
+            <StackLayout Orientation="Horizontal">
+                <RadioButton GroupName="SortProfile" Command="{Binding ByNameCommand}"
+                             IsChecked="{Binding IsName, Mode=TwoWay}"/>
+                <Label Text=" - by Name" FontSize="17" VerticalOptions="Center"/>
+            </StackLayout>
+        </StackLayout>
     </StackLayout>
 </ContentPage>

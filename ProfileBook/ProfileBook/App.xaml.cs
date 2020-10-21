@@ -53,6 +53,7 @@ namespace ProfileBook
         }
         protected override void OnInitialized()
         {
+            Device.SetFlags(new string[] { "RadioButton_Experimental" });
             InitializeComponent();
             
             if (UserLogin <= 0) NavigationService.NavigateAsync("NavigationPage/SignInPageView");
