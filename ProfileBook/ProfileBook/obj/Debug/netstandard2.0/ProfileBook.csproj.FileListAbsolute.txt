@@ -36,3 +36,5 @@ E:\ProfileBook\ProfileBook\ProfileBook\obj\Debug\netstandard2.0\XamlC.stamp
 E:\ProfileBook\ProfileBook\ProfileBook\obj\Debug\netstandard2.0\ProfileBook.dll
 E:\ProfileBook\ProfileBook\ProfileBook\obj\Debug\netstandard2.0\ref\ProfileBook.dll
 E:\ProfileBook\ProfileBook\ProfileBook\obj\Debug\netstandard2.0\ProfileBook.pdb
+E:\HeadWorksProject\ProfileBook\ProfileBook\ProfileBook\obj\Debug\netstandard2.0\Themes\DarkTheme.xaml.g.cs
+E:\HeadWorksProject\ProfileBook\ProfileBook\ProfileBook\obj\Debug\netstandard2.0\Themes\LightTheme.xaml.g.cs

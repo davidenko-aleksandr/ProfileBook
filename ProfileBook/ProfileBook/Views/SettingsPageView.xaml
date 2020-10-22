@@ -2,40 +2,88 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="ProfileBook.Views.SettingsPageView"
-             >
+             xmlns:local="clr-namespace:ProfileBook.Services.BindingServices"
+             BackgroundColor="{DynamicResource PageBackgroundColor}">
+    
     <StackLayout>
-        <StackLayout HeightRequest="55" BackgroundColor="Blue" Orientation="Horizontal" VerticalOptions="Start"
-                     >
+        
+        <StackLayout HeightRequest="55"
+                     BackgroundColor="{DynamicResource NavigationBarColor}" 
+                     Orientation="Horizontal"
+                     VerticalOptions="Start">
+            
             <ImageButton Source="comeback.png" 
-                         BackgroundColor="Blue"
+                         BackgroundColor="{DynamicResource NavigationBarColor}"
                          Command="{Binding ComaBackCommand}"
                          VerticalOptions="Center"
-                         HorizontalOptions="Start"/>
-            <Label Text="Settings" VerticalOptions="Center" HorizontalOptions="Center"
-                   TextColor="White" FontSize="Body"/>
-
+                         HorizontalOptions="Start"
+            />
+            <Label Text="Settings"
+                   VerticalOptions="Center"
+                   HorizontalOptions="Center"
+                   TextColor="{DynamicResource SecondaryTextColor}" 
+                   FontSize="Body"
+            />
         </StackLayout>
+        
         <StackLayout Margin="20">
-            <Label Text="Display Profile Collection" FontSize="20"/>
+            <Label Text="Display Profile Collection"
+                   FontSize="20"
+                   TextColor="{DynamicResource PrimaryTextColor}"
+            />            
             <StackLayout Orientation="Horizontal">
-                <RadioButton GroupName="SortProfile" Command="{Binding ByDateCommand}"
-                             IsChecked="{Binding IsDate}"/>
-                <Label Text=" - by date" FontSize="17" VerticalOptions="Center"/>
+                <RadioButton GroupName="SortProfile"
+                             Command="{Binding ByDateCommand}"
+                             IsChecked="{Binding IsDate}"
+                             BorderColor="{DynamicResource PrimaryTextColor}"
+                             BackgroundColor="{DynamicResource PageBackgroundColor}"
+                />
+                <Label Text=" - by date" 
+                       FontSize="17" 
+                       VerticalOptions="Center"
+                       TextColor="{DynamicResource PrimaryTextColor}"
+                />
             </StackLayout>
             <StackLayout Orientation="Horizontal">
-                <RadioButton GroupName="SortProfile" Command="{Binding ByNickNameCommand}"
-                             IsChecked="{Binding IsNickName}"/>
-                <Label Text=" - by Nick Name" FontSize="17" VerticalOptions="Center"/>
+                <RadioButton GroupName="SortProfile" 
+                             Command="{Binding ByNickNameCommand}"
+                             IsChecked="{Binding IsNickName}"
+                             BorderColor="{DynamicResource PrimaryTextColor}"
+                             BackgroundColor="{DynamicResource PageBackgroundColor}"
+                />
+                <Label Text=" - by Nick Name" 
+                       FontSize="17" 
+                       VerticalOptions="Center"
+                       TextColor="{DynamicResource PrimaryTextColor}"
+                />
             </StackLayout>
             <StackLayout Orientation="Horizontal">
-                <RadioButton GroupName="SortProfile" Command="{Binding ByNameCommand}"
-                             IsChecked="{Binding IsName}"/>
-                <Label Text=" - by Name" FontSize="17" VerticalOptions="Center"/>
+                <RadioButton GroupName="SortProfile" 
+                             Command="{Binding ByNameCommand}"
+                             IsChecked="{Binding IsName}"
+                             BorderColor="{DynamicResource PrimaryTextColor}"
+                             BackgroundColor="{DynamicResource PageBackgroundColor}"
+                />
+                <Label Text=" - by Name"
+                       FontSize="17" 
+                       VerticalOptions="Center"
+                       TextColor="{DynamicResource PrimaryTextColor}"
+                />
             </StackLayout>
             <StackLayout Orientation="Horizontal" Margin="0, 50, 0, 0">
+                
                 <Image Source="dark_theme.png"/>
-                <CheckBox/>
-                <Label Text="Dark theme" FontSize="17" VerticalOptions="Center"/>
+
+                <local:BetterCheckBox BackgroundColor="{DynamicResource PageBackgroundColor}"
+                                      IsChecked="{Binding IsCheckedDark}"
+                                      IsCheckedCommand="{Binding NewIsCheckCommand}"
+                />
+
+                <Label Text="Dark theme" 
+                       FontSize="17"
+                       VerticalOptions="Center"
+                       TextColor="{DynamicResource PrimaryTextColor}"
+                />
             </StackLayout>
         </StackLayout>
     </StackLayout>

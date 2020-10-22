@@ -2,7 +2,8 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="ProfileBook.Views.AddEditProfileView"
-             Title="Add Profile">
+             Title="Add Profile"
+             BackgroundColor="{DynamicResource PageBackgroundColor}">
     
     <ContentPage.Padding>
         <OnPlatform x:TypeArguments="Thickness" iOS = "0, 20, 0, 0"/>
@@ -13,38 +14,46 @@
                      Order="Primary"
                      Priority="0"
                      Command ="{Binding SaveProfileCommand}"
-                     />
+        />
     </ContentPage.ToolbarItems>
     
     <StackLayout VerticalOptions="End"
                  HorizontalOptions="Center"
                  Spacing ="30"
                  Padding="30, 20, 30, 30"
-                 Margin="0, 0, 0, 20"
-                 >
+                 Margin="0, 0, 0, 20">
+        
         <ImageButton Source="{Binding ProfileImage}"
                      HeightRequest="220"
                      VerticalOptions="Start"
                      HorizontalOptions="Center" 
-                     BackgroundColor="White" 
+                     BackgroundColor="{DynamicResource PageBackgroundColor}" 
                      Command="{Binding ActionSheetCommand}"
-                     />
+        />
         <Entry Text="{Binding NickName}"
                Placeholder="NickName"
                WidthRequest="380"
                HeightRequest="50"
-               />
+               TextColor="{DynamicResource PrimaryTextColor}"
+               PlaceholderColor="{DynamicResource TertiaryTextColor}"
+               BackgroundColor="{DynamicResource EntryBacggroundColor}"
+        />
         <Entry Text="{Binding Name}"
                Placeholder="Name"
                WidthRequest="380"
                HeightRequest="50"
-               />
+               TextColor="{DynamicResource PrimaryTextColor}"
+               PlaceholderColor="{DynamicResource TertiaryTextColor}"
+               BackgroundColor="{DynamicResource EntryBacggroundColor}"
+        />
         <Editor Text="{Binding Description}"
                 Placeholder="Description"
                 WidthRequest="380"
                 HeightRequest="300"
-                BackgroundColor="Aqua"
-                />
+                TextColor="{DynamicResource PrimaryTextColor}"
+                PlaceholderColor="{DynamicResource TertiaryTextColor}"
+                BackgroundColor="{DynamicResource EditorColor}"
+        />
     </StackLayout>
 
 </ContentPage>

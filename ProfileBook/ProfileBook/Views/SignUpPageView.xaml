@@ -6,7 +6,8 @@
              mc:Ignorable="d"
              x:Class="ProfileBook.Views.SignUpPageView"
              xmlns:local="clr-namespace:ProfileBook.Converters"
-             Title="Users SingUp">
+             Title="Users SingUp"
+             BackgroundColor="{DynamicResource PageBackgroundColor}">
 
     <ContentPage.Resources>
         <ResourceDictionary>
@@ -17,28 +18,42 @@
 
         <StackLayout HorizontalOptions="CenterAndExpand">
             <Entry x:Name="loginEntry"
-                       Placeholder="Login" 
-                       WidthRequest="380"
-                       Text="{Binding Login}"/>
+                   Placeholder="Login" 
+                   WidthRequest="380"
+                   Text="{Binding Login}"
+                   TextColor="{DynamicResource PrimaryTextColor}"
+                   PlaceholderColor="{DynamicResource TertiaryTextColor}" 
+                   BackgroundColor="{DynamicResource EntryBacggroundColor}"
+            />
             <Entry x:Name="passwordEntry"
-                       Placeholder="Password" 
-                       WidthRequest="380"
-                       IsPassword ="True" 
-                       Text="{Binding Password}"/>
+                   Placeholder="Password" 
+                   WidthRequest="380"
+                   IsPassword ="True" 
+                   Text="{Binding Password}"
+                   TextColor="{DynamicResource PrimaryTextColor}"
+                   PlaceholderColor="{DynamicResource TertiaryTextColor}" 
+                   BackgroundColor="{DynamicResource EntryBacggroundColor}"
+            />
             <Entry x:Name="conPasswEntry"
-                       Placeholder="Confirm Password" 
-                       WidthRequest="380"
-                       IsPassword ="True" 
-                       Text="{Binding ConPassw}"/>
+                   Placeholder="Confirm Password" 
+                   WidthRequest="380"
+                   IsPassword ="True" 
+                   Text="{Binding ConPassw}"
+                   TextColor="{DynamicResource PrimaryTextColor}"
+                   PlaceholderColor="{DynamicResource TertiaryTextColor}" 
+                   BackgroundColor="{DynamicResource EntryBacggroundColor}"
+            />
         </StackLayout>
         <Button VerticalOptions="End" 
                 HorizontalOptions="CenterAndExpand"
                 Text="SIGNUP"
                 WidthRequest="380"
                 HeightRequest="50"
-                BackgroundColor="Green"
+                BackgroundColor="{DynamicResource ButtonSignInUpColor}"
+                TextColor="{DynamicResource PrimaryTextColor}"
                 Command="{Binding SignUpCommand}"
                 IsEnabled="False">
+            
             <Button.Triggers>
                 <MultiTrigger TargetType="Button">
                     <MultiTrigger.Conditions>

@@ -7,6 +7,10 @@
              x:Class="ProfileBook.App"
              xmlns:prism="clr-namespace:Prism.DryIoc;assembly=Prism.DryIoc.Forms">
     <Application.Resources>
-
+        <ResourceDictionary Source="Themes/LightTheme.xaml" />
+        <Style TargetType="NavigationPage">
+            <Setter Property="BarBackgroundColor" Value="{DynamicResource NavigationBarColor}" />
+            <Setter Property="BarTextColor" Value="{DynamicResource SecondaryTextColor}" />
+        </Style>
     </Application.Resources>
 </prism:PrismApplication>

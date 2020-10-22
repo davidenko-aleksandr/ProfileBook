@@ -9,8 +9,9 @@
         
         <Grid HorizontalOptions="FillAndExpand" VerticalOptions="Center">
             
-            <StackLayout Orientation="Horizontal"  Margin="10"
-                         BackgroundColor="Aqua">
+            <StackLayout Orientation="Horizontal"  
+                         Margin="20" HorizontalOptions="Center"
+                         BackgroundColor="{DynamicResource EditorColor}">
                 
                 <Image Source="{Binding ProfileImage}"
                        HeightRequest="150"
@@ -21,10 +22,16 @@
                 <StackLayout>
 
                     <Label Text="{Binding NickName}"
-                           FontSize="23"/>
+                           FontSize="23"
+                           TextColor="{DynamicResource PrimaryTextColor}"
+                    />
                     <Label Text="{Binding Name}"
-                           FontSize="20"/>
-                    <Label Text="{Binding DateTimePr}"/>
+                           FontSize="20"
+                           TextColor="{DynamicResource PrimaryTextColor}"
+                    />
+                    <Label Text="{Binding DateTimePr}"
+                           TextColor="{DynamicResource PrimaryTextColor}"
+                    />
                     
                 </StackLayout>
                 

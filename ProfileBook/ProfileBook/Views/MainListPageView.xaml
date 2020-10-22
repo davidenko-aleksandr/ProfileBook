@@ -3,11 +3,11 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:d="http://xamarin.com/schemas/2014/forms/design"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
-             xmlns:viewmodels="clr-namespace:ProfileBook.ViewModels" 
              xmlns:local="clr-namespace:ProfileBook.Services.BindingServices"
              mc:Ignorable="d"
              x:Class="ProfileBook.Views.MainListPageView"
-             Title="Main List">
+             Title="Main List"
+             BackgroundColor="{DynamicResource PageBackgroundColor}">
     
     <ContentPage.ToolbarItems>
         <ToolbarItem IconImageSource="ic_exit_to_app.png"
@@ -53,15 +53,21 @@
                             <StackLayout Orientation="Horizontal"  Margin="20">
                                 
                                 <Image Source="{Binding ProfileImage}"
-                                            HeightRequest="100"
-                                            WidthRequest="100"
-                                            VerticalOptions="Center"
-                                            HorizontalOptions="Start"
+                                       HeightRequest="70"
+                                       WidthRequest="70"
+                                       VerticalOptions="Center"
+                                       HorizontalOptions="Start"
+                                       BackgroundColor="{DynamicResource PageBackgroundColor}"
                                 />
                                 <StackLayout>
-                                    <Label Text="{Binding NickName}" FontSize="Body"/>
-                                    <Label Text="{Binding Name}"/>
+                                    <Label Text="{Binding NickName}" FontSize="Body"
+                                           TextColor="{DynamicResource PrimaryTextColor}"
+                                    />
+                                    <Label Text="{Binding Name}"
+                                           TextColor="{DynamicResource PrimaryTextColor}"
+                                    />
                                     <Label Text="{Binding DateTimePr}"
+                                           TextColor="{DynamicResource PrimaryTextColor}"
                                     />
                                 </StackLayout>
                             </StackLayout>
@@ -73,13 +79,14 @@
         
         <Label  Grid.Row="0"
                 Text="{Binding LableText}"
+                TextColor="{DynamicResource PrimaryTextColor}"
                 VerticalOptions="Center"
                 HorizontalOptions="Center"
         />
 
         <Button Text="+" FontSize="35"  Grid.Row="0"
-                TextColor="White"
-                BorderColor="Blue"
+                TextColor="{DynamicResource SecondaryTextColor}"
+                BorderColor="{DynamicResource TertiaryTextColor}"
                 BorderWidth="2"      
                 CornerRadius="70"
                 WidthRequest="70"
