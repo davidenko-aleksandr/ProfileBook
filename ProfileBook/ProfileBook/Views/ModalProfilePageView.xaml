@@ -11,7 +11,7 @@
             
             <StackLayout Orientation="Horizontal"  
                          Margin="20" HorizontalOptions="Center"
-                         BackgroundColor="{DynamicResource EditorColor}">
+                         BackgroundColor="{DynamicResource AddButtonColor}">
                 
                 <Image Source="{Binding ProfileImage}"
                        HeightRequest="150"

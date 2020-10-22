@@ -36,7 +36,7 @@
                HeightRequest="50"
                TextColor="{DynamicResource PrimaryTextColor}"
                PlaceholderColor="{DynamicResource TertiaryTextColor}"
-               BackgroundColor="{DynamicResource EntryBacggroundColor}"
+               BackgroundColor="{DynamicResource EntryBackgroundColor}"
         />
         <Entry Text="{Binding Name}"
                Placeholder="Name"
@@ -44,7 +44,7 @@
                HeightRequest="50"
                TextColor="{DynamicResource PrimaryTextColor}"
                PlaceholderColor="{DynamicResource TertiaryTextColor}"
-               BackgroundColor="{DynamicResource EntryBacggroundColor}"
+               BackgroundColor="{DynamicResource EntryBackgroundColor}"
         />
         <Editor Text="{Binding Description}"
                 Placeholder="Description"

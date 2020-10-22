@@ -12,22 +12,40 @@ namespace ProfileBook.ViewModels
 {
     public class SignUpPageViewModel : BindableBase, IConfirmNavigation
     {
-        public User User { get; set; }
-        private string _login = string.Empty;
-        private string _password = string.Empty;
-        private string _conPassw = string.Empty;
         private readonly INavigationService _navigationService;
         private readonly IPageDialogService _dialogService;
         private readonly ICheckPasswordValid _checkPasswordValid;
         private readonly ICheckLoginValid _checkLoginValid;
-        private ICommand _signUpCommand;
         private readonly IRepository<User> _repository;
-        
+
+        private string _login = string.Empty;
+        private string _password = string.Empty;
+        private string _conPassw = string.Empty;
+
+        private ICommand _signUpCommand;
+        public User User { get; set; }
+
+        public string Login
+        {
+            get { return _login; }
+            set { SetProperty(ref _login, value); }
+        }
+        public string Password
+        {
+            get { return _password; }
+            set { SetProperty(ref _password, value); }
+        }
+        public string ConPassw
+        {
+            get { return _conPassw; }
+            set { SetProperty(ref _conPassw, value); }
+        }
+
         public SignUpPageViewModel(INavigationService navigationService, 
-                                    IPageDialogService dialogService, 
-                                    ICheckPasswordValid checkPasswordValid, 
-                                    ICheckLoginValid checkLoginValid,
-                                    IRepository<User> repository)
+                                   IPageDialogService dialogService, 
+                                   ICheckPasswordValid checkPasswordValid, 
+                                   ICheckLoginValid checkLoginValid,
+                                   IRepository<User> repository)
         {
             _checkPasswordValid = checkPasswordValid;
             _dialogService = dialogService;
@@ -37,15 +55,16 @@ namespace ProfileBook.ViewModels
         }
 
         public ICommand SignUpCommand => _signUpCommand ?? (_signUpCommand = new Command(
-            async () => await SignUpComplete(),
-            () => false));    //add property ICommand.CanExecute to keep the button deactivated
+            async () => await SignUpCompleteAsync(),
+            () => false));   
 
-        async Task SignUpComplete()
+        private async Task SignUpCompleteAsync()
         {                
-            if (ChekLoginPasswod() == false)     //If the data is correct, then we return to the previous page
+            if (await ChekLoginPasswodAsync() == false)     
             {
-                SaveToDataBase();           //Registering a user
-                var parametr = new NavigationParameters     //We send the username and password to the SignIn Page
+                SaveToDataBase();   
+                
+                var parametr = new NavigationParameters     
                 {
                     { "log", _login },      
                     { "pas", _password }
@@ -54,37 +73,37 @@ namespace ProfileBook.ViewModels
             }            
         }
         
-        private bool ChekLoginPasswod()
+        private async Task<bool> ChekLoginPasswodAsync()
         {
             bool isErrorExist = false;
 
-            if (_checkLoginValid.IsCheckLogin(_login))      //Checking the login for correctness
+            if (_checkLoginValid.IsCheckLogin(_login))      
             {
-                _ = _dialogService.DisplayAlertAsync("Incorrect login",
+                await _dialogService.DisplayAlertAsync("Incorrect login",
                     "Login must not start with a number, " +
                     "login length must be no less than 4 characters " +
                     "and no more than 16 characters", "ok");
 
-                Login = string.Empty;          //Сlean login entry
+                Login = string.Empty;        
                 isErrorExist = true;
             }
-            if (_checkPasswordValid.IsPasswordValid(_password))     //Checking the password for correctness
+            if (_checkPasswordValid.IsPasswordValid(_password))    
             {
-                _ = _dialogService.DisplayAlertAsync("Incorrect password",
+                await _dialogService.DisplayAlertAsync("Incorrect password",
                     "The password must contain from 8 to 16 characters, " +
                     "among which there must be a capital letter, " +
                     "a small letter, and also a number", "ok");
 
-                Password = string.Empty;      //Сlean password entry
-                ConPassw = string.Empty;      //Сlean confirm password entry
+                Password = string.Empty;      
+                ConPassw = string.Empty;   
 
                 isErrorExist = true;
             }
-            if (isErrorExist == false)    //If the login and password are entered correctly, then we check the password confirmation
+            if (isErrorExist == false)    
             {
-                if (_password != _conPassw)     //Chek password confirm
+                if (_password != _conPassw)   
                 {
-                    _ = _dialogService.DisplayAlertAsync("Error",
+                    await _dialogService.DisplayAlertAsync("Error",
                     "Password not confirmed", "ok");
 
                     Password = string.Empty; 
@@ -93,11 +112,11 @@ namespace ProfileBook.ViewModels
                     isErrorExist = true;
                 }
             }
-            if (isErrorExist == false)    //If all the data is entered correctly 
+            if (isErrorExist == false)   
             {
                 if (_checkLoginValid.IsCheckLoginDB(_login))    //we check the login for uniqueness in the database
                 {
-                    _ = _dialogService.DisplayAlertAsync("Error",
+                    await _dialogService.DisplayAlertAsync("Error",
                         "This login is already registered", "ok");
 
                     isErrorExist = true;
@@ -116,28 +135,9 @@ namespace ProfileBook.ViewModels
             _repository.InsertItem(user);
         }
 
-        public string Login
-        {
-            get { return _login; }
-            set { SetProperty(ref _login, value); }
-        }
-        public string Password
-        {
-            get { return _password; }
-            set { SetProperty(ref _password, value); }
-        }
-        public string ConPassw
-        {
-            get { return _conPassw; }
-            set { SetProperty(ref _conPassw, value); }
-        }
-
-        //This method allows navigation from this page
         public bool CanNavigate(INavigationParameters parameters)
         {
             return true;
         }
-
-
     }
 }

@@ -23,7 +23,7 @@
                    Text="{Binding Login}"
                    TextColor="{DynamicResource PrimaryTextColor}"
                    PlaceholderColor="{DynamicResource TertiaryTextColor}" 
-                   BackgroundColor="{DynamicResource EntryBacggroundColor}"
+                   BackgroundColor="{DynamicResource EntryBackgroundColor}"
             />
             <Entry x:Name="passwordEntry"
                    Placeholder="Password" 
@@ -32,7 +32,7 @@
                    Text="{Binding Password}"
                    TextColor="{DynamicResource PrimaryTextColor}"
                    PlaceholderColor="{DynamicResource TertiaryTextColor}" 
-                   BackgroundColor="{DynamicResource EntryBacggroundColor}"
+                   BackgroundColor="{DynamicResource EntryBackgroundColor}"
             />
             <Entry x:Name="conPasswEntry"
                    Placeholder="Confirm Password" 
@@ -41,7 +41,7 @@
                    Text="{Binding ConPassw}"
                    TextColor="{DynamicResource PrimaryTextColor}"
                    PlaceholderColor="{DynamicResource TertiaryTextColor}" 
-                   BackgroundColor="{DynamicResource EntryBacggroundColor}"
+                   BackgroundColor="{DynamicResource EntryBackgroundColor}"
             />
         </StackLayout>
         <Button VerticalOptions="End" 

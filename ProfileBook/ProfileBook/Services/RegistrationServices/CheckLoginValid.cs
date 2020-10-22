@@ -14,27 +14,24 @@ namespace ProfileBook.Services
             _repository = repository;
         }
 
-        //Checking the login for correctness
         public bool IsCheckLogin(string login)
         {
+            bool isInvalidLOgin = false;
             string pattern = @"^\d\w*";
+
             if (login.Length < 4 ||
                 login.Length > 16 ||
-                Regex.IsMatch(login, pattern, RegexOptions.IgnoreCase) //if the first character is a number
-                )
+                Regex.IsMatch(login, pattern, RegexOptions.IgnoreCase))
             {
-                return true;
+                isInvalidLOgin = true;
             }
-            else
-            {
-                return false;
-            }
+            return isInvalidLOgin;
         }
 
-        //heck the login for uniqueness
+
         public bool IsCheckLoginDB(string login)
         {
-            var lg = _repository.GetAllItems().FirstOrDefault(user => user.Login == login); //if there is already a user in the database with 
+            var lg = _repository.GetAllItems().FirstOrDefault(user => user.Login == login); 
 
             return lg != null;
         }

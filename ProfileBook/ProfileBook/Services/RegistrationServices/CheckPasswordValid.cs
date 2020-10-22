@@ -4,7 +4,6 @@ namespace ProfileBook.Services
 {
     public class CheckPasswordValid : ICheckPasswordValid
     {
-        //Checking the password for correctness
         public bool IsPasswordValid(string pasword)
         {
             bool isCapitalLetter = Regex.IsMatch(pasword, "[A-Z]{1}");
@@ -12,21 +11,21 @@ namespace ProfileBook.Services
             bool isNumber = Regex.IsMatch(pasword, @"\d\w*");
             bool isErrorExist;
 
-            isErrorExist = !isCapitalLetter; //if the data contains a capital letter
+            isErrorExist = !isCapitalLetter; 
 
-            if (isErrorExist == false)    //If a capital letter is found
+            if (isErrorExist == false) 
             {
-                isErrorExist = !isSmallLatter;  //check if there is a small letter
+                isErrorExist = !isSmallLatter; 
             }
 
-            if (isErrorExist == false)    //If a small letter is found
+            if (isErrorExist == false)
             {
-                isErrorExist = !isNumber;    //check if there is a number
+                isErrorExist = !isNumber;   
             }
 
-            if (isErrorExist == false)    //if the data is still correct
+            if (isErrorExist == false) 
             {
-                isErrorExist = pasword.Length < 8 || pasword.Length > 16;  //check password length
+                isErrorExist = pasword.Length < 8 || pasword.Length > 16; 
             }
             return isErrorExist;
         }

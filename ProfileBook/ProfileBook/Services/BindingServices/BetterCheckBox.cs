@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using System.Windows.Input;
+﻿using System.Windows.Input;
 using Xamarin.Forms;
 
 namespace ProfileBook.Services.BindingServices
@@ -22,13 +19,15 @@ namespace ProfileBook.Services.BindingServices
                 this.SetValue(IsCheckedCommandProperty, value);
             }
         }
+
         public BetterCheckBox()
         {
             this.CheckedChanged += OnCheckBoxCheckedChanged;
         }
+
         private void OnCheckBoxCheckedChanged(object sender, CheckedChangedEventArgs e)
         {
+            IsCheckedCommand?.Execute(e);
         }
-
     }
 }

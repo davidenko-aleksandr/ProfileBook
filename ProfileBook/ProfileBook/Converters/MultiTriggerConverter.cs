@@ -10,10 +10,7 @@ namespace ProfileBook.Converters
     {
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
-            if ((int)value > 0)     // length > 0 ?
-                return true;        // some data has been entered
-            else
-                return false;       // input is empty
+            return (int)value > 0;
         }
 
         public object ConvertBack(object value, Type targetType,

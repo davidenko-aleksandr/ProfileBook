@@ -1,10 +1,7 @@
-﻿using Acr.UserDialogs;
-using Prism.Mvvm;
+﻿using Prism.Mvvm;
 using Prism.Navigation;
 using ProfileBook.Services.EnumServices;
 using ProfileBook.Themes;
-using System;
-using System.Collections.Generic;
 using System.Threading.Tasks;
 using System.Windows.Input;
 using Xamarin.Forms;
@@ -23,7 +20,22 @@ namespace ProfileBook.ViewModels
         private bool _isdate;
         private bool _inickName;
         private bool _isname;
-        private bool _isCheckedDark;
+
+        public bool IsDate
+        {
+            get { return _isdate; }
+            set { SetProperty(ref _isdate, value); }
+        }
+        public bool IsNickName
+        {
+            get { return _inickName; }
+            set { SetProperty(ref _inickName, value); }
+        }
+        public bool IsName
+        {
+            get { return _isname; }
+            set { SetProperty(ref _isname, value); }
+        }
 
         public SettingsPageViewModel(IProfileSort profileSort, INavigationService navigationService)
         {
@@ -42,23 +54,19 @@ namespace ProfileBook.ViewModels
         public ICommand ByNickNameCommand => _byNickNameCommand ?? (_byNickNameCommand = new Command(NickNameSort));
 
         public ICommand ByNameCommand => _bynameCommand ?? (_bynameCommand = new Command(NameSort));
-        public ICommand NewIsCheckCommand => _newIsCheckCommand ?? (_newIsCheckCommand = new Command(TestMethod));
 
-        private void TestMethod(object obj)
-        {
-            NameSort();
-        }
+        public ICommand NewIsCheckCommand => _newIsCheckCommand ?? (_newIsCheckCommand = new Command(ChangeCurrentTheme));
 
         async Task ComeBack()
         {
-            await _navigationService.NavigateAsync(new Uri("http://WWW.ProfileBook/NavigationPage/MainListPageView", UriKind.Absolute));
+            await _navigationService.NavigateAsync("NavigationPage/MainListPageView");
         }
 
         private void DateSort()
         {
             _profileSort.SaveSelectSort = "By date";
             IsDate = true;
-            TurnOnDarkThema();
+            ChangeCurrentTheme();
         }
 
         private void NickNameSort()
@@ -72,36 +80,20 @@ namespace ProfileBook.ViewModels
             _profileSort.SaveSelectSort = "By name";
             IsName = true;
         }
-        private void TurnOnDarkThema()
+        private void ChangeCurrentTheme()
         {
-            ICollection<ResourceDictionary> mergedDictionaries = Application.Current.Resources.MergedDictionaries;
-            if (mergedDictionaries != null)
+            if (App.IsDarkOrLightTheme == false)
             {
-                mergedDictionaries.Clear();
-                mergedDictionaries.Add(new DarkTheme());
+                ChangeTheme.TurnOnTheDark();
+                App.IsDarkOrLightTheme = true;
+            }
+            else
+            {
+                ChangeTheme.TurnOnTheLight();
+                App.IsDarkOrLightTheme = false;
             }
         }
 
-        public bool IsCheckedDark
-        {
-            get { return _isCheckedDark; }
-            set { SetProperty(ref _isCheckedDark, value); }
-        }
-        public bool IsDate
-        {
-            get { return _isdate; }
-            set { SetProperty(ref _isdate, value); }
-        }
-        public bool IsNickName
-        {
-            get { return _inickName; }
-            set { SetProperty(ref _inickName, value); }
-        }
-        public bool IsName
-        {
-            get { return _isname; }
-            set { SetProperty(ref _isname, value); }
-        }
         public bool CanNavigate(INavigationParameters parameters)
         {
             return true;

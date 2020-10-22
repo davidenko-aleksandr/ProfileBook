@@ -25,7 +25,7 @@
                        Text="{Binding Login}"
                        TextColor="{DynamicResource PrimaryTextColor}"
                        PlaceholderColor="{DynamicResource TertiaryTextColor}" 
-                       BackgroundColor="{DynamicResource EntryBacggroundColor}"
+                       BackgroundColor="{DynamicResource EntryBackgroundColor}"
                 />
                 <Entry x:Name="passwordEntry"
                        Placeholder="Password" 
@@ -34,7 +34,7 @@
                        Text="{Binding Password}"
                        TextColor="{DynamicResource PrimaryTextColor}"
                        PlaceholderColor="{DynamicResource TertiaryTextColor}"
-                       BackgroundColor="{DynamicResource EntryBacggroundColor}"
+                       BackgroundColor="{DynamicResource EntryBackgroundColor}"
                 />
             </StackLayout>
             <StackLayout VerticalOptions="End" HorizontalOptions="Center">

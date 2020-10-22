@@ -14,5 +14,8 @@
     <Color x:Key="ButtonSignInUpColor">Gray</Color>
     <Color x:Key="EntryBacggroundColor">White</Color>
     <Color x:Key="EditorColor">Aqua</Color>
+    <Color x:Key="AddButtonColor">Teal</Color>
+    <Color x:Key="RadioButtonColor">White</Color>
+    
 
 </ResourceDictionary>

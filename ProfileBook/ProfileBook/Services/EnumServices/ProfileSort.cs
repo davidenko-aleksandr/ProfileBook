@@ -15,7 +15,5 @@ namespace ProfileBook.Services.EnumServices
         }
 
         private ISettings AppSettings => CrossSettings.Current;
-
-
     }
 }

@@ -13,16 +13,20 @@ namespace ProfileBook.ViewModels
 {
     public class SignInPageViewModel : BindableBase, IConfirmNavigation, INavigatedAware
     {
-        public User User { get; set; }
-        private string _login = string.Empty;
-        private string _password = string.Empty;
-        private ICommand _enterCommand;
-        private ICommand _toSignUpPageCommand;
-        private readonly INavigationService _navigationService; 
+        private readonly INavigationService _navigationService;
         private readonly IUserAuthentication _userAuthentication;
         private readonly IPageDialogService _dialogService;
         private readonly IAuthorizationService _authorization;
         
+        private string _login = string.Empty;
+        private string _password = string.Empty;
+
+        private ICommand _enterCommand;
+        private ICommand _toSignUpPageCommand;
+
+        public User User { get; set; }
+
+
         public SignInPageViewModel(INavigationService navigationService,
                                     IUserAuthentication userAuthentication,
                                     IPageDialogService dialogService,
@@ -36,21 +40,21 @@ namespace ProfileBook.ViewModels
 
         public ICommand EnterCommand => _enterCommand ?? (_enterCommand = new Command(
                         async () => await OpenMainListViewPageAsync(), 
-                        () => false));    //add property ICommand.CanExecute to keep the button deactivated
+                        () => false));    
 
         public ICommand ToSignUpPageCommand => _toSignUpPageCommand ?? (_toSignUpPageCommand = new Command(
                         async () => await OpenSignUpPageAsync()));
 
-        async Task OpenSignUpPageAsync() //Open the user registration page
+        async Task OpenSignUpPageAsync()
         {
-            _ = await _navigationService.NavigateAsync("SignUpPageView");
+             await _navigationService.NavigateAsync("SignUpPageView");
         }
 
         async Task OpenMainListViewPageAsync()
         {
-            _userAuthentication.GetUsersFromDB(_login, _password);  //Сheck if there is such a user in the database
+            _userAuthentication.GetUsersFromDB(_login, _password);
 
-            if (_userAuthentication.IsPasswordConfirm())    //Check if the password is correct and open MainList Page
+            if (_userAuthentication.IsPasswordConfirm())  
             {
                 _authorization.AddUodateUserId(_userAuthentication.GetUserId());
                 _authorization.ToWriteLoginId();
@@ -58,18 +62,16 @@ namespace ProfileBook.ViewModels
             }
             else
             {
-                _ = _dialogService.DisplayAlertAsync("Error", "Invalid login or password", "Ok");   //if password is incorrect, show a message
-                Login = string.Empty;         //and clean login and password fields
+                await _dialogService.DisplayAlertAsync("Error", "Invalid login or password", "Ok"); 
+                Login = string.Empty;         
                 Password = string.Empty;
             }                
         }
 
-        public void OnNavigatedTo(INavigationParameters parameters) //Accept parameters from other pages
+        public void OnNavigatedTo(INavigationParameters parameters)
         {
-            var getLog = parameters["log"];
-            var getPas = parameters["pas"];
-            Login = (string)getLog;
-            Password = (string)getPas;
+            Login = (string)parameters["log"];
+            Password = (string)parameters["pas"];            
         }
 
         public string Login
@@ -83,12 +85,13 @@ namespace ProfileBook.ViewModels
             set { SetProperty(ref _password, value); }
         }
 
-        //This method allows navigation from this page
         public bool CanNavigate(INavigationParameters parameters)
         {
             return true;
         }
 
-        public void OnNavigatedFrom(INavigationParameters parameters) { }        
+        public void OnNavigatedFrom(INavigationParameters parameters)
+        {
+        }
     }
 }

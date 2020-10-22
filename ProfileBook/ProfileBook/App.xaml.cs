@@ -10,6 +10,7 @@ using ProfileBook.Services.AuthenticationServices;
 using ProfileBook.Services.AuthorizationServices;
 using ProfileBook.Services.EnumServices;
 using ProfileBook.Services.RepositoryService;
+using ProfileBook.Themes;
 using ProfileBook.ViewModels;
 using ProfileBook.Views;
 using Xamarin.Forms;
@@ -18,7 +19,23 @@ namespace ProfileBook
 {
     public partial class App : PrismApplication
     {
-        
+        public static bool IsCurrentAppTheme { get; set; }
+        public static int IdLogTest { get; set; }
+
+        private static ISettings AppSettings => CrossSettings.Current;
+
+        public static bool IsDarkOrLightTheme
+        {
+            get => AppSettings.GetValueOrDefault(nameof(IsDarkOrLightTheme), IsCurrentAppTheme);
+            set => AppSettings.AddOrUpdateValue(nameof(IsDarkOrLightTheme), value);
+        }
+
+        public static int UserLogin
+        {
+            get => AppSettings.GetValueOrDefault(nameof(UserLogin), IdLogTest);
+            set => AppSettings.AddOrUpdateValue(nameof(UserLogin), value);
+        }
+
         public App(IPlatformInitializer initializer = null) : base(initializer) { }
 
         protected override void RegisterTypes(IContainerRegistry containerRegistry)
@@ -42,24 +59,27 @@ namespace ProfileBook
             containerRegistry.RegisterInstance<IUserAuthentication>(Container.Resolve<UserAuthentication>());
             containerRegistry.RegisterInstance<IAuthorizationService>(Container.Resolve<AuthorizationService>());
             containerRegistry.RegisterInstance<IProfileSort>(Container.Resolve<ProfileSort>());
-                        
         }
-        private static ISettings AppSettings => CrossSettings.Current;
-        public static int IdLogTest { get; set; }
-        public static int UserLogin // Saving data to understand whether the user is authorized or not
-        {
-            get => AppSettings.GetValueOrDefault(nameof(UserLogin), IdLogTest);
-            set => AppSettings.AddOrUpdateValue(nameof(UserLogin), value);
-        }
+
         protected override void OnInitialized()
-        {
+        {            
             Device.SetFlags(new string[] { "RadioButton_Experimental" });
+
             InitializeComponent();
-            
-            if (UserLogin <= 0) NavigationService.NavigateAsync("NavigationPage/SignInPageView");
-            
-            else NavigationService.NavigateAsync("NavigationPage/MainListPageView");
-            
+
+            if (IsDarkOrLightTheme)
+            {
+                ChangeTheme.TurnOnTheDark();
+            }
+
+            if (UserLogin <= 0)
+            {
+                NavigationService.NavigateAsync("NavigationPage/SignInPageView");
+            }
+            else
+            {
+                NavigationService.NavigateAsync("NavigationPage/MainListPageView");
+            }
         }
         protected override void OnStart()
         {

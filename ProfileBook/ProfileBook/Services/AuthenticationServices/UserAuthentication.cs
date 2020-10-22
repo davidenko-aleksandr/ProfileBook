@@ -4,7 +4,6 @@ using System.Linq;
 
 namespace ProfileBook.Services.AuthenticationServices
 {
-    // Check if there is a user with the entered username and password    
     public class UserAuthentication : IUserAuthentication
     {
         public User _userLogin;
@@ -18,25 +17,22 @@ namespace ProfileBook.Services.AuthenticationServices
 
         public void GetUsersFromDB(string login, string password)
         {
-            User log = _repository.GetAllItems().FirstOrDefault(user => user.Login == login);     //get user data by login
-            User pas = _repository.GetAllItems().FirstOrDefault(user => user.Password == password);    //get user data by password
-            _userLogin = log;
-            _userPassw = pas;
+            _userLogin = _repository.GetAllItems().FirstOrDefault(user => user.Login == login);
+            _userPassw = _repository.GetAllItems().FirstOrDefault(user => user.Password == password);             
         }
 
         public int GetUserId()
         {
-            int id = _userLogin.Id;
-            return id;
+            return (int)(_userLogin?.Id);             
         }
 
         public bool IsPasswordConfirm()
         {
             bool result = false;
-            if (_userLogin != null && _userPassw != null)       //if data is received
+            if (_userLogin != null && _userPassw != null)       
             {
-                result = _userLogin.Id == _userPassw.Id;     //checking user ID. If the ID matches, 
-            }                                                //then this is the same user and this password is correct
+                result = _userLogin.Id == _userPassw.Id;   
+            }                                            
             return result;
         }
     }

@@ -8,7 +8,6 @@ using ProfileBook.Services.RepositoryService;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.ComponentModel;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Input;
@@ -16,21 +15,30 @@ using Xamarin.Forms;
 
 namespace ProfileBook.ViewModels
 {
-    public class MainListPageViewModel : BindableBase, IConfirmNavigation, INotifyPropertyChanged
-    {
-        private Profile _profile; 
-        private string _lableText = string.Empty;
+    public class MainListPageViewModel : BindableBase, IConfirmNavigation
+    { 
+        private readonly IRepository<Profile> _repository;
+        private readonly IAuthorizationService _authorization;
+        private readonly IProfileSort _profileSort;
         private readonly INavigationService _navigationService;
+
+        private string _lableText = string.Empty;
+        private Profile _profile;
+
         private ICommand _exitCommand;
         private ICommand _addProfileCommand;
         private ICommand _deleteProfileCommand;
         private ICommand _editProfileCommand;
         private ICommand _openSettingPageCommand;
         private ICommand _itemOpenCommand;
-        private readonly IRepository<Profile> _repository;
-        private readonly IAuthorizationService _authorization;
-        private readonly IProfileSort _profileSort;
+
         public ObservableCollection<Profile> ProfileCollection { get; set; }
+
+        public string LableText
+        {
+            get { return _lableText; }
+            set { SetProperty(ref _lableText, value); }
+        }
 
         public MainListPageViewModel(INavigationService navigationService,
                                     IAuthorizationService authorization,
@@ -41,10 +49,11 @@ namespace ProfileBook.ViewModels
             _authorization = authorization;
             _repository = repository;
             _profileSort = profileSort;
+
             InitTable();
         }
 
-        public void InitTable() //Displaying the table data for the selected sort
+        public void InitTable() 
         {            
             var collection = new List<Profile>(_repository.GetAllItems().Where(p => p.User_Id == App.UserLogin));
 
@@ -74,18 +83,18 @@ namespace ProfileBook.ViewModels
                         async () => await AddProfileAsync()));
 
         public ICommand DeleteProfileCommand => _deleteProfileCommand ?? (_deleteProfileCommand = new Command(
-                        async (Object obj) => await DeleteProfile(obj)));
+                        async (Object obj) => await DeleteProfileAsync(obj)));
 
         public ICommand EditProfileCommand => _editProfileCommand ?? (_editProfileCommand = new Command(
-                        async (Object obj) => await EditProfile(obj)));
+                        async (Object obj) => await EditProfileAsync(obj)));
 
         public ICommand OpenSettingPageCommand => _openSettingPageCommand ?? (_openSettingPageCommand = new Command(
-                        async () => await OpenSettingPage()));
+                        async () => await OpenSettingPageAsync()));
 
         public ICommand ItemOpenCommand => _itemOpenCommand ?? (_itemOpenCommand = new Command(
-                        async (Object obj) => await OpenItem(obj)));
+                        async (Object obj) => await OpenItemAsync(obj)));
 
-        async Task OpenItem(object obj)
+        private async Task OpenItemAsync(object obj)
         {
             _profile = obj as Profile;
 
@@ -96,7 +105,7 @@ namespace ProfileBook.ViewModels
             await _navigationService.NavigateAsync(new Uri("ModalProfilePageView", UriKind.Relative), parametr); 
         }
 
-        async Task EditProfile(object obj)
+        private async Task EditProfileAsync(object obj)
         {
             _profile = obj as Profile;
 
@@ -107,7 +116,7 @@ namespace ProfileBook.ViewModels
             await _navigationService.NavigateAsync(new Uri("AddEditProfileView", UriKind.Relative), parametr);            
         }
 
-        async Task DeleteProfile(object obj)
+        private async Task DeleteProfileAsync(object obj)
         {
             _profile = obj as Profile;
             int profileId;
@@ -129,27 +138,22 @@ namespace ProfileBook.ViewModels
             await _navigationService.NavigateAsync(new Uri("http://WWW.ProfileBook/NavigationPage/MainListPageView", UriKind.Absolute));
         }
 
-        async Task AddProfileAsync()
+        private async Task AddProfileAsync()
         {
             await _navigationService.NavigateAsync("AddEditProfileView");
         }
 
-        async Task ExitFromProfileAsync()
+        private async Task ExitFromProfileAsync()
         {
             _authorization.AddUodateUserId(0);
             _authorization.ToWriteLoginId();
+
             await _navigationService.NavigateAsync(new Uri("http://WWW.ProfileBook/NavigationPage/SignInPageView", UriKind.Absolute));
         }
 
-        async Task OpenSettingPage()
+        private async Task OpenSettingPageAsync()
         {
             await _navigationService.NavigateAsync(new Uri("http://WWW.ProfileBook/SettingsPageView", UriKind.Absolute));
-        }
-
-        public string LableText //This label is displayed when there is no profile list
-        { 
-            get { return _lableText; }
-            set { SetProperty(ref _lableText, value); }
         }
 
         public bool CanNavigate(INavigationParameters parameters)

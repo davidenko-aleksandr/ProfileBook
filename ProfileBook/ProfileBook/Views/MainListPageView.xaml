@@ -61,13 +61,13 @@
                                 />
                                 <StackLayout>
                                     <Label Text="{Binding NickName}" FontSize="Body"
-                                           TextColor="{DynamicResource PrimaryTextColor}"
+                                           TextColor="{DynamicResource TertiaryTextColor}"
                                     />
                                     <Label Text="{Binding Name}"
-                                           TextColor="{DynamicResource PrimaryTextColor}"
+                                           TextColor="{DynamicResource TertiaryTextColor}"
                                     />
                                     <Label Text="{Binding DateTimePr}"
-                                           TextColor="{DynamicResource PrimaryTextColor}"
+                                           TextColor="{DynamicResource TertiaryTextColor}"
                                     />
                                 </StackLayout>
                             </StackLayout>
@@ -87,6 +87,7 @@
         <Button Text="+" FontSize="35"  Grid.Row="0"
                 TextColor="{DynamicResource SecondaryTextColor}"
                 BorderColor="{DynamicResource TertiaryTextColor}"
+                BackgroundColor="{DynamicResource AddButtonColor}"
                 BorderWidth="2"      
                 CornerRadius="70"
                 WidthRequest="70"

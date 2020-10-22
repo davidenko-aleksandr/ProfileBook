@@ -3,7 +3,8 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="ProfileBook.Views.SettingsPageView"
              xmlns:local="clr-namespace:ProfileBook.Services.BindingServices"
-             BackgroundColor="{DynamicResource PageBackgroundColor}">
+             BackgroundColor="{DynamicResource PageBackgroundColor}"
+             NavigationPage.HasNavigationBar="False">
     
     <StackLayout>
         
@@ -36,7 +37,7 @@
                              Command="{Binding ByDateCommand}"
                              IsChecked="{Binding IsDate}"
                              BorderColor="{DynamicResource PrimaryTextColor}"
-                             BackgroundColor="{DynamicResource PageBackgroundColor}"
+                             BackgroundColor="{DynamicResource RadioButtonColor}"
                 />
                 <Label Text=" - by date" 
                        FontSize="17" 
@@ -49,7 +50,7 @@
                              Command="{Binding ByNickNameCommand}"
                              IsChecked="{Binding IsNickName}"
                              BorderColor="{DynamicResource PrimaryTextColor}"
-                             BackgroundColor="{DynamicResource PageBackgroundColor}"
+                             BackgroundColor="{DynamicResource RadioButtonColor}"
                 />
                 <Label Text=" - by Nick Name" 
                        FontSize="17" 
@@ -62,7 +63,7 @@
                              Command="{Binding ByNameCommand}"
                              IsChecked="{Binding IsName}"
                              BorderColor="{DynamicResource PrimaryTextColor}"
-                             BackgroundColor="{DynamicResource PageBackgroundColor}"
+                             BackgroundColor="{DynamicResource RadioButtonColor}"
                 />
                 <Label Text=" - by Name"
                        FontSize="17" 
@@ -75,11 +76,10 @@
                 <Image Source="dark_theme.png"/>
 
                 <local:BetterCheckBox BackgroundColor="{DynamicResource PageBackgroundColor}"
-                                      IsChecked="{Binding IsCheckedDark}"
-                                      IsCheckedCommand="{Binding NewIsCheckCommand}"
+                                      IsCheckedCommand="{Binding NewIsCheckCommand}"                                     
                 />
 
-                <Label Text="Dark theme" 
+                <Label Text="Change theme" 
                        FontSize="17"
                        VerticalOptions="Center"
                        TextColor="{DynamicResource PrimaryTextColor}"

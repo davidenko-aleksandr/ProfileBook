@@ -14,7 +14,9 @@ namespace ProfileBook.ViewModels
 {
     public class AddEditProfileViewModel : BindableBase, IConfirmNavigation,  INavigatedAware
     {
-        Profile _profile;
+        private readonly INavigationService _navigationService;
+        private readonly IRepository<Profile> _repository;
+
         private int _user_id = App.UserLogin;
         private int _profile_id;
         private string _profileImage = "pic_profile.png";
@@ -22,11 +24,47 @@ namespace ProfileBook.ViewModels
         private string _name = string.Empty;
         private string _description = string.Empty;
         private DateTime _dateTime = DateTime.Now;
-        private readonly INavigationService _navigationService;
+        private bool _isSaveOrUpdate;
+        private Profile _profile;
+        
         private ICommand _saveProfileCommand;
         private ICommand _actionSheetCommand;
-        private readonly IRepository<Profile> _repository;
-        private bool _isSaveOrUpdate;
+
+        public int User_Id
+        {
+            get => _user_id;
+            set { SetProperty(ref _user_id, value); }
+        }
+        public int Profile_id
+        {
+            get => _profile_id;
+            set { SetProperty(ref _profile_id, value); }
+        }
+        public string ProfileImage
+        {
+            get => _profileImage;
+            set { SetProperty(ref _profileImage, value); }
+        }
+        public string NickName
+        {
+            get => _nickName;
+            set { SetProperty(ref _nickName, value); }
+        }
+        public string Name
+        {
+            get => _name;
+            set { SetProperty(ref _name, value); }
+        }
+        public string Description
+        {
+            get => _description;
+            set { SetProperty(ref _description, value); }
+        }
+        public DateTime DateTimePr
+        {
+            get => _dateTime;
+            set { SetProperty(ref _dateTime, value); }
+        }
 
         public AddEditProfileViewModel(INavigationService navigationService,
                                         IRepository<Profile> repository)
@@ -42,14 +80,15 @@ namespace ProfileBook.ViewModels
 
         private void OpenActionSheet()
         {
-            var dialogAlert = UserDialogs.Instance.ActionSheet(new ActionSheetConfig()
+             UserDialogs.Instance.ActionSheet(new ActionSheetConfig()
+                            .SetCancel("Cancel")
                             .SetTitle("Adding a photo")
-                            .Add("Use camera", ToMakePhoto, "camera.png")
-                            .Add("Download from gallery", GetPhotoFromGallery, "gallery.png")
+                            .Add("Use camera", ToMakePhotoAsync, "camera.png")
+                            .Add("Download from gallery", GetPhotoFromGalleryAsync, "gallery.png")
                             );
         }
 
-        async void GetPhotoFromGallery() 
+        private async void GetPhotoFromGalleryAsync() 
         {
             if (CrossMedia.Current.IsPickPhotoSupported)
             {
@@ -62,8 +101,7 @@ namespace ProfileBook.ViewModels
             }
         }
 
-        //Get a new photo from camera 
-        async void ToMakePhoto()
+        private async void ToMakePhotoAsync()
         {
             if (CrossMedia.Current.IsCameraAvailable && CrossMedia.Current.IsTakePhotoSupported)
             {
@@ -85,7 +123,8 @@ namespace ProfileBook.ViewModels
                 }
             }
         }
-        async Task SaveProfileAsync()
+
+        private async Task SaveProfileAsync()
         {
             bool isErrorExist = false;
 
@@ -124,16 +163,15 @@ namespace ProfileBook.ViewModels
 
             if (_isSaveOrUpdate) 
             {
-                _repository.UpdateItem(_profile); //profile update
+                _repository.UpdateItem(_profile); 
                 _isSaveOrUpdate = false;
             }
             else
             {
-                _repository.InsertItem(_profile); //profile save
+                _repository.InsertItem(_profile); 
             }
         }
-
-        //Get data from MainListPage
+        
         public void OnNavigatedTo(INavigationParameters parameters)
         {
             Profile profile = (Profile)parameters["profile"];
@@ -171,45 +209,10 @@ namespace ProfileBook.ViewModels
             }
             else
             {
-                _isSaveOrUpdate = true; //if Name != null - then we get a profile from the collection and it will need to be updated
+                _isSaveOrUpdate = true; 
             }
-        }
-       
-        public int User_Id
-        {
-            get => _user_id;
-            set { SetProperty(ref _user_id, value); }
-        }
-        public int Profile_id
-        {
-            get => _profile_id;
-            set { SetProperty(ref _profile_id, value); }
-        }
-        public string ProfileImage
-        {
-            get => _profileImage;
-            set { SetProperty(ref _profileImage, value); }
-        }
-        public string NickName
-        {
-            get => _nickName;
-            set { SetProperty(ref _nickName, value); }
-        }
-        public string Name
-        {
-            get => _name;
-            set { SetProperty(ref _name, value); }
-        }
-        public string Description
-        {
-            get => _description;
-            set { SetProperty(ref _description, value); }
-        }
-        public DateTime DateTimePr
-        {
-            get => _dateTime;
-            set { SetProperty(ref _dateTime, value); }
-        }
+        }       
+
         public bool CanNavigate(INavigationParameters parameters)
         {
             return true;
