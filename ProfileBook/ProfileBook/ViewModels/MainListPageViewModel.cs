@@ -2,6 +2,7 @@
 using Prism.Mvvm;
 using Prism.Navigation;
 using ProfileBook.Models;
+using ProfileBook.Resources;
 using ProfileBook.Services.AuthorizationServices;
 using ProfileBook.Services.EnumServices;
 using ProfileBook.Services.RepositoryService;
@@ -73,7 +74,7 @@ namespace ProfileBook.ViewModels
                 ProfileCollection = new ObservableCollection<Profile>(sortCollection);
             }
 
-            LableText = ProfileCollection.Count == 0 ? "No profiles added" : string.Empty;
+            LableText = ProfileCollection.Count == 0 ? AppResources.LableMainList : string.Empty; 
         }
 
         public ICommand ExitCommand => _exitCommand ?? (_exitCommand = new Command(
@@ -123,9 +124,9 @@ namespace ProfileBook.ViewModels
 
             var result = await UserDialogs.Instance.ConfirmAsync(new ConfirmConfig
             {
-                Message = "Do you confirm deletion?",
-                OkText = "Delete",
-                CancelText = "Cancel"
+                Message = AppResources.ConfirmDeleteAlert,
+                OkText = AppResources.DeleteAlert,
+                CancelText = AppResources.CancelAlert
             });
 
             if (_profile != null && result == true)

@@ -4,6 +4,7 @@ using Plugin.Media.Abstractions;
 using Prism.Mvvm;
 using Prism.Navigation;
 using ProfileBook.Models;
+using ProfileBook.Resources;
 using ProfileBook.Services.RepositoryService;
 using System;
 using System.Threading.Tasks;
@@ -81,10 +82,10 @@ namespace ProfileBook.ViewModels
         private void OpenActionSheet()
         {
              UserDialogs.Instance.ActionSheet(new ActionSheetConfig()
-                            .SetCancel("Cancel")
-                            .SetTitle("Adding a photo")
-                            .Add("Use camera", ToMakePhotoAsync, "camera.png")
-                            .Add("Download from gallery", GetPhotoFromGalleryAsync, "gallery.png")
+                            .SetCancel(AppResources.CancelAlert)
+                            .SetTitle(AppResources.AddingPhotoAlert)
+                            .Add(AppResources.UseCameraAlert, ToMakePhotoAsync, "camera.png")
+                            .Add(AppResources.DownFromGalleryAlert, GetPhotoFromGalleryAsync, "gallery.png")
                             );
         }
 
@@ -130,14 +131,14 @@ namespace ProfileBook.ViewModels
 
             if(String.IsNullOrEmpty(_nickName) || String.IsNullOrEmpty(_name))
             {
-                UserDialogs.Instance.Alert("Fields \"Name\" and \"Nickname\" must be filled", "Error", "ok");
+                UserDialogs.Instance.Alert(AppResources.EmptyfieldsAlert, AppResources.Error_Alert, AppResources.OkAlert);
                 isErrorExist = true;
             }
             if(isErrorExist == false)
             {
                 if (Description.Length > 120)
                 {
-                    UserDialogs.Instance.Alert("The \"Description\" field is too large, it must be no more than 120 characters", "Error", "Ok");
+                    UserDialogs.Instance.Alert(AppResources.DescrTooMoreAlert, AppResources.Error_Alert, AppResources.OkAlert);
                     isErrorExist = true;
                 }
             }            

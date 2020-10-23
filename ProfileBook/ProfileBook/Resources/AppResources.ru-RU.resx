@@ -120,20 +120,65 @@
   <data name="AddEditProfilePageTitle" xml:space="preserve">
     <value>Добавить профиль</value>
   </data>
+  <data name="AddingPhotoAlert" xml:space="preserve">
+    <value>Добавление фото</value>
+  </data>
   <data name="ButtonSignIn" xml:space="preserve">
     <value>ВОЙТИ</value>
   </data>
   <data name="ButtonSignUp" xml:space="preserve">
     <value>РЕГИСТРАЦИЯ</value>
   </data>
+  <data name="CancelAlert" xml:space="preserve">
+    <value>отмена</value>
+  </data>
   <data name="ChangeTheme" xml:space="preserve">
     <value>Изменить тему</value>
+  </data>
+  <data name="ConfirmDeleteAlert" xml:space="preserve">
+    <value>Вы подтверждаете удаление?</value>
+  </data>
+  <data name="DeleteAlert" xml:space="preserve">
+    <value>Удалить</value>
+  </data>
+  <data name="DescrTooMoreAlert" xml:space="preserve">
+    <value>Поле "Описание" не должно содержать более чем 120 символов</value>
   </data>
   <data name="DisplayProfileCollection" xml:space="preserve">
     <value>Отображать список профилей:</value>
   </data>
+  <data name="DownFromGalleryAlert" xml:space="preserve">
+    <value>Загрузить из галереи</value>
+  </data>
+  <data name="EmptyfieldsAlert" xml:space="preserve">
+    <value>Поля "Ник" и "Имя" должны быть заполнены</value>
+  </data>
+  <data name="Error_Alert" xml:space="preserve">
+    <value>Ошибка</value>
+  </data>
+  <data name="IncorrectLoginAlert" xml:space="preserve">
+    <value>Не корректный логин</value>
+  </data>
+  <data name="IncorrectLoginTextAlert" xml:space="preserve">
+    <value>Логин не лолжен начинаться с цифры и его длина должна быть не менее 4 и не более 16 символов</value>
+  </data>
+  <data name="IncorrectPasswAlert" xml:space="preserve">
+    <value>Не корректный пароль</value>
+  </data>
+  <data name="IncorrectPasswTextAlert" xml:space="preserve">
+    <value>Длина пароля должна быть от 8 до 16 символов, пароль должен содержать большую букву, маленькую букву и цифру</value>
+  </data>
+  <data name="InvalidLoginOrPasswAlert" xml:space="preserve">
+    <value>Неверный логин, или пароль</value>
+  </data>
   <data name="LableHyperlinc" xml:space="preserve">
     <value>РЕГИСТРАЦИЯ</value>
+  </data>
+  <data name="LableMainList" xml:space="preserve">
+    <value>Нет добавленных профилей</value>
+  </data>
+  <data name="LoginAlreadyRegistredAlert" xml:space="preserve">
+    <value>Такой логин уже зарегистрирован</value>
   </data>
   <data name="MainListPageTitle" xml:space="preserve">
     <value>Мой список</value>
@@ -143,6 +188,12 @@
   </data>
   <data name="MenuItemEdit" xml:space="preserve">
     <value>ИЗМЕНИТЬ</value>
+  </data>
+  <data name="OkAlert" xml:space="preserve">
+    <value>Ok</value>
+  </data>
+  <data name="PasswNotConfirmAlert" xml:space="preserve">
+    <value>Пароль не подтвержден</value>
   </data>
   <data name="PlaceholderDescription" xml:space="preserve">
     <value>Описание</value>
@@ -179,5 +230,8 @@
   </data>
   <data name="SignUpPageTitle" xml:space="preserve">
     <value>Ругистрация пользователя</value>
+  </data>
+  <data name="UseCameraAlert" xml:space="preserve">
+    <value>Использовать камеру</value>
   </data>
 </root>

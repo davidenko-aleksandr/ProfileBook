@@ -2,6 +2,7 @@
 using Prism.Navigation;
 using Prism.Services;
 using ProfileBook.Models;
+using ProfileBook.Resources;
 using ProfileBook.Services;
 using ProfileBook.Services.RepositoryService;
 using System.Threading.Tasks;
@@ -81,20 +82,14 @@ namespace ProfileBook.ViewModels
 
             if (_checkLoginValid.IsCheckLogin(_login))      
             {
-                await _dialogService.DisplayAlertAsync("Incorrect login",
-                    "Login must not start with a number, " +
-                    "login length must be no less than 4 characters " +
-                    "and no more than 16 characters", "ok");
+                await _dialogService.DisplayAlertAsync(AppResources.IncorrectLoginAlert, AppResources.IncorrectLoginTextAlert, AppResources.OkAlert);
 
                 Login = string.Empty;        
                 isErrorExist = true;
             }
             if (_checkPasswordValid.IsPasswordValid(_password))    
             {
-                await _dialogService.DisplayAlertAsync("Incorrect password",
-                    "The password must contain from 8 to 16 characters, " +
-                    "among which there must be a capital letter, " +
-                    "a small letter, and also a number", "ok");
+                await _dialogService.DisplayAlertAsync(AppResources.IncorrectPasswAlert, AppResources.IncorrectPasswTextAlert, AppResources.OkAlert);
 
                 Password = string.Empty;      
                 ConPassw = string.Empty;   
@@ -105,8 +100,7 @@ namespace ProfileBook.ViewModels
             {
                 if (_password != _conPassw)   
                 {
-                    await _dialogService.DisplayAlertAsync("Error",
-                    "Password not confirmed", "ok");
+                    await _dialogService.DisplayAlertAsync(AppResources.Error_Alert, AppResources.PasswNotConfirmAlert, AppResources.OkAlert);
 
                     Password = string.Empty; 
                     ConPassw = string.Empty; 
@@ -118,8 +112,7 @@ namespace ProfileBook.ViewModels
             {
                 if (_checkLoginValid.IsCheckLoginDB(_login)) 
                 {
-                    await _dialogService.DisplayAlertAsync("Error",
-                        "This login is already registered", "ok");
+                    await _dialogService.DisplayAlertAsync(AppResources.Error_Alert, AppResources.LoginAlreadyRegistredAlert, AppResources.OkAlert);
 
                     isErrorExist = true;
                 }

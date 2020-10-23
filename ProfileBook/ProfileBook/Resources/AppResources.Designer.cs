@@ -70,6 +70,15 @@ namespace ProfileBook.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Adding a photo.
+        /// </summary>
+        public static string AddingPhotoAlert {
+            get {
+                return ResourceManager.GetString("AddingPhotoAlert", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to SIGNIN.
         /// </summary>
         public static string ButtonSignIn {
@@ -88,11 +97,47 @@ namespace ProfileBook.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Cancel.
+        /// </summary>
+        public static string CancelAlert {
+            get {
+                return ResourceManager.GetString("CancelAlert", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Change theme.
         /// </summary>
         public static string ChangeTheme {
             get {
                 return ResourceManager.GetString("ChangeTheme", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Do you confirm deletion?.
+        /// </summary>
+        public static string ConfirmDeleteAlert {
+            get {
+                return ResourceManager.GetString("ConfirmDeleteAlert", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Delete.
+        /// </summary>
+        public static string DeleteAlert {
+            get {
+                return ResourceManager.GetString("DeleteAlert", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The &quot;Description&quot; field is too large, it must be no more than 120 characters.
+        /// </summary>
+        public static string DescrTooMoreAlert {
+            get {
+                return ResourceManager.GetString("DescrTooMoreAlert", resourceCulture);
             }
         }
         
@@ -106,11 +151,101 @@ namespace ProfileBook.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Download from gallery.
+        /// </summary>
+        public static string DownFromGalleryAlert {
+            get {
+                return ResourceManager.GetString("DownFromGalleryAlert", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Fields  &quot;Name&quot; and  &quot;Nickname&quot; must be filled.
+        /// </summary>
+        public static string EmptyfieldsAlert {
+            get {
+                return ResourceManager.GetString("EmptyfieldsAlert", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Error.
+        /// </summary>
+        public static string Error_Alert {
+            get {
+                return ResourceManager.GetString("Error_Alert", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Incorrect login.
+        /// </summary>
+        public static string IncorrectLoginAlert {
+            get {
+                return ResourceManager.GetString("IncorrectLoginAlert", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Login must not start with a number and login length must be no less than 4 characters and no more than 16 characters.
+        /// </summary>
+        public static string IncorrectLoginTextAlert {
+            get {
+                return ResourceManager.GetString("IncorrectLoginTextAlert", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Incorrect password.
+        /// </summary>
+        public static string IncorrectPasswAlert {
+            get {
+                return ResourceManager.GetString("IncorrectPasswAlert", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The password must contain from 8 to 16 characters and among which there must be a capital letter a small letter and also a number.
+        /// </summary>
+        public static string IncorrectPasswTextAlert {
+            get {
+                return ResourceManager.GetString("IncorrectPasswTextAlert", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Invalid login or password.
+        /// </summary>
+        public static string InvalidLoginOrPasswAlert {
+            get {
+                return ResourceManager.GetString("InvalidLoginOrPasswAlert", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to SIGNUP.
         /// </summary>
         public static string LableHyperlinc {
             get {
                 return ResourceManager.GetString("LableHyperlinc", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to No profiles added.
+        /// </summary>
+        public static string LableMainList {
+            get {
+                return ResourceManager.GetString("LableMainList", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to This login is already registered.
+        /// </summary>
+        public static string LoginAlreadyRegistredAlert {
+            get {
+                return ResourceManager.GetString("LoginAlreadyRegistredAlert", resourceCulture);
             }
         }
         
@@ -138,6 +273,24 @@ namespace ProfileBook.Resources {
         public static string MenuItemEdit {
             get {
                 return ResourceManager.GetString("MenuItemEdit", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Ok.
+        /// </summary>
+        public static string OkAlert {
+            get {
+                return ResourceManager.GetString("OkAlert", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Password not confirmed.
+        /// </summary>
+        public static string PasswNotConfirmAlert {
+            get {
+                return ResourceManager.GetString("PasswNotConfirmAlert", resourceCulture);
             }
         }
         
@@ -246,6 +399,15 @@ namespace ProfileBook.Resources {
         public static string SignUpPageTitle {
             get {
                 return ResourceManager.GetString("SignUpPageTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Use camera.
+        /// </summary>
+        public static string UseCameraAlert {
+            get {
+                return ResourceManager.GetString("UseCameraAlert", resourceCulture);
             }
         }
     }

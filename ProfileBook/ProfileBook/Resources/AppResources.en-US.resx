@@ -120,20 +120,65 @@
   <data name="AddEditProfilePageTitle" xml:space="preserve">
     <value>Add Profile</value>
   </data>
+  <data name="AddingPhotoAlert" xml:space="preserve">
+    <value>Adding a photo</value>
+  </data>
   <data name="ButtonSignIn" xml:space="preserve">
     <value>SIGNIN</value>
   </data>
   <data name="ButtonSignUp" xml:space="preserve">
     <value>SIGNUP</value>
   </data>
+  <data name="CancelAlert" xml:space="preserve">
+    <value>Cancel</value>
+  </data>
   <data name="ChangeTheme" xml:space="preserve">
     <value>Change theme</value>
+  </data>
+  <data name="ConfirmDeleteAlert" xml:space="preserve">
+    <value>Do you confirm deletion?</value>
+  </data>
+  <data name="DeleteAlert" xml:space="preserve">
+    <value>Delete</value>
+  </data>
+  <data name="DescrTooMoreAlert" xml:space="preserve">
+    <value>The "Description" field is too large, it must be no more than 120 characters</value>
   </data>
   <data name="DisplayProfileCollection" xml:space="preserve">
     <value>Display Profile Collection:</value>
   </data>
+  <data name="DownFromGalleryAlert" xml:space="preserve">
+    <value>Download from gallery</value>
+  </data>
+  <data name="EmptyfieldsAlert" xml:space="preserve">
+    <value>Fields  "Name" and  "Nickname" must be filled</value>
+  </data>
+  <data name="Error_Alert" xml:space="preserve">
+    <value>Error</value>
+  </data>
+  <data name="IncorrectLoginAlert" xml:space="preserve">
+    <value>Incorrect login</value>
+  </data>
+  <data name="IncorrectLoginTextAlert" xml:space="preserve">
+    <value>Login must not start with a number and login length must be no less than 4 characters and no more than 16 characters</value>
+  </data>
+  <data name="IncorrectPasswAlert" xml:space="preserve">
+    <value>Incorrect password</value>
+  </data>
+  <data name="IncorrectPasswTextAlert" xml:space="preserve">
+    <value>The password must contain from 8 to 16 characters and among which there must be a capital letter a small letter and also a number</value>
+  </data>
+  <data name="InvalidLoginOrPasswAlert" xml:space="preserve">
+    <value>Invalid login or password</value>
+  </data>
   <data name="LableHyperlinc" xml:space="preserve">
     <value>SIGNUP</value>
+  </data>
+  <data name="LableMainList" xml:space="preserve">
+    <value>No profiles added</value>
+  </data>
+  <data name="LoginAlreadyRegistredAlert" xml:space="preserve">
+    <value>This login is already registered</value>
   </data>
   <data name="MainListPageTitle" xml:space="preserve">
     <value>Main List</value>
@@ -143,6 +188,12 @@
   </data>
   <data name="MenuItemEdit" xml:space="preserve">
     <value>EDIT</value>
+  </data>
+  <data name="OkAlert" xml:space="preserve">
+    <value>Ok</value>
+  </data>
+  <data name="PasswNotConfirmAlert" xml:space="preserve">
+    <value>Password not confirmed</value>
   </data>
   <data name="PlaceholderDescription" xml:space="preserve">
     <value>Description</value>
@@ -179,5 +230,8 @@
   </data>
   <data name="SignUpPageTitle" xml:space="preserve">
     <value>Users SingUp</value>
+  </data>
+  <data name="UseCameraAlert" xml:space="preserve">
+    <value>Use camera</value>
   </data>
 </root>

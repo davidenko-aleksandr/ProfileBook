@@ -2,6 +2,7 @@
 using Prism.Navigation;
 using Prism.Services;
 using ProfileBook.Models;
+using ProfileBook.Resources;
 using ProfileBook.Services.AuthenticationServices;
 using ProfileBook.Services.AuthorizationServices;
 using System;
@@ -72,7 +73,7 @@ namespace ProfileBook.ViewModels
             }
             else
             {
-                await _dialogService.DisplayAlertAsync("Error", "Invalid login or password", "Ok"); 
+                await _dialogService.DisplayAlertAsync(AppResources.Error_Alert, AppResources.InvalidLoginOrPasswAlert, AppResources.OkAlert); 
                 Login = string.Empty;         
                 Password = string.Empty;
             }                
