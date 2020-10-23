@@ -6,38 +6,38 @@
                  CloseWhenBackgroundIsClicked="True">
     
     <popup:PopupPage.Content>        
-        
-        <Grid HorizontalOptions="FillAndExpand" VerticalOptions="Center">
             
-            <StackLayout Orientation="Horizontal"  
-                         Margin="20" HorizontalOptions="Center"
-                         BackgroundColor="{DynamicResource AddButtonColor}">
+            <Grid Margin="20" HorizontalOptions="Center"
+                  VerticalOptions="Center"
+                  BackgroundColor="{DynamicResource AddButtonColor}">
+                
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
                 
                 <Image Source="{Binding ProfileImage}"
                        HeightRequest="150"
                        WidthRequest="150"
                        VerticalOptions="Center"
                        HorizontalOptions="Start"
+                       Grid.Column="0"
                 />
-                <StackLayout>
+                <StackLayout Grid.Column="1">
 
                     <Label Text="{Binding NickName}"
                            FontSize="23"
-                           TextColor="{DynamicResource PrimaryTextColor}"
+                           TextColor="{DynamicResource BlackTextColor}"
                     />
                     <Label Text="{Binding Name}"
                            FontSize="20"
-                           TextColor="{DynamicResource PrimaryTextColor}"
+                           TextColor="{DynamicResource BlackTextColor}"
                     />
                     <Label Text="{Binding DateTimePr}"
-                           TextColor="{DynamicResource PrimaryTextColor}"
+                           TextColor="{DynamicResource BlackTextColor}"
                     />
                     
-                </StackLayout>
-                
-            </StackLayout>    
-            
-        </Grid>
-        
+                </StackLayout>                
+            </Grid>                       
     </popup:PopupPage.Content>
 </popup:PopupPage>

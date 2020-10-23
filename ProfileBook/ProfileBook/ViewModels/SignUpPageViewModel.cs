@@ -30,11 +30,13 @@ namespace ProfileBook.ViewModels
             get { return _login; }
             set { SetProperty(ref _login, value); }
         }
+
         public string Password
         {
             get { return _password; }
             set { SetProperty(ref _password, value); }
         }
+
         public string ConPassw
         {
             get { return _conPassw; }
@@ -114,7 +116,7 @@ namespace ProfileBook.ViewModels
             }
             if (isErrorExist == false)   
             {
-                if (_checkLoginValid.IsCheckLoginDB(_login))    //we check the login for uniqueness in the database
+                if (_checkLoginValid.IsCheckLoginDB(_login)) 
                 {
                     await _dialogService.DisplayAlertAsync("Error",
                         "This login is already registered", "ok");
@@ -125,6 +127,7 @@ namespace ProfileBook.ViewModels
 
             return isErrorExist;
         }
+
         private void SaveToDataBase()
         {
             User user = new User

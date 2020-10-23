@@ -4,6 +4,7 @@
              x:Class="ProfileBook.Views.SettingsPageView"
              xmlns:local="clr-namespace:ProfileBook.Services.BindingServices"
              BackgroundColor="{DynamicResource PageBackgroundColor}"
+             xmlns:resources="clr-namespace:ProfileBook.Resources"   
              NavigationPage.HasNavigationBar="False">
     
     <StackLayout>
@@ -19,7 +20,7 @@
                          VerticalOptions="Center"
                          HorizontalOptions="Start"
             />
-            <Label Text="Settings"
+            <Label Text="{x:Static resources:AppResources.SettingsPageTitle}"
                    VerticalOptions="Center"
                    HorizontalOptions="Center"
                    TextColor="{DynamicResource SecondaryTextColor}" 
@@ -28,7 +29,7 @@
         </StackLayout>
         
         <StackLayout Margin="20">
-            <Label Text="Display Profile Collection"
+            <Label Text="{x:Static resources:AppResources.DisplayProfileCollection}"
                    FontSize="20"
                    TextColor="{DynamicResource PrimaryTextColor}"
             />            
@@ -39,7 +40,7 @@
                              BorderColor="{DynamicResource PrimaryTextColor}"
                              BackgroundColor="{DynamicResource RadioButtonColor}"
                 />
-                <Label Text=" - by date" 
+                <Label Text="{x:Static resources:AppResources.RButtonByDate}" 
                        FontSize="17" 
                        VerticalOptions="Center"
                        TextColor="{DynamicResource PrimaryTextColor}"
@@ -52,7 +53,7 @@
                              BorderColor="{DynamicResource PrimaryTextColor}"
                              BackgroundColor="{DynamicResource RadioButtonColor}"
                 />
-                <Label Text=" - by Nick Name" 
+                <Label Text="{x:Static resources:AppResources.RButtonByNickName}" 
                        FontSize="17" 
                        VerticalOptions="Center"
                        TextColor="{DynamicResource PrimaryTextColor}"
@@ -65,7 +66,7 @@
                              BorderColor="{DynamicResource PrimaryTextColor}"
                              BackgroundColor="{DynamicResource RadioButtonColor}"
                 />
-                <Label Text=" - by Name"
+                <Label Text="{x:Static resources:AppResources.RButtonByName}"
                        FontSize="17" 
                        VerticalOptions="Center"
                        TextColor="{DynamicResource PrimaryTextColor}"
@@ -79,7 +80,7 @@
                                       IsCheckedCommand="{Binding NewIsCheckCommand}"                                     
                 />
 
-                <Label Text="Change theme" 
+                <Label Text="{x:Static resources:AppResources.ChangeTheme}" 
                        FontSize="17"
                        VerticalOptions="Center"
                        TextColor="{DynamicResource PrimaryTextColor}"

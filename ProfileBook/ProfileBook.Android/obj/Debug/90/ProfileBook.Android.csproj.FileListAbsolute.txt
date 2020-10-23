@@ -1138,3 +1138,5 @@ E:\HeadWorksProject\ProfileBook\ProfileBook\ProfileBook.Android\obj\Debug\90\res
 E:\HeadWorksProject\ProfileBook\ProfileBook\ProfileBook.Android\obj\Debug\90\res\mipmap-hdpi\change_sort.png
 E:\HeadWorksProject\ProfileBook\ProfileBook\ProfileBook.Android\obj\Debug\90\res\drawable\comeback.png
 E:\HeadWorksProject\ProfileBook\ProfileBook\ProfileBook.Android\obj\Debug\90\res\drawable\dark_theme.png
+E:\HeadWorksProject\ProfileBook\ProfileBook\ProfileBook.Android\bin\Debug\en-US\ProfileBook.resources.dll
+E:\HeadWorksProject\ProfileBook\ProfileBook\ProfileBook.Android\bin\Debug\ru-RU\ProfileBook.resources.dll

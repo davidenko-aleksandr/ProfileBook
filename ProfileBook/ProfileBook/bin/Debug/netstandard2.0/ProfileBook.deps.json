@@ -23,6 +23,11 @@
         },
         "runtime": {
           "ProfileBook.dll": {}
+        },
+        "resources": {
+          "ru-RU/ProfileBook.resources.dll": {
+            "locale": "ru-RU"
+          }
         }
       },
       "Acr.UserDialogs/7.0.0": {

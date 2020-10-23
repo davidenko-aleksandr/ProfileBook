@@ -38,3 +38,12 @@ E:\ProfileBook\ProfileBook\ProfileBook\obj\Debug\netstandard2.0\ref\ProfileBook.
 E:\ProfileBook\ProfileBook\ProfileBook\obj\Debug\netstandard2.0\ProfileBook.pdb
 E:\HeadWorksProject\ProfileBook\ProfileBook\ProfileBook\obj\Debug\netstandard2.0\Themes\DarkTheme.xaml.g.cs
 E:\HeadWorksProject\ProfileBook\ProfileBook\ProfileBook\obj\Debug\netstandard2.0\Themes\LightTheme.xaml.g.cs
+E:\HeadWorksProject\ProfileBook\ProfileBook\ProfileBook\obj\Debug\netstandard2.0\ProfileBook.csproj.GenerateResource.cache
+E:\HeadWorksProject\ProfileBook\ProfileBook\ProfileBook\obj\Debug\netstandard2.0\ProfileBook.Resources.AppResources.resources
+E:\HeadWorksProject\ProfileBook\ProfileBook\ProfileBook\bin\Debug\netstandard2.0\en-US\ProfileBook.resources.dll
+E:\HeadWorksProject\ProfileBook\ProfileBook\ProfileBook\obj\Debug\netstandard2.0\ProfileBook.Resources.AppResources.en-US.resources
+E:\HeadWorksProject\ProfileBook\ProfileBook\ProfileBook\obj\Debug\netstandard2.0\en-US\ProfileBook.resources.dll
+E:\HeadWorksProject\ProfileBook\ProfileBook\ProfileBook\bin\Debug\netstandard2.0\ru-RU\ProfileBook.resources.dll
+E:\HeadWorksProject\ProfileBook\ProfileBook\ProfileBook\obj\Debug\netstandard2.0\ProfileBook.Resources.AppResources.ru-RU.resources
+E:\HeadWorksProject\ProfileBook\ProfileBook\ProfileBook\obj\Debug\netstandard2.0\ru-RU\ProfileBook.resources.dll
+E:\HeadWorksProject\ProfileBook\ProfileBook\ProfileBook\obj\Debug\netstandard2.0\ProfileBook.Resources.AppResources.ua-UA.resources

@@ -8,9 +8,9 @@
     <Color x:Key="PrimaryColor">WhiteSmoke</Color>
     <Color x:Key="SecondaryColor">Black</Color>
     <Color x:Key="PrimaryTextColor">Black</Color>
+    <Color x:Key="BlackTextColor">Black</Color>
     <Color x:Key="SecondaryTextColor">White</Color>
     <Color x:Key="TertiaryTextColor">Gray</Color>
-    <Color x:Key="TransparentColor">Transparent</Color>
     <Color x:Key="ButtonSignInUpColor">Gray</Color>
     <Color x:Key="EntryBacggroundColor">White</Color>
     <Color x:Key="EditorColor">Aqua</Color>

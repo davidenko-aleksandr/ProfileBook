@@ -26,6 +26,16 @@ namespace ProfileBook.ViewModels
 
         public User User { get; set; }
 
+        public string Login
+        {
+            get { return _login; }
+            set { SetProperty(ref _login, value); }
+        }
+        public string Password
+        {
+            get { return _password; }
+            set { SetProperty(ref _password, value); }
+        }
 
         public SignInPageViewModel(INavigationService navigationService,
                                     IUserAuthentication userAuthentication,
@@ -72,17 +82,6 @@ namespace ProfileBook.ViewModels
         {
             Login = (string)parameters["log"];
             Password = (string)parameters["pas"];            
-        }
-
-        public string Login
-        {
-            get { return _login; }
-            set { SetProperty(ref _login, value); }
-        }
-        public string Password
-        {
-            get { return _password; }
-            set { SetProperty(ref _password, value); }
         }
 
         public bool CanNavigate(INavigationParameters parameters)

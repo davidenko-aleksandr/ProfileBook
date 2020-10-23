@@ -6,7 +6,8 @@
              xmlns:local="clr-namespace:ProfileBook.Services.BindingServices"
              mc:Ignorable="d"
              x:Class="ProfileBook.Views.MainListPageView"
-             Title="Main List"
+             xmlns:resources="clr-namespace:ProfileBook.Resources"      
+             Title="{x:Static resources:AppResources.MainListPageTitle}"
              BackgroundColor="{DynamicResource PageBackgroundColor}">
     
     <ContentPage.ToolbarItems>
@@ -39,11 +40,11 @@
                 <DataTemplate>
                     <ViewCell>
                         <ViewCell.ContextActions>
-                            <MenuItem Text="EDIT"
+                            <MenuItem Text="{x:Static resources:AppResources.MenuItemEdit}"
                                       Command="{Binding BindingContext.EditProfileCommand, 
                                       Source={x:Reference profileList}}" CommandParameter="{Binding .}"
                             />
-                            <MenuItem Text="DELETE" 
+                            <MenuItem Text="{x:Static resources:AppResources.MenuItemDelete}" 
                                       Command="{Binding BindingContext.DeleteProfileCommand, 
                                       Source={x:Reference profileList}}" CommandParameter="{Binding .}"                                          
                             />

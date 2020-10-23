@@ -10,16 +10,18 @@ namespace ProfileBook.ViewModels
 {
     public class SettingsPageViewModel : BindableBase, IConfirmNavigation
     {
+        private readonly IProfileSort _profileSort;
+        private readonly INavigationService _navigationService;
+
+        private bool _isdate;
+        private bool _inickName;
+        private bool _isname;
+
         private ICommand _comaBackCommand;
         private ICommand _bydateCommand;
         private ICommand _byNickNameCommand;
         private ICommand _bynameCommand;
         private ICommand _newIsCheckCommand;
-        private readonly IProfileSort _profileSort;
-        private readonly INavigationService _navigationService;
-        private bool _isdate;
-        private bool _inickName;
-        private bool _isname;
 
         public bool IsDate
         {
@@ -80,6 +82,7 @@ namespace ProfileBook.ViewModels
             _profileSort.SaveSelectSort = "By name";
             IsName = true;
         }
+
         private void ChangeCurrentTheme()
         {
             if (App.IsDarkOrLightTheme == false)

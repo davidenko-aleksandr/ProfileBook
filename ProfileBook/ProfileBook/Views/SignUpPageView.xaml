@@ -6,7 +6,8 @@
              mc:Ignorable="d"
              x:Class="ProfileBook.Views.SignUpPageView"
              xmlns:local="clr-namespace:ProfileBook.Converters"
-             Title="Users SingUp"
+             xmlns:resources="clr-namespace:ProfileBook.Resources"     
+             Title="{x:Static resources:AppResources.SignUpPageTitle}"
              BackgroundColor="{DynamicResource PageBackgroundColor}">
 
     <ContentPage.Resources>
@@ -14,39 +15,41 @@
             <local:MultiTriggerConverter x:Key="buttonIsEnable"/>
         </ResourceDictionary>
     </ContentPage.Resources>
+    
     <Grid Margin="25, 130, 25, 100">
 
         <StackLayout HorizontalOptions="CenterAndExpand">
             <Entry x:Name="loginEntry"
-                   Placeholder="Login" 
+                   Placeholder="{x:Static resources:AppResources.PlaceholderLogin}" 
                    WidthRequest="380"
                    Text="{Binding Login}"
-                   TextColor="{DynamicResource PrimaryTextColor}"
+                   TextColor="{DynamicResource BlackTextColor}"
                    PlaceholderColor="{DynamicResource TertiaryTextColor}" 
                    BackgroundColor="{DynamicResource EntryBackgroundColor}"
             />
             <Entry x:Name="passwordEntry"
-                   Placeholder="Password" 
+                   Placeholder="{x:Static resources:AppResources.PlaceholderPassword}" 
                    WidthRequest="380"
                    IsPassword ="True" 
                    Text="{Binding Password}"
-                   TextColor="{DynamicResource PrimaryTextColor}"
+                   TextColor="{DynamicResource BlackTextColorr}"
                    PlaceholderColor="{DynamicResource TertiaryTextColor}" 
                    BackgroundColor="{DynamicResource EntryBackgroundColor}"
             />
             <Entry x:Name="conPasswEntry"
-                   Placeholder="Confirm Password" 
+                   Placeholder="{x:Static resources:AppResources.PlaceholferConfirmPassword}" 
                    WidthRequest="380"
                    IsPassword ="True" 
                    Text="{Binding ConPassw}"
-                   TextColor="{DynamicResource PrimaryTextColor}"
+                   TextColor="{DynamicResource BlackTextColor}"
                    PlaceholderColor="{DynamicResource TertiaryTextColor}" 
                    BackgroundColor="{DynamicResource EntryBackgroundColor}"
             />
         </StackLayout>
+        
         <Button VerticalOptions="End" 
                 HorizontalOptions="CenterAndExpand"
-                Text="SIGNUP"
+                Text="{x:Static resources:AppResources.ButtonSignUp}"
                 WidthRequest="380"
                 HeightRequest="50"
                 BackgroundColor="{DynamicResource ButtonSignInUpColor}"
@@ -70,7 +73,9 @@
                                 Converter={StaticResource buttonIsEnable}}"
                                 Value="true" />
                     </MultiTrigger.Conditions>
+                    
                     <Setter Property="IsEnabled" Value="True"/>
+                    
                 </MultiTrigger>
             </Button.Triggers>
         </Button>

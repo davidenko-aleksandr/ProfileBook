@@ -2,13 +2,10 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="ProfileBook.Views.AddEditProfileView"
-             Title="Add Profile"
+             xmlns:resources="clr-namespace:ProfileBook.Resources"
+             Title="{x:Static resources:AppResources.AddEditProfilePageTitle}"
              BackgroundColor="{DynamicResource PageBackgroundColor}">
-    
-    <ContentPage.Padding>
-        <OnPlatform x:TypeArguments="Thickness" iOS = "0, 20, 0, 0"/>
-    </ContentPage.Padding>
-    
+
     <ContentPage.ToolbarItems>
         <ToolbarItem IconImageSource="ic_save.png"
                      Order="Primary"
@@ -31,26 +28,26 @@
                      Command="{Binding ActionSheetCommand}"
         />
         <Entry Text="{Binding NickName}"
-               Placeholder="NickName"
+               Placeholder="{x:Static resources:AppResources.PlaceholderNickName}"
                WidthRequest="380"
                HeightRequest="50"
-               TextColor="{DynamicResource PrimaryTextColor}"
+               TextColor="{DynamicResource BlackTextColor}"
                PlaceholderColor="{DynamicResource TertiaryTextColor}"
                BackgroundColor="{DynamicResource EntryBackgroundColor}"
         />
         <Entry Text="{Binding Name}"
-               Placeholder="Name"
+               Placeholder="{x:Static resources:AppResources.PlaceholderName}"
                WidthRequest="380"
                HeightRequest="50"
-               TextColor="{DynamicResource PrimaryTextColor}"
+               TextColor="{DynamicResource BlackTextColor}"
                PlaceholderColor="{DynamicResource TertiaryTextColor}"
                BackgroundColor="{DynamicResource EntryBackgroundColor}"
         />
         <Editor Text="{Binding Description}"
-                Placeholder="Description"
+                Placeholder="{x:Static resources:AppResources.PlaceholderDescription}"
                 WidthRequest="380"
                 HeightRequest="300"
-                TextColor="{DynamicResource PrimaryTextColor}"
+                TextColor="{DynamicResource BlackTextColor}"
                 PlaceholderColor="{DynamicResource TertiaryTextColor}"
                 BackgroundColor="{DynamicResource EditorColor}"
         />
